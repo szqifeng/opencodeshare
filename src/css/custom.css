@@ -1,0 +1,222 @@
+:root {
+  --ifm-color-primary: #10b981;
+  --ifm-color-primary-dark: #0d9668;
+  --ifm-color-primary-darker: #0c855a;
+  --ifm-color-primary-darkest: #096b49;
+  --ifm-color-primary-light: #34d399;
+  --ifm-color-primary-lighter: #4ade80;
+  --ifm-color-primary-lightest: #6ee7b7;
+  --ifm-code-font-size: 95%;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #34d399;
+  --ifm-color-primary-dark: #22c55e;
+  --ifm-color-primary-darker: #16a34a;
+  --ifm-color-primary-darkest: #15803d;
+  --ifm-color-primary-light: #4ade80;
+  --ifm-color-primary-lighter: #6ee7b7;
+  --ifm-color-primary-lightest: #a7f3d0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #fff !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.navbar__link {
+  color: #374151 !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem !important;
+}
+
+.navbar__link:hover {
+  color: #10b981 !important;
+  background-color: #f0fdf4 !important;
+}
+
+.navbar__item .navbar__link {
+  color: #374151 !important;
+}
+
+.navbar__title {
+  color: #111827 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme='dark'] .navbar {
+  background-color: #1f2937 !important;
+  border-bottom: 1px solid #374151 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme='dark'] .navbar__link {
+  color: #e5e7eb !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem !important;
+}
+
+[data-theme='dark'] .navbar__link:hover {
+  color: #34d399 !important;
+  background-color: rgba(52, 211, 153, 0.1) !important;
+}
+
+[data-theme='dark'] .navbar__item .navbar__link {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .navbar__title {
+  color: #f9fafb !important;
+  font-weight: 700 !important;
+}
+
+.navbar-sidebar__brand {
+  background-color: #fff !important;
+}
+
+[data-theme='dark'] .navbar-sidebar__brand {
+  background-color: #1f2937 !important;
+}
+
+.menu__link {
+  color: #374151 !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease;
+}
+
+.menu__link:hover {
+  color: #10b981 !important;
+  transform: translateX(4px);
+}
+
+.menu__link--active {
+  color: #10b981 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='dark'] .menu__link {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .menu__link:hover {
+  color: #34d399 !important;
+  transform: translateX(4px);
+}
+
+[data-theme='dark'] .menu__link--active {
+  color: #34d399 !important;
+  font-weight: 600 !important;
+}
+
+.dropdown__link {
+  transition: all 0.2s ease;
+}
+
+.dropdown__link:hover {
+  background-color: #f9fafb;
+}
+
+[data-theme='dark'] .dropdown__link:hover {
+  background-color: #374151;
+}
+
+.pagination-nav__link {
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.pagination-nav__link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .pagination-nav__link:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.footer {
+  background-color: #fff !important;
+}
+
+[data-theme='dark'] .footer {
+  background-color: #1f2937 !important;
+}
+
+.homepage .footer {
+  border-top: 1px solid #e5e7eb !important;
+}
+
+[data-theme='dark'] .homepage .footer {
+  border-top: 1px solid #374151 !important;
+}
+
+.footer__title {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+.footer__link {
+  color: #6b7280 !important;
+  transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+  color: #10b981 !important;
+}
+
+[data-theme='dark'] .footer__title {
+  color: #f9fafb !important;
+}
+
+[data-theme='dark'] .footer__link {
+  color: #9ca3af !important;
+}
+
+[data-theme='dark'] .footer__link:hover {
+  color: #34d399 !important;
+}
+
+.footer__copyright {
+  color: #9ca3af !important;
+}
+
+[data-theme='dark'] .footer__copyright {
+  color: #6b7280 !important;
+}
+
+.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+.sidebar {
+  position: sticky !important;
+  top: calc(72px) !important;
+  max-height: calc(100vh - 72px) !important;
+  overflow-y: auto !important;
+}
+
+.menu {
+  padding-top: 0.5rem !important;
+  padding-bottom: 2rem !important;
+}
+
+@media (min-width: 997px) {
+  .docs-wrapper .footer {
+    display: none;
+  }
+}
+
+.homepage .footer {
+  display: block !important;
+}
