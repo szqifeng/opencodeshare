@@ -26,6 +26,49 @@ npm run swizzle        # Eject a theme component for customization
 - Master branch auto-deploys to GitHub Pages via GitHub Actions
 - No manual deploy needed - just push to master branch
 
+## Multi-Environment Deployment
+
+This site supports deployment to multiple environments:
+
+### Local Development
+```bash
+npm start
+# Access at: http://localhost:3000
+```
+
+### GitHub Pages
+- URL: https://szqifeng.github.io/opencodeshare/
+- Triggered by pushing to master branch
+- Auto-deployed via GitHub Actions
+
+### Custom Domain (opencodeshare.cn)
+```bash
+# Set environment variable for custom domain
+DEPLOY_PRIME_URL=https://opencodeshare.cn npm run build
+
+# Deploy build output to your server
+# The build will be configured for root path (/)
+```
+
+### Environment Configuration
+
+The site uses `DEPLOY_PRIME_URL` environment variable to configure deployment target:
+
+- **Local**: Uses default localhost URL
+- **GitHub Pages**: Default config (https://szqifeng.github.io + /opencodeshare/ base)
+- **Custom Domain**: Set `DEPLOY_PRIME_URL=https://yourdomain.com` to use root base path
+
+### Testing Custom Domain Locally
+
+```bash
+# Build for custom domain
+DEPLOY_PRIME_URL=https://opencodeshare.cn npm run build
+
+# Preview custom domain build
+npm run serve
+# Access at: http://localhost:3000/ (configured for root path)
+```
+
 **Note:** No test suite - use `npm start` and manually verify in browser.
 
 ---

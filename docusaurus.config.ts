@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'OpenCode 科普',
+  title: 'OpenCodeShare',
   tagline: '人人都能理解的 AI 编程能力',
   favicon: 'img/favicon.ico',
 
@@ -11,8 +11,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://szqifeng.github.io',
-  baseUrl: '/opencodeshare/',
+  url: process.env.DEPLOY_PRIME_URL || 'https://szqifeng.github.io',
+  baseUrl: process.env.DEPLOY_PRIME_URL?.includes('opencodeshare.cn') ? '/' : '/opencodeshare/',
 
   onBrokenLinks: 'warn',
 
