@@ -5,9 +5,11 @@ on:
     branches:
       - master
     paths-ignore:
-      - '**.md'
       - '.gitignore'
       - 'LICENSE'
+      - 'GENERATION_REPORT.md'
+      - '**/*.log'
+      - '**/*.cache'
 
 jobs:
   deploy:
