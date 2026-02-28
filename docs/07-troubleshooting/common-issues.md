@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 description: OpenCode 常见问题解答，汇总用户使用过程中最常遇到的问题和解决方案。帮助您快速解决使用中的问题。
 keywords: OpenCode 常见问题, OpenCode FAQ, OpenCode 问题解答, 使用问题
 ---

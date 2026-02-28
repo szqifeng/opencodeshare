@@ -1,5 +1,4 @@
 ---
-sidebar_position: 3
 description: OpenCode 代理配置教程，包括单代理、多代理、代理切换等功能。帮助您配置和管理 OpenCode 的代理系统，实现更灵活的 AI 助手使用方式。
 keywords: OpenCode 代理配置, OpenCode 代理, 多代理配置, 代理管理
 ---

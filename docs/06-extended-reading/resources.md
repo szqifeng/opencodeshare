@@ -1,5 +1,4 @@
 ---
-sidebar_position: 4
 description: OpenCode 社区资源推荐，包括相关工具、学习资源、社区平台等。帮助您找到更多有价值的学习和交流资源。
 keywords: OpenCode 资源, OpenCode 学习, OpenCode 社区, 学习资源
 ---

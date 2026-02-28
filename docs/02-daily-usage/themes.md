@@ -1,5 +1,4 @@
 ---
-sidebar_position: 5
 description: OpenCode 主题切换教程，支持亮色、暗色和自定义主题。帮助您个性化 OpenCode 的界面，提升使用体验。
 keywords: OpenCode 主题, OpenCode 暗色模式, OpenCode 自定义主题, 主题切换
 ---

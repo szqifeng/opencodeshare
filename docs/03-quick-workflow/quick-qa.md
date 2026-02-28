@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 description: OpenCode 快速问答教程，介绍如何使用 OpenCode 进行高效的问答交互。帮助您快速获取准确答案，提升问题解决效率。
 keywords: OpenCode 快速问答, OpenCode 问答, AI 问答, 问题解答
 ---

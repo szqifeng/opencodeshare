@@ -1,5 +1,4 @@
 ---
-sidebar_position: 3
 description: OpenCode 小红书运营教程，介绍如何使用 OpenCode 进行小红书内容创作和运营。帮助您提升小红书账号运营效率。
 keywords: OpenCode 小红书, 小红书运营, 小红书创作, AI 内容创作
 ---

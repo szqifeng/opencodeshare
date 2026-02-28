@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 description: OpenCode 规则设置教程，包括系统规则、自定义规则、规则优先级等。帮助您通过规则控制 AI 的行为，确保输出符合您的要求和标准。
 keywords: OpenCode 规则设置, OpenCode 自定义规则, AI 行为控制, 规则管理
 ---

@@ -1,5 +1,4 @@
 ---
-sidebar_position: 10
 description: OpenCode 提问技巧教程，介绍如何向 AI 提出优质问题，获得更好的回答。帮助您提升与 AI 交互的效果。
 keywords: OpenCode 提问技巧, AI 提问, Prompt 技巧, 问题设计
 ---

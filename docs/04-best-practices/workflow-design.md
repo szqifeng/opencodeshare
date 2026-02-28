@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 description: OpenCode 工作流设计教程，介绍如何设计高效、可复用的工作流。帮助您构建标准化、自动化工作流，提升整体工作效率。
 keywords: OpenCode 工作流设计, OpenCode 工作流, 工作流最佳实践, 自动化工作流
 ---

@@ -1,5 +1,4 @@
 ---
-sidebar_position: 11
 description: OpenCode 调试技巧教程，介绍如何使用 OpenCode 进行高效的调试。帮助您快速定位和解决问题。
 keywords: OpenCode 调试, 调试技巧, AI 调试, 问题排查
 ---

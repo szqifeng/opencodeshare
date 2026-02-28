@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 description: OpenCode 工具配置教程，介绍内置工具、自定义工具、工具链管理等功能。帮助您充分利用 OpenCode 的工具生态，提升工作效率。
 keywords: OpenCode 工具配置, OpenCode 工具, 自定义工具, 工具链
 ---

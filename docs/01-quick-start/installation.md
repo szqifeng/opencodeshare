@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 description: OpenCode 安装教程，支持 Windows、macOS、Linux 多平台。本文详细介绍如何下载、安装和配置 OpenCode，以及如何验证安装是否成功。
 keywords: OpenCode 安装, OpenCode 下载, OpenCode 教程, 如何安装 OpenCode
 ---

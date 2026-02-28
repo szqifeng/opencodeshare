@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 description: LLM 大语言模型是什么？本文用通俗易懂的语言解释 LLM 的概念、原理和应用，帮助您理解 AI 技术的基础。
 keywords: LLM, 大语言模型, AI 模型, OpenAI, 机器学习
 ---

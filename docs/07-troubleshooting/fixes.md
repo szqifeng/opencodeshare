@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 description: OpenCode 故障排除指南，详细介绍各类问题的排查方法和解决步骤。帮助您快速定位和解决 OpenCode 的各种问题。
 keywords: OpenCode 故障排除, OpenCode 问题排查, 问题解决, 调试方法
 ---

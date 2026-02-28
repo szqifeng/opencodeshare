@@ -1,5 +1,4 @@
 ---
-sidebar_position: 6
 description: LSP 语言服务协议是什么？本文详细介绍 LSP 协议的原理、特点、支持工具和应用场景，帮助您理解这一重要的开发工具标准。
 keywords: LSP, 语言服务协议, 代码补全, 编辑器集成, 开发工具
 ---

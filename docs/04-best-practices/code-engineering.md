@@ -1,5 +1,4 @@
 ---
-sidebar_position: 5
 description: OpenCode 代码工程编写教程，介绍如何使用 OpenCode 高效完成代码项目。帮助您提升代码开发效率和质量。
 keywords: OpenCode 代码工程, OpenCode 代码生成, AI 编程, 代码开发
 ---

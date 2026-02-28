@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 description: OpenCode 公众号创作教程，介绍如何使用 OpenCode 高效创作公众号文章。帮助您提升内容创作效率和质量。
 keywords: OpenCode 公众号, 公众号创作, 公众号文章生成, AI 写作
 ---

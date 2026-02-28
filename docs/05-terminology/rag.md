@@ -1,5 +1,4 @@
 ---
-sidebar_position: 3
 description: RAG 检索增强生成是什么？本文用通俗的语言解释 RAG 的原理、优势和应用场景，帮助您理解这一重要的 AI 技术。
 keywords: RAG, 检索增强生成, AI 技术, 知识库, 智能问答
 ---

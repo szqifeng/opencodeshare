@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 description: OpenCode 单轮对话教程，介绍如何通过一次对话完成复杂任务。帮助您优化对话策略，提升任务完成效率。
 keywords: OpenCode 单轮对话, OpenCode 对话策略, AI 对话, 任务完成
 ---
