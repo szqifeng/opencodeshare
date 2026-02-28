@@ -53,12 +53,20 @@ body {
   overflow: visible !important;
   text-overflow: clip !important;
   max-width: none !important;
+  font-size: 0.95rem !important;
 }
 
 .navbar__brand {
   max-width: none !important;
   white-space: nowrap !important;
   overflow: visible !important;
+  min-width: 160px !important;
+}
+
+.navbar__logo {
+  margin-right: 0.5rem !important;
+  width: 32px !important;
+  height: 32px !important;
 }
 
 [data-theme='dark'] .navbar {
