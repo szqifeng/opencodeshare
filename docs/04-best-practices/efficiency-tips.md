@@ -1,0 +1,11 @@
+---
+sidebar_position: 9
+description: OpenCode 提效技巧教程，分享使用 OpenCode 的各种效率提升技巧。帮助您最大化利用 OpenCode 的能力。
+keywords: OpenCode 提效, OpenCode 效率提升, 使用技巧, 效率优化
+---
+
+# 提效技巧
+
+掌握 OpenCode 的提效技巧可以让您事半功倍，大幅提升工作效率。本文将分享各种实用技巧，包括快捷操作、批量处理、模板复用、自动化工作流、性能优化以及高级技巧。
+
+通过应用这些提效技巧，您可以充分发挥 OpenCode 的能力，实现工作方式的革新。

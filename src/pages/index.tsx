@@ -324,19 +324,19 @@ export default function Home(): ReactNode {
                 <div style={cardIcon}>🎯</div>
                 <h3 style={cardTitle}>零基础友好</h3>
                 <p style={cardDesc}>无需深厚技术背景，从最基础的概念开始，循序渐进地学习 AI 编程</p>
-                <a href="/docs/intro/quick-start" style={cardLink}>开始学习 →</a>
+                <a href="/docs/01-quick-start/opencode-intro" style={cardLink}>开始学习 →</a>
               </div>
               <div style={card}>
                 <div style={cardIcon}>💡</div>
                 <h3 style={cardTitle}>生动有趣</h3>
                 <p style={cardDesc}>用生活中的比喻解释复杂概念，让学习过程轻松愉快，不再枯燥</p>
-                <a href="/docs/intro/basic-concepts" style={cardLink}>查看原理 →</a>
+                <a href="/docs/05-terminology/llm" style={cardLink}>查看原理 →</a>
               </div>
               <div style={card}>
                 <div style={cardIcon}>⚡</div>
                 <h3 style={cardTitle}>实战导向</h3>
                 <p style={cardDesc}>丰富的真实案例和练习，学完就能应用到实际工作中，立竿见影</p>
-                <a href="/docs/scenarios/code-review" style={cardLink}>查看案例 →</a>
+                <a href="/docs/04-best-practices/code-review" style={cardLink}>查看案例 →</a>
               </div>
             </div>
           </div>
@@ -402,15 +402,15 @@ export default function Home(): ReactNode {
           <div style={container}>
             <h2 style={sectionTitle}>开始你的学习之旅</h2>
             <div style={resourceGrid}>
-              <a href="/docs/intro/quick-start" style={resourceCard}>
+              <a href="/docs/01-quick-start/opencode-intro" style={resourceCard}>
                 <div style={resourceIcon}>🚀</div>
                 <div style={resourceTitle}>快速入门</div>
               </a>
-              <a href="/docs/advanced/best-practices" style={resourceCard}>
+              <a href="/docs/04-best-practices/workflow-design" style={resourceCard}>
                 <div style={resourceIcon}>✨</div>
                 <div style={resourceTitle}>最佳实践</div>
               </a>
-              <a href="/docs/community/faq" style={resourceCard}>
+              <a href="/docs/07-troubleshooting/common-issues" style={resourceCard}>
                 <div style={resourceIcon}>❓</div>
                 <div style={resourceTitle}>常见问题</div>
               </a>

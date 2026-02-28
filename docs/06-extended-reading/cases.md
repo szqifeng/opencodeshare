@@ -1,0 +1,11 @@
+---
+sidebar_position: 3
+description: OpenCode 企业应用案例，分享各行各业如何使用 OpenCode 提升效率。帮助您了解 OpenCode 的实际应用效果。
+keywords: OpenCode 案例, OpenCode 应用, 企业应用, 成功案例
+---
+
+# 企业应用案例
+
+了解其他企业和组织如何使用 OpenCode，可以为您提供宝贵的参考和启发。本文将分享多个行业的企业应用案例，包括使用场景、实施过程、效果数据、经验总结以及未来规划。
+
+通过学习这些案例，您可以更好地理解 OpenCode 的应用潜力，为自己的项目寻找灵感和最佳实践。

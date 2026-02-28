@@ -55,8 +55,8 @@ const config: Config = {
           position: 'left',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          type: 'doc',
+          docId: '01-quick-start/opencode-intro',
           position: 'left',
           label: '文档',
         },
