@@ -1,6 +1,6 @@
 ---
 description: OpenCode 代码审查教程，介绍如何使用 OpenCode 进行智能代码审查。帮助您提升代码质量和开发效率。
-keywords: OpenCode 代码审查, 代码质量, AI 代码审查, 代码检查
+keywords: ["OpenCode 代码审查", "代码质量", "AI 代码审查", "代码检查"]
 ---
 
 # 代码审查

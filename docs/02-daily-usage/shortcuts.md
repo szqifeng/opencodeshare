@@ -1,6 +1,6 @@
 ---
 description: OpenCode 快捷键大全，列出所有可用的快捷键和自定义方法。帮助您掌握快捷键，大幅提升使用效率。
-keywords: OpenCode 快捷键, OpenCode 快捷键大全, 快捷键设置, 效率提升
+keywords: ["OpenCode 快捷键", "OpenCode 快捷键大全", "快捷键设置", "效率提升"]
 ---
 
 # 快捷键大全

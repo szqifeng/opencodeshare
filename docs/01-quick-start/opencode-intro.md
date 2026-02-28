@@ -1,6 +1,6 @@
 ---
 description: OpenCode 是什么？OpenCode 是一款革命性的 AI 编程助手，通过智能代理和强大的模型能力，帮助开发者、创作者和用户大幅提升工作效率。
-keywords: OpenCode 介绍, AI 编程助手, OpenCode 是什么, OpenCode 功能
+keywords: ["OpenCode 介绍", "AI 编程助手", "OpenCode 是什么", "OpenCode 功能"]
 ---
 
 # OpenCode 介绍

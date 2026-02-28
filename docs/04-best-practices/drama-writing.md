@@ -1,6 +1,6 @@
 ---
 description: OpenCode 漫剧编写教程，介绍如何使用 OpenCode 创作漫剧剧本。帮助您提升漫剧创作效率和质量。
-keywords: OpenCode 漫剧, 漫剧编写, 剧本创作, AI 创作
+keywords: ["OpenCode 漫剧", "漫剧编写", "剧本创作", "AI 创作"]
 ---
 
 # 漫剧编写

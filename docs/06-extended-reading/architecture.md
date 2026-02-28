@@ -1,6 +1,6 @@
 ---
 description: OpenCode 架构设计详细介绍，包括系统架构、技术选型、设计理念等。帮助您深入理解 OpenCode 的技术实现。
-keywords: OpenCode 架构, OpenCode 设计, 系统架构, 技术架构
+keywords: ["OpenCode 架构", "OpenCode 设计", "系统架构", "技术架构"]
 ---
 
 # OpenCode 架构设计

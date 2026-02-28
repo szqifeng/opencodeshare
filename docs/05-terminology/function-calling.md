@@ -1,6 +1,6 @@
 ---
 description: Function Calling 函数调用是什么？本文详细介绍 Function Calling 的概念、原理、使用方法和应用场景，帮助您理解这一强大的 AI 功能。
-keywords: Function Calling, 函数调用, AI 函数, API 调用, AI 集成
+keywords: ["Function Calling", "函数调用", "AI 函数", "API 调用", "AI 集成"]
 ---
 
 # Function Calling 函数调用

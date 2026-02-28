@@ -1,6 +1,6 @@
 ---
 description: OpenCode 网页自动化教程，介绍如何使用 OpenCode 实现网页自动化任务。帮助您自动化重复性网页操作，提升工作效率。
-keywords: OpenCode 网页自动化, OpenCode 自动化, 网页操作自动化, 任务自动化
+keywords: ["OpenCode 网页自动化", "OpenCode 自动化", "网页操作自动化", "任务自动化"]
 ---
 
 # 网页自动化

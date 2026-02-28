@@ -1,6 +1,6 @@
 ---
 description: OpenCode 快速生成教程，介绍如何使用 OpenCode 快速生成各种类型的内容。帮助您大幅提升内容创作效率。
-keywords: OpenCode 快速生成, OpenCode 内容生成, AI 内容创作, 生成效率
+keywords: ["OpenCode 快速生成", "OpenCode 内容生成", "AI 内容创作", "生成效率"]
 ---
 
 # 快速生成

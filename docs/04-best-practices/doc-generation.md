@@ -1,6 +1,6 @@
 ---
 description: OpenCode 文档生成教程，介绍如何使用 OpenCode 自动生成各类文档。帮助您提升文档编写效率。
-keywords: OpenCode 文档生成, 文档自动生成, API 文档, 技术文档
+keywords: ["OpenCode 文档生成", "文档自动生成", "API 文档", "技术文档"]
 ---
 
 # 文档生成

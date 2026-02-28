@@ -56,7 +56,7 @@ const config: Config = {
         },
         {
           type: 'doc',
-          docId: '01-quick-start/opencode-intro',
+          docId: 'quick-start/opencode-intro',
           position: 'left',
           label: '文档',
         },

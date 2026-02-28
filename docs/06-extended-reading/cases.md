@@ -1,6 +1,6 @@
 ---
 description: OpenCode 企业应用案例，分享各行各业如何使用 OpenCode 提升效率。帮助您了解 OpenCode 的实际应用效果。
-keywords: OpenCode 案例, OpenCode 应用, 企业应用, 成功案例
+keywords: ["OpenCode 案例", "OpenCode 应用", "企业应用", "成功案例"]
 ---
 
 # 企业应用案例

@@ -1,6 +1,6 @@
 ---
 description: OpenCode LSP 服务器配置教程，支持 VS Code、IntelliJ 等主流编辑器。帮助您在编辑器中集成 OpenCode，享受智能编程辅助。
-keywords: OpenCode LSP, OpenCode 编辑器集成, OpenCode VS Code, 代码补全
+keywords: ["OpenCode LSP", "OpenCode 编辑器集成", "OpenCode VS Code", "代码补全"]
 ---
 
 # LSP 服务器配置

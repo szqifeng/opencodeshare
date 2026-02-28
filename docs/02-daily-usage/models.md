@@ -1,6 +1,6 @@
 ---
 description: OpenCode 模型管理教程，包括模型列表、模型切换、模型参数配置等。帮助您管理和使用多个 AI 模型，根据不同场景选择最合适的模型。
-keywords: OpenCode 模型管理, OpenCode 模型切换, 模型参数, 模型配置
+keywords: ["OpenCode 模型管理", "OpenCode 模型切换", "模型参数", "模型配置"]
 ---
 
 # 模型管理

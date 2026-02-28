@@ -1,6 +1,6 @@
 ---
 description: OpenCode 自定义开发教程，介绍如何开发自定义功能和插件。帮助您扩展 OpenCode 的能力，满足个性化需求。
-keywords: OpenCode 自定义开发, OpenCode 插件开发, 扩展开发, OpenCode API
+keywords: ["OpenCode 自定义开发", "OpenCode 插件开发", "扩展开发", "OpenCode API"]
 ---
 
 # 自定义开发

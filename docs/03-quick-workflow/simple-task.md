@@ -1,6 +1,6 @@
 ---
 description: OpenCode 简单任务教程，介绍如何使用 OpenCode 快速完成标准化任务。帮助您高效处理日常重复性任务。
-keywords: OpenCode 简单任务, OpenCode 任务自动化, 重复性任务, 任务处理
+keywords: ["OpenCode 简单任务", "OpenCode 任务自动化", "重复性任务", "任务处理"]
 ---
 
 # 简单任务

@@ -1,6 +1,6 @@
 ---
 description: OpenCode 模型选择指南，对比主流 AI 模型的性能、成本和适用场景。帮助您根据需求选择最合适的模型，提升使用效率和效果。
-keywords: OpenCode 模型选择, AI 模型对比, 模型推荐, OpenCode 模型列表
+keywords: ["OpenCode 模型选择", "AI 模型对比", "模型推荐", "OpenCode 模型列表"]
 ---
 
 # 模型选择

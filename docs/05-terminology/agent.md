@@ -1,6 +1,6 @@
 ---
 description: Agent 智能代理是什么？本文用通俗的语言解释 Agent 的概念、类型、能力以及应用场景，帮助您理解这一重要的 AI 概念。
-keywords: Agent, 智能代理, AI 代理, OpenCode Agent, 智能助手
+keywords: ["Agent", "智能代理", "AI 代理", "OpenCode Agent", "智能助手"]
 ---
 
 # Agent 智能代理

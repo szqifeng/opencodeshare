@@ -1,6 +1,6 @@
 ---
 description: Prompt 提示词是什么？本文详细介绍 Prompt 的概念、设计原则、编写技巧和最佳实践，帮助您掌握与 AI 沟通的关键。
-keywords: Prompt, 提示词, Prompt 工程, AI 提问, 提示词设计
+keywords: ["Prompt", "提示词", "Prompt 工程", "AI 提问", "提示词设计"]
 ---
 
 # Prompt 提示词

@@ -1,6 +1,6 @@
 ---
 description: OpenCode 提效技巧教程，分享使用 OpenCode 的各种效率提升技巧。帮助您最大化利用 OpenCode 的能力。
-keywords: OpenCode 提效, OpenCode 效率提升, 使用技巧, 效率优化
+keywords: ["OpenCode 提效", "OpenCode 效率提升", "使用技巧", "效率优化"]
 ---
 
 # 提效技巧

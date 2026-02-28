@@ -1,6 +1,6 @@
 ---
 description: OpenCode 网络配置教程，包括代理设置、API Key 配置、连接测试等。帮助您解决网络连接问题，确保 OpenCode 正常运行。
-keywords: OpenCode 网络配置, OpenCode 代理, API Key 配置, OpenCode 连接问题
+keywords: ["OpenCode 网络配置", "OpenCode 代理", "API Key 配置", "OpenCode 连接问题"]
 ---
 
 # 网络配置

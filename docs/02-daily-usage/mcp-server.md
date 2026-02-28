@@ -1,6 +1,6 @@
 ---
 description: OpenCode MCP 服务器配置教程，详细介绍 MCP 协议、配置方法和调试技巧。帮助您配置和使用 OpenCode 的 MCP 服务器。
-keywords: OpenCode MCP, MCP 服务器, MCP 协议, OpenCode 配置
+keywords: ["OpenCode MCP", "MCP 服务器", "MCP 协议", "OpenCode 配置"]
 ---
 
 # MCP 服务器配置
