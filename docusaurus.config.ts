@@ -71,7 +71,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/ChineseMarkwang?tab=repositories',
+          href: 'https://github.com/szqifeng/opencodeshare',
           label: 'GitHub',
           position: 'right',
         },

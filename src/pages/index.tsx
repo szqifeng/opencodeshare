@@ -1,6 +1,7 @@
 import type {ReactNode, CSSProperties} from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
 
 export default function Home(): ReactNode {
   const isBrowser = useIsBrowser();
@@ -294,8 +295,8 @@ export default function Home(): ReactNode {
               让编程变得简单有趣。无需深厚的技术背景，通过直观的学习和实践，掌握 AI 编程的核心技能
             </p>
             <div style={heroButtons}>
-              <a href="/docs/quick-start/opencode-intro" style={btnPrimary}>免费开始学习</a>
-              <a href="#scenarios" style={btnSecondary}>探索应用场景</a>
+              <Link to="/docs/quick-start/opencode-intro" style={btnPrimary}>免费开始学习</Link>
+              <Link to="#scenarios" style={btnSecondary}>探索应用场景</Link>
             </div>
           </div>
           <div style={heroImage}>
@@ -354,20 +355,20 @@ export default function Home(): ReactNode {
                  <div style={cardIcon}>🎯</div>
                  <h3 style={cardTitle}>零基础友好</h3>
                  <p style={cardDesc} className="card-desc">无需深厚技术背景，从最基础的概念开始，循序渐进地学习 AI 编程</p>
-                 <a href="/docs/quick-start/opencode-intro" style={cardLink}>开始学习 →</a>
-               </div>
-               <div style={card}>
-                 <div style={cardIcon}>💡</div>
-                 <h3 style={cardTitle}>生动有趣</h3>
-                 <p style={cardDesc} className="card-desc">用生活中的比喻解释复杂概念，让学习过程轻松愉快，不再枯燥</p>
-                 <a href="/docs/terminology/llm" style={cardLink}>查看原理 →</a>
-               </div>
-               <div style={card}>
-                 <div style={cardIcon}>⚡</div>
-                 <h3 style={cardTitle}>实战导向</h3>
-                 <p style={cardDesc} className="card-desc">丰富的真实案例和练习，学完就能应用到实际工作中，立竿见影</p>
-                 <a href="/docs/best-practices/code-review" style={cardLink}>查看案例 →</a>
-               </div>
+                  <Link to="/docs/quick-start/opencode-intro" style={cardLink}>开始学习 →</Link>
+                </div>
+                <div style={card}>
+                  <div style={cardIcon}>💡</div>
+                  <h3 style={cardTitle}>生动有趣</h3>
+                  <p style={cardDesc} className="card-desc">用生活中的比喻解释复杂概念，让学习过程轻松愉快，不再枯燥</p>
+                  <Link to="/docs/terminology/llm" style={cardLink}>查看原理 →</Link>
+                </div>
+                <div style={card}>
+                  <div style={cardIcon}>⚡</div>
+                  <h3 style={cardTitle}>实战导向</h3>
+                  <p style={cardDesc} className="card-desc">丰富的真实案例和练习，学完就能应用到实际工作中，立竿见影</p>
+                  <Link to="/docs/best-practices/code-review" style={cardLink}>查看案例 →</Link>
+                </div>
              </div>
           </div>
         </section>
@@ -432,18 +433,18 @@ export default function Home(): ReactNode {
           <div style={container}>
             <h2 style={sectionTitle}>开始你的学习之旅</h2>
             <div style={resourceGrid}>
-              <a href="/docs/quick-start/opencode-intro" style={resourceCard}>
+              <Link to="/docs/quick-start/opencode-intro" style={resourceCard}>
                 <div style={resourceIcon}>🚀</div>
                 <div style={resourceTitle}>快速入门</div>
-              </a>
-              <a href="/docs/best-practices/workflow-design" style={resourceCard}>
+              </Link>
+              <Link to="/docs/best-practices/workflow-design" style={resourceCard}>
                 <div style={resourceIcon}>✨</div>
                 <div style={resourceTitle}>最佳实践</div>
-              </a>
-              <a href="/docs/troubleshooting/common-issues" style={resourceCard}>
+              </Link>
+              <Link to="/docs/troubleshooting/common-issues" style={resourceCard}>
                 <div style={resourceIcon}>❓</div>
                 <div style={resourceTitle}>常见问题</div>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
