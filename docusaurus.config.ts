@@ -11,8 +11,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'http://localhost:3000',
-  baseUrl: '/',
+  url: 'https://szqifeng.github.io/opencodeshare',
+  baseUrl: '/opencodeshare/',
 
   onBrokenLinks: 'warn',
 
