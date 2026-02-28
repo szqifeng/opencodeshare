@@ -14,12 +14,15 @@ npm run typecheck      # Run TypeScript type checking
 # Utilities
 npm run clear          # Clear Docusaurus cache and build
 npm run swizzle        # Eject a theme component for customization
-npm run deploy         # Deploy to GitHub Pages
 ```
 
 **IMPORTANT:** When starting the dev server:
 1. Always kill existing process on port 3000 first: `lsof -ti :3000 | xargs kill -9`
 2. Run server asynchronously to avoid blocking: `nohup npm start > /dev/null 2>&1 &`
+
+**Deployment:**
+- Master branch auto-deploys to GitHub Pages via GitHub Actions
+- No manual deploy needed - just push to master branch
 
 **Note:** No test suite - use `npm start` and manually verify in browser.
 
