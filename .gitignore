@@ -18,3 +18,54 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Sensitive Configuration
+config.yaml
+config.yml
+*.secret
+*.key
+.env
+.env.*
+secrets/
+credentials/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+opencode-*.log
+
+# Tools and Agents
+~/.opencode/agents/
+~/.opencode/tools/
+agents/
+tools/
+.cache/
+*.cache
+*.agent.json
+*.agent.yaml
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
+desktop.ini
+*.DS_Store
+
+# Generated Reports
+GENERATION_REPORT.md
+*.report
