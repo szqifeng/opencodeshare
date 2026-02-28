@@ -1,5 +1,7 @@
 # AGENTS.md - Agent Coding Guidelines
 
+> Git 作者：qifeng (977765310@qq.com)
+
 ## Essential Commands
 
 ```bash
