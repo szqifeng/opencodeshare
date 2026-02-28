@@ -43,7 +43,7 @@ const config: Config = {
     navbar: {
       hideOnScroll: false,
       style: 'primary',
-      title: 'OpenCode',
+      title: 'OpenCode白话教程',
       logo: {
         alt: 'OpenCode Logo',
         src: 'img/logo.svg',

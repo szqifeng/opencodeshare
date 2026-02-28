@@ -288,7 +288,7 @@ export default function Home(): ReactNode {
         <section style={{...container, ...hero}} id="hero">
           <div style={heroContent}>
             <h1 style={heroTitle}>
-              OpenCode<br/>
+              OpenCode 白话教程<br/>
               <span style={heroTitleAccent}>人人都能理解的 AI 编程能力</span>
             </h1>
             <p style={heroSubtitle}>
