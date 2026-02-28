@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'OpenCodeShare',
+  title: 'OpenCode白话教程',
   tagline: '人人都能理解的 AI 编程能力',
   favicon: 'img/favicon.ico',
 
