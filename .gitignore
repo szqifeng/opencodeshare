@@ -69,3 +69,7 @@ desktop.ini
 # Generated Reports
 GENERATION_REPORT.md
 *.report
+
+# Documentation with personal info
+AGENTS.md
+PROJECT.md
