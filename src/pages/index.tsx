@@ -307,11 +307,41 @@ export default function Home(): ReactNode {
               <rect x="60" y="180" width="360" height="90" rx="12" fill={isDarkMode ? '#374151' : '#f9fafb'} stroke={isDarkMode ? '#374151' : '#e5e7eb'} strokeWidth="1"/>
               <circle cx="240" cy="225" r="32" fill="#10b981"/>
               <path d="M232 225l6 6 10-10" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="360" cy="30" r="48" fill="#10b981" opacity="0.12"/>
-              <circle cx="420" cy="10" r="32" fill="#10b981" opacity="0.08"/>
-              <rect x="390" y="50" width="70" height="45" rx="12" fill="#10b981" opacity="0.06"/>
-              <circle cx="80" cy="20" r="20" fill="#10b981" opacity="0.15"/>
-              <circle cx="30" cy="60" r="16" fill="#10b981" opacity="0.1"/>
+              <circle cx="360" cy="30" r="48" fill="#10b981" opacity="0.12">
+                <animate attributeName="cy" values="30;5;30" dur="3s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="420" cy="10" r="32" fill="#10b981" opacity="0.08">
+                <animate attributeName="cy" values="10;-15;10" dur="4s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="390" y="50" width="70" height="45" rx="12" fill="#10b981" opacity="0.06">
+                <animate attributeName="y" values="50;30;50" dur="3.5s" repeatCount="indefinite"/>
+              </rect>
+              <circle cx="80" cy="20" r="20" fill="#10b981" opacity="0.15">
+                <animate attributeName="cy" values="20;-5;20" dur="2.5s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="30" cy="60" r="16" fill="#10b981" opacity="0.1">
+                <animate attributeName="cy" values="60;40;60" dur="3.2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="100" cy="280" r="8" fill="#10b981" opacity="0.2">
+                <animate attributeName="cy" values="280;255;280" dur="2.8s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="150" cy="295" r="12" fill="#10b981" opacity="0.15">
+                <animate attributeName="cy" values="295;270;295" dur="3.3s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="200" cy="285" r="6" fill="#10b981" opacity="0.25">
+                <animate attributeName="cy" values="285;260;285" dur="2.6s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="300" cy="290" r="10" fill="#10b981" opacity="0.18">
+                <animate attributeName="cy" values="290;265;290" dur="3.1s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="380" cy="282" r="7" fill="#10b981" opacity="0.22">
+                <animate attributeName="cy" values="282;257;282" dur="2.9s" repeatCount="indefinite"/>
+              </circle>
+              <text x="310" y="85" fill="#10b981" fontSize="18" fontWeight="800" textAnchor="end">拒绝空谈</text>
+              <text x="310" y="108" fill={isDarkMode ? '#f9fafb' : '#111827'} fontSize="15" fontWeight="700" textAnchor="end">回归本质</text>
+              <text x="310" y="130" fill={isDarkMode ? '#d1d5db' : '#4b5563'} fontSize="13" textAnchor="end">亲身实践AI工具</text>
+              <text x="310" y="148" fill={isDarkMode ? '#d1d5db' : '#4b5563'} fontSize="13" textAnchor="end">传递真实经验</text>
+              <text x="310" y="168" fill="#10b981" fontSize="14" fontWeight="700" textAnchor="end">简洁 · 美好 · 实用</text>
             </svg>
           </div>
         </section>
