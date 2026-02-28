@@ -49,6 +49,16 @@ body {
 .navbar__title {
   color: #111827 !important;
   font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  max-width: none !important;
+}
+
+.navbar__brand {
+  max-width: none !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
 }
 
 [data-theme='dark'] .navbar {
