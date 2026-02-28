@@ -420,65 +420,151 @@ export default function Home(): ReactNode {
       </main>
       <style dangerouslySetInnerHTML={{
         __html: `
-        @media (max-width: 768px) {
-          section[id="hero"] {
-            padding: 4rem 0 3rem !important;
-            flex-direction: column !important;
-            gap: 2rem !important;
-          }
-          section[id="hero"] h1 {
-            font-size: 2.25rem !important;
-          }
-          section[id="hero"] svg {
-            width: 100% !important;
-            max-width: 320px !important;
-            height: auto !important;
-          }
-          .cardGrid {
-            grid-template-columns: 1fr !important;
-          }
-          .scenarioGrid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-          .resourceGrid {
-            grid-template-columns: 1fr !important;
-          }
-          .roadmap {
-            flex-direction: column !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .scenarioGrid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        .btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
-        .btn-secondary:hover {
-          transform: translateY(-2px);
-          background-color: ${isDarkMode ? '#374151' : '#f9fafb'};
-        }
-        .card:hover {
-          transform: translateY(-4px);
-          box-shadow: ${isDarkMode ? '0 20px 40px rgba(0, 0, 0, 0.3)' : '0 20px 40px rgba(0, 0, 0, 0.1)'};
-        }
-        .cardLink:hover {
-          transform: translateX(4px);
-        }
-        .scenarioCard:hover {
-          transform: translateY(-4px);
-          border-color: #10b981;
-        }
-        .resourceCard:hover {
-          transform: translateY(-4px);
-          border-color: #10b981;
-        }
-        .roadmapIcon:hover {
-          transform: scale(1.1);
-        }
-      `
+         @media (max-width: 768px) {
+           section[id="hero"] {
+             padding: 3rem 0.75rem !important;
+             flex-direction: column !important;
+             gap: 2rem !important;
+           }
+           section[id="hero"] h1 {
+             font-size: 2rem !important;
+             line-height: 1.2 !important;
+           }
+           section[id="hero"] svg {
+             width: 100% !important;
+             max-width: 320px !important;
+             height: auto !important;
+           }
+           section[id="hero"] p {
+             font-size: 1rem !important;
+             max-width: 100% !important;
+           }
+           section[id="hero"] div[style*="display: flex"] {
+             flex-direction: column !important;
+             width: 100% !important;
+           }
+           section[id="hero"] a[style*="btnPrimary"],
+           section[id="hero"] a[style*="btnSecondary"] {
+             width: 100% !important;
+             text-align: center !important;
+             padding: 0.875rem 1rem !important;
+             margin-bottom: 0.75rem !important;
+             box-sizing: border-box !important;
+           }
+           section[id="hero"] a[style*="btnSecondary"] {
+             margin-bottom: 0 !important;
+           }
+           .cardGrid {
+             grid-template-columns: 1fr !important;
+             gap: 1rem !important;
+           }
+           .scenarioGrid {
+             grid-template-columns: repeat(2, 1fr) !important;
+             gap: 0.75rem !important;
+           }
+           .resourceGrid {
+             grid-template-columns: 1fr !important;
+             gap: 0.75rem !important;
+           }
+           .roadmap {
+             flex-direction: column !important;
+             gap: 1rem !important;
+           }
+           .roadmapItem {
+             text-align: left !important;
+             padding: 0.75rem !important;
+             background: ${isDarkMode ? '#1f2937' : '#f9fafb'};
+             border-radius: 8px;
+           }
+           .sectionTitle {
+             font-size: 1.5rem !important;
+           }
+           .card {
+             padding: 1.25rem !important;
+           }
+           .scenarioCard {
+             padding: 1rem !important;
+           }
+           .resourceCard {
+             padding: 1.25rem !important;
+           }
+           section {
+             padding: 3rem 0.75rem !important;
+           }
+         }
+         @media (max-width: 480px) {
+           section[id="hero"] {
+             padding: 2rem 0.5rem !important;
+           }
+           section[id="hero"] h1 {
+             font-size: 1.75rem !important;
+           }
+           section[id="hero"] p {
+             font-size: 0.95rem !important;
+             line-height: 1.5 !important;
+           }
+           .scenarioGrid {
+             grid-template-columns: 1fr !important;
+           }
+           .sectionTitle {
+             font-size: 1.3rem !important;
+           }
+           .card,
+           .scenarioCard,
+           .resourceCard {
+             padding: 1rem !important;
+           }
+           .roadmapIcon {
+             width: 48px !important;
+             height: 48px !important;
+             font-size: 1.1rem !important;
+           }
+         }
+         @media (min-width: 769px) and (max-width: 996px) {
+           section[id="hero"] {
+             padding: 6rem 2rem !important;
+             gap: 3rem !important;
+           }
+           .cardGrid {
+             grid-template-columns: repeat(2, 1fr) !important;
+             gap: 1.25rem !important;
+           }
+           .scenarioGrid {
+             grid-template-columns: repeat(2, 1fr) !important;
+             gap: 1rem !important;
+           }
+           .resourceGrid {
+             grid-template-columns: repeat(2, 1fr) !important;
+             gap: 1.25rem !important;
+           }
+         }
+         .btn-primary:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+         }
+         .btn-secondary:hover {
+           transform: translateY(-2px);
+           background-color: ${isDarkMode ? '#374151' : '#f9fafb'};
+         }
+         .card:hover {
+           transform: translateY(-4px);
+           box-shadow: ${isDarkMode ? '0 20px 40px rgba(0, 0, 0, 0.3)' : '0 20px 40px rgba(0, 0, 0, 0.1)'};
+         }
+         .cardLink:hover {
+           transform: translateX(4px);
+         }
+         .scenarioCard:hover {
+           transform: translateY(-4px);
+           border-color: #10b981;
+         }
+         .resourceCard:hover {
+           transform: translateY(-4px);
+           border-color: #10b981;
+         }
+         .roadmapIcon:hover {
+           transform: scale(1.1);
+         }
+        `
       }} />
     </Layout>
   );
