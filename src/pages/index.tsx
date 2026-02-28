@@ -462,10 +462,30 @@ export default function Home(): ReactNode {
              grid-template-columns: repeat(2, 1fr) !important;
              gap: 0.75rem !important;
            }
-           .resourceGrid {
-             grid-template-columns: 1fr !important;
-             gap: 0.75rem !important;
-           }
+            .resourceGrid {
+              grid-template-columns: 1fr !important;
+              gap: 0.75rem !important;
+            }
+            section[id="features"],
+            section[id="resources"] {
+              text-align: center !important;
+            }
+            section[id="features"] .container,
+            section[id="resources"] .container {
+              max-width: 100% !important;
+              overflow-x: auto !important;
+              -webkit-overflow-scrolling: touch !important;
+            }
+            section[id="features"] .cardGrid,
+            section[id="resources"] .resourceGrid {
+              display: flex !important;
+              gap: 1rem !important;
+              width: max-content;
+              margin: 0 auto;
+              overflow-x: auto !important;
+              -webkit-overflow-scrolling: touch !important;
+              padding: 0.5rem 1rem 0.5rem 0.5rem !important;
+            }
            .roadmap {
              flex-direction: column !important;
              gap: 1rem !important;
