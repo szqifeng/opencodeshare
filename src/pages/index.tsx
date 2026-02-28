@@ -422,8 +422,55 @@ export default function Home(): ReactNode {
         __html: `
          @media (max-width: 768px) {
            body {
-            overflow-x: auto !important;
-            overflow-y: hidden !important;
+             overflow-x: auto !important;
+             overflow-y: auto !important;
+             width: 100% !important;
+           }
+           main {
+             overflow-x: auto !important;
+             overflow-y: auto !important;
+             width: 100vw !important;
+           }
+           section {
+            min-width: auto !important;
+            max-width: 100% !important;
+          }
+          .container {
+            min-width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 1.5rem !important;
+          }
+          section[id="features"] .container,
+          section[id="scenarios"] .container,
+          section[id="resources"] .container {
+            padding: 0 1rem !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          section[id="features"] .cardGrid,
+          section[id="scenarios"] .scenarioGrid,
+          section[id="resources"] .resourceGrid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            gap: 0.75rem !important;
+            justify-content: center !important;
+            width: 100% !important;
+          }
+          section[id="features"] h2,
+          section[id="scenarios"] h2,
+          section[id="resources"] h2 {
+            font-size: 1.5rem !important;
+            text-align: center !important;
+            margin-bottom: 1rem !important;
+          }
+          section[id="features"] .card,
+          section[id="scenarios"] .scenarioCard,
+          section[id="resources"] .resourceCard {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            padding: 1.5rem !important;
           }
           main {
             overflow-x: auto !important;
