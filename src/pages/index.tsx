@@ -421,111 +421,82 @@ export default function Home(): ReactNode {
       <style dangerouslySetInnerHTML={{
         __html: `
          @media (max-width: 768px) {
-           section[id="hero"] {
-             padding: 3rem 0.75rem !important;
-             flex-direction: column !important;
-             gap: 2rem !important;
-           }
-           section[id="hero"] h1 {
-             font-size: 2rem !important;
-             line-height: 1.2 !important;
-           }
-           section[id="hero"] svg {
-             width: 100% !important;
-             max-width: 320px !important;
-             height: auto !important;
-           }
-           section[id="hero"] p {
-             font-size: 1rem !important;
-             max-width: 100% !important;
-           }
-           section[id="hero"] div[style*="display: flex"] {
-             flex-direction: column !important;
-             width: 100% !important;
-           }
-           section[id="hero"] a[style*="btnPrimary"],
-           section[id="hero"] a[style*="btnSecondary"] {
-             width: 100% !important;
-             text-align: center !important;
-             padding: 0.875rem 1rem !important;
-             margin-bottom: 0.75rem !important;
-             box-sizing: border-box !important;
-           }
-           section[id="hero"] a[style*="btnSecondary"] {
-             margin-bottom: 0 !important;
-           }
-           .cardGrid {
-             grid-template-columns: 1fr !important;
-             gap: 1rem !important;
-           }
-           .scenarioGrid {
-             grid-template-columns: repeat(2, 1fr) !important;
-             gap: 0.75rem !important;
-           }
-            .resourceGrid {
-              grid-template-columns: 1fr !important;
-              gap: 0.75rem !important;
-            }
-            section[id="features"],
-            section[id="resources"] {
-              text-align: center !important;
-            }
-            section[id="features"] .container,
-            section[id="resources"] .container {
-              max-width: 100% !important;
-              overflow-x: auto !important;
-              -webkit-overflow-scrolling: touch !important;
-            }
-            section[id="features"] .cardGrid,
-            section[id="resources"] .resourceGrid {
-              display: flex !important;
-              gap: 1rem !important;
-              width: max-content;
-              margin: 0 auto;
-              overflow-x: auto !important;
-              -webkit-overflow-scrolling: touch !important;
-              padding: 0.5rem 1rem 0.5rem 0.5rem !important;
-            }
-           .roadmap {
-             flex-direction: column !important;
-             gap: 1rem !important;
-           }
-           .roadmapItem {
-             text-align: left !important;
-             padding: 0.75rem !important;
-             background: ${isDarkMode ? '#1f2937' : '#f9fafb'};
-             border-radius: 8px;
-           }
-            .card-desc,
-            .scenario-desc,
-            .roadmap-desc {
-              display: none !important;
-            }
-            .sectionTitle {
-              font-size: 1.5rem !important;
-            }
-           .roadmapDesc {
-             display: none !important;
-           }
-           .sectionTitle {
-             font-size: 1.5rem !important;
-           }
-           .card {
-             padding: 1.25rem !important;
-           }
-           .scenarioCard {
-             padding: 1rem !important;
-           }
-           .resourceCard {
-             padding: 1.25rem !important;
-           }
-           section {
-             padding: 3rem 0.75rem !important;
-           }
+           body {
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+          }
+          main {
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            width: 100vw !important;
+          }
+          section {
+            min-width: 100vw !important;
+          }
+          section[id="hero"] {
+            padding: 2rem 0.75rem !important;
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+            min-height: auto !important;
+          }
+          section[id="hero"] h1 {
+            font-size: 2rem !important;
+            line-height: 1.2 !important;
+          }
+          section[id="hero"] svg {
+            width: 100% !important;
+            max-width: 320px !important;
+            height: auto !important;
+            margin: 0 auto !important;
+          }
+          section[id="hero"] p {
+            font-size: 1rem !important;
+            max-width: 100% !important;
+            line-height: 1.5 !important;
+            margin-bottom: 1rem !important;
+          }
+          section[id="hero"] div[style*="display: flex"] {
+            width: 100% !important;
+            margin: 0 !important;
+            display: flex !important;
+            justify-content: center !important;
+            flex-wrap: nowrap !important;
+            gap: 0.5rem !important;
+          }
+          section[id="hero"] a[style*="btnPrimary"],
+          section[id="hero"] a[style*="btnSecondary"] {
+            width: auto !important;
+            padding: 0.75rem 1.5rem !important;
+            margin: 0 !important;
+            font-size: 0.85rem !important;
+            white-space: nowrap !important;
+          }
+          .cardGrid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            gap: 1rem !important;
+            width: max-content !important;
+          }
+          .scenarioGrid {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+            gap: 0.75rem !important;
+            width: max-content !important;
+          }
+          .resourceGrid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+            gap: 0.75rem !important;
+            width: max-content !important;
+          }
+          .section {
+            padding: 2rem 0.75rem !important;
+            min-width: 100vw !important;
+          }
+          .container {
+            min-width: 100% !important;
+          }
          }
          @media (max-width: 480px) {
            section[id="hero"] {
-             padding: 2rem 0.5rem !important;
+             padding: 1.5rem 0.5rem !important;
            }
            section[id="hero"] h1 {
              font-size: 1.75rem !important;
@@ -534,9 +505,18 @@ export default function Home(): ReactNode {
              font-size: 0.95rem !important;
              line-height: 1.5 !important;
            }
+           .cardGrid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+            gap: 0.75rem !important;
+          }
            .scenarioGrid {
-             grid-template-columns: 1fr !important;
-           }
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+            gap: 0.75rem !important;
+          }
+           .resourceGrid {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+            gap: 0.75rem !important;
+          }
            .sectionTitle {
              font-size: 1.3rem !important;
            }
