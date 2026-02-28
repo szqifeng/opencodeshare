@@ -476,6 +476,17 @@ export default function Home(): ReactNode {
              background: ${isDarkMode ? '#1f2937' : '#f9fafb'};
              border-radius: 8px;
            }
+            .cardDesc,
+            .scenarioDesc,
+            .roadmapDesc {
+              display: none !important;
+            }
+            .sectionTitle {
+              font-size: 1.5rem !important;
+            }
+           .roadmapDesc {
+             display: none !important;
+           }
            .sectionTitle {
              font-size: 1.5rem !important;
            }
