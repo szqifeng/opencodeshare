@@ -505,8 +505,8 @@ npm run deploy
 
 ### 相关项目
 
-- [OpenCode GitHub](https://github.com/anomalyco/opencode)
-- [OpenCode Releases](https://github.com/anomalyco/opencode/releases)
+- [OpenCode GitHub](https://github.com/ChineseMarkwang/opencode-docs)
+- [OpenCode Releases](https://github.com/ChineseMarkwang/opencode-docs/releases)
 
 ---
 
@@ -538,16 +538,16 @@ npm run deploy
 
 ## 👥 团队
 
-- 项目维护：OpenCode Team
-- 技术支持：opencode.ai
+- 项目维护：ChineseMarkwang
+- 技术支持：https://github.com/ChineseMarkwang
 
 ---
 
 ## 📮 联系我们
 
-- GitHub Issues: [提交问题](https://github.com/anomalyco/opencode/issues)
-- Email: support@opencode.ai
-- 社区: [Discussions](https://github.com/anomalyco/opencode/discussions)
+- GitHub Issues: [提交问题](https://github.com/ChineseMarkwang/opencode-docs/issues)
+- Email: 977765310@qq.com
+- 社区: [Discussions](https://github.com/ChineseMarkwang/opencode-docs/discussions)
 
 ---
 

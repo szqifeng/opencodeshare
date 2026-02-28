@@ -71,7 +71,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/anomalyco/opencode',
+          href: 'https://github.com/ChineseMarkwang?tab=repositories',
           label: 'GitHub',
           position: 'right',
         },
