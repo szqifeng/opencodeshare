@@ -11,7 +11,7 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://szqifeng.github.io/opencodeshare',
+  url: 'https://szqifeng.github.io',
   baseUrl: '/opencodeshare/',
 
   onBrokenLinks: 'warn',
