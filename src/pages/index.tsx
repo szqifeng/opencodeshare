@@ -2,10 +2,39 @@ import type {ReactNode, CSSProperties} from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import {useState, useEffect} from 'react';
 
 export default function Home(): ReactNode {
   const isBrowser = useIsBrowser();
   const isDarkMode = isBrowser && document.documentElement.getAttribute('data-theme') === 'dark';
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallBtn, setShowInstallBtn] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallBtn(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handler);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    const {outcome} = await deferredPrompt.userChoice;
+
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+      setShowInstallBtn(false);
+    }
+  };
 
   const container: CSSProperties = {
     maxWidth: '1200px',
@@ -83,6 +112,27 @@ export default function Home(): ReactNode {
     border: `1px solid ${isDarkMode ? '#374151' : '#e5e7eb'}`,
     transition: 'all 0.2s ease',
     cursor: 'pointer',
+  };
+
+  const btnInstall: CSSProperties = {
+    background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+    color: '#fff',
+    padding: '0.875rem 1.75rem',
+    borderRadius: '10px',
+    fontWeight: 600,
+    fontSize: '0.95rem',
+    border: 'none',
+    transition: 'all 0.2s ease',
+    boxShadow: '0 4px 14px rgba(139, 92, 246, 0.3)',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+  };
+
+  const btnInstallHover: CSSProperties = {
+    transform: 'translateY(-2px)',
+    boxShadow: '0 6px 20px rgba(139, 92, 246, 0.4)',
   };
 
   const btnSecondaryHover: CSSProperties = {
@@ -297,6 +347,22 @@ export default function Home(): ReactNode {
             <div style={heroButtons}>
               <Link to="/docs/quick-start/opencode-intro" style={btnPrimary}>免费开始学习</Link>
               <Link to="#scenarios" style={btnSecondary}>探索应用场景</Link>
+              {showInstallBtn && (
+                <button
+                  onClick={handleInstallClick}
+                  style={btnInstall}
+                  onMouseEnter={(e) => Object.assign(e.currentTarget.style, btnInstallHover)}
+                  onMouseLeave={(e) => Object.assign(e.currentTarget.style, {transform: '', boxShadow: ''})}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20.25 6H3.75A2.25 2.25 0 001.5 8.25v8.25a2.25 2.25 0 002.25 2.25h5.25l3 3.75 3-3.75h5.25a2.25 2.25 0 002.25-2.25V8.25A2.25 2.25 0 0020.25 6z" />
+                    <path d="M12 12h.01" />
+                    <path d="M9 12h.01" />
+                    <path d="M15 12h.01" />
+                  </svg>
+                  添加到桌面
+                </button>
+              )}
             </div>
           </div>
           <div style={heroImage}>

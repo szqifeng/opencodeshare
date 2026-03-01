@@ -21,6 +21,37 @@ const config: Config = {
     locales: ['zh-Hans'],
   },
 
+  plugins: [
+    [
+      require.resolve('@docusaurus/plugin-pwa'),
+      {
+        debug: true,
+        offlineModeActivationStrategies: [
+          'appInstalled',
+          'standalone',
+          'queryString',
+        ],
+        pwaHead: [
+          {
+            tagName: 'link',
+            rel: 'icon',
+            href: '/opencodeshare/img/logo.svg',
+          },
+          {
+            tagName: 'link',
+            rel: 'manifest',
+            href: '/opencodeshare/manifest.json',
+          },
+          {
+            tagName: 'meta',
+            name: 'theme-color',
+            content: '#10b981',
+          },
+        ],
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',

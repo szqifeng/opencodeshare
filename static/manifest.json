@@ -1,0 +1,25 @@
+{
+  "name": "OpenCode 学习",
+  "short_name": "OpenCode",
+  "description": "人人都能理解的 AI 编程能力",
+  "start_url": "/opencodeshare/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/opencodeshare/img/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/opencodeshare/img/logo.svg",
+      "sizes": "40x40",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "productivity", "developer-tools"]
+}
