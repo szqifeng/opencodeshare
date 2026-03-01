@@ -24,6 +24,32 @@ npm run build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+## 环境变量配置
+
+### DEPLOY_PRIME_URL
+
+`DEPLOY_PRIME_URL` 环境变量用于设置部署目标，影响 `baseUrl` 的配置：
+
+| 环境 | DEPLOY_PRIME_URL | baseUrl |
+|------|------------------|---------|
+| 本地开发 | 不设置或 localhost | `/` |
+| GitHub Pages | 不设置（默认） | `/opencodeshare/` |
+| 自定义域名 | `https://opencodeshare.cn` | `/` |
+| 其他域名 | `https://yourdomain.com` | `/opencodeshare/` |
+
+#### 使用示例
+
+```bash
+# 本地构建（默认 baseUrl: /opencodeshare/）
+npm run build
+
+# 为自定义域名构建（baseUrl: /）
+DEPLOY_PRIME_URL=https://opencodeshare.cn npm run build
+
+# 本地预览构建结果
+npm run serve
+```
+
 ## Deployment
 
 ### GitHub Actions 自动部署
