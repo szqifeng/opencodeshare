@@ -67,6 +67,10 @@ const config: Config = {
     ],
   ],
 
+  markdown: {
+    mermaid: true,
+  },
+
   themeConfig: {
     colorMode: {
       respectPrefersColorScheme: true,
