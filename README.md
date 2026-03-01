@@ -26,25 +26,32 @@ This command generates static content into the `build` directory and can be serv
 
 ## 环境变量配置
 
-### DEPLOY_PRIME_URL
+### SITE_URL
 
-`DEPLOY_PRIME_URL` 环境变量用于设置部署目标，影响 `baseUrl` 的配置：
+`SITE_URL` 环境变量用于设置网站的完整 URL（协议+域名）。
 
-| 环境 | DEPLOY_PRIME_URL | baseUrl |
-|------|------------------|---------|
-| 本地开发 | 不设置或 localhost | `/` |
-| GitHub Pages | 不设置（默认） | `/opencodeshare/` |
-| 自定义域名 | `https://opencodeshare.cn` | `/` |
-| 其他域名 | `https://yourdomain.com` | `/opencodeshare/` |
+### BASE_URL
+
+`BASE_URL` 环境变量用于设置网站的基础路径。
+
+| 环境 | SITE_URL | BASE_URL | 最终 URL |
+|------|----------|----------|----------|
+| 本地开发 | 不设置 | 不设置 | http://localhost:3000/opencodeshare/ |
+| GitHub Pages | 不设置 | 不设置 | https://szqifeng.github.io/opencodeshare/ |
+| 自定义域名 | `https://opencodeshare.cn` | `/` | https://opencodeshare.cn |
+| 子目录部署 | `https://example.com` | `/docs/` | https://example.com/docs/ |
 
 #### 使用示例
 
 ```bash
-# 本地构建（默认 baseUrl: /opencodeshare/）
+# 本地构建（默认配置）
 npm run build
 
-# 为自定义域名构建（baseUrl: /）
-DEPLOY_PRIME_URL=https://opencodeshare.cn npm run build
+# 为自定义域名构建（根路径）
+SITE_URL=https://opencodeshare.cn BASE_URL=/ npm run build
+
+# 为子路径构建
+SITE_URL=https://example.com BASE_URL=/docs/ npm run build
 
 # 本地预览构建结果
 npm run serve
