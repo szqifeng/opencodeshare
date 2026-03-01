@@ -626,3 +626,78 @@ body {
     font-size: 0.88rem !important;
   }
 }
+
+/* 主题切换按钮样式 */
+.toggle_vylO {
+  display: flex !important;
+}
+
+.colorModeToggle_DEke {
+  display: flex !important;
+}
+
+.toggleButton_gllP,
+.toggleButtonDisabled_aARS {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  padding: 4px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.toggleButton_gllP:hover,
+.toggleButtonDisabled_aARS:hover {
+  background-color: #f3f4f6 !important;
+}
+
+[data-theme='dark'] .toggleButton_gllP:hover,
+[data-theme='dark'] .toggleButtonDisabled_aARS:hover {
+  background-color: #374151 !important;
+}
+
+.toggleButton_gllP svg,
+.toggleButtonDisabled_aARS svg {
+  width: 20px !important;
+  height: 20px !important;
+  color: #6b7280 !important;
+  transition: color 0.2s ease !important;
+}
+
+.toggleButton_gllP:hover svg,
+.toggleButtonDisabled_aARS:hover svg {
+  color: #111827 !important;
+}
+
+[data-theme='dark'] .toggleButton_gllP svg,
+[data-theme='dark'] .toggleDisabled_aARS svg {
+  color: #9ca3af !important;
+}
+
+[data-theme='dark'] .toggleButton_gllP:hover svg,
+[data-theme='dark'] .toggleDisabled_aARS:hover svg {
+  color: #f9fafb !important;
+}
+
+.lightToggleIcon_pyhR {
+  display: block !important;
+}
+
+.darkToggleIcon_wfgR {
+  display: none !important;
+}
+
+[data-theme='dark'] .lightToggleIcon_pyhR {
+  display: none !important;
+}
+
+[data-theme='dark'] .darkToggleIcon_wfgR {
+  display: block !important;
+}
+
+.systemToggleIcon_QzmC {
+  display: block !important;
+}
