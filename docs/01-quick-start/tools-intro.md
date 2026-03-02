@@ -185,63 +185,234 @@ tools:
 ```
 
 ## 自定义工具
-
-OpenCode 支持创建自定义工具：
-
-### 创建自定义工具
-
-1. 定义工具接口：
-
-```javascript
-const customTool = {
-  name: "send_email",
-  description: "发送邮件",
-  parameters: {
-    type: "object",
-    properties: {
-      to: {
-        type: "string",
-        description: "收件人邮箱"
-      },
-      subject: {
-        type: "string",
-        description: "邮件主题"
-      },
-      body: {
-        type: "string",
-        description: "邮件正文"
-      }
-    },
-    required: ["to", "subject", "body"]
-  }
-};
+ 
+OpenCode 支持创建自定义工具来扩展系统能力。
+ 
+### 工具加载机制 🔄
+ 
+OpenCode 会在启动时自动加载所有符合规范的工具定义：
+ 
+**自动加载规则：**
+ 
 ```
-
-2. 实现工具逻辑：
-
-```javascript
-async function sendEmail(params) {
-  const { to, subject, body } = params;
+✅ 项目本地：.opencode/tools/
+✅ 全局目录：~/.config/opencode/tools/
+✅ 符合规范的文件：.ts/.js/.py 等
+✅ 导出默认 export：export default tool({...})
+✅ 多个导出：export const tool1 = tool({...})
+```
+ 
+**加载流程：**
+ 
+```
+项目启动
+   ↓
+扫描工具目录
+   ├─ .opencode/tools/ （项目本地）
+   └─ ~/.config/opencode/tools/ （全局）
+   ↓
+解析工具文件
+   ├─ TypeScript/JavaScript 工具定义
+   ├─ Python 脚本工具
+   └─ 其他语言脚本
+   ↓
+验证工具规范
+   ├─ 检查必需字段（description, args）
+   ├─ 验证参数类型
+   └─ 测试工具函数
+   ↓
+注册到上下文
+   ├─ 添加到工具列表
+   ├─ 映射到 LLM
+   └─ 生成工具调用能力
+   ↓
+✅ 工具可用
+```
+ 
+### 工具定义规范 📋
+ 
+OpenCode 使用严格的工具定义接口，确保类型安全和一致性。
+ 
+#### 基本结构
+ 
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+ 
+export default tool({
+  id: "tool_name",
+  description: "工具描述（给 LLM 看的）",
+  parameters: z.object({
+    // 参数定义
+  }),
+  async execute(args, ctx) {
+    // 执行逻辑
+    return {
+      title: "结果标题",
+      output: "输出内容",
+      metadata: {}
+    }
+  }
+})
+```
+ 
+**参数说明：**
+ 
+| 参数 | 类型 | 必需 | 说明 |
+|------|------|------|------|
+| `id` | `string` | ✅ | 工具唯一标识符 |
+| `description` | `string` | ✅ | 工具功能描述 |
+| `parameters` | `z.ZodType` | ✅ | 使用 Zod 定义的参数类型 |
+| `execute` | `function` | ✅ | 工具执行函数 |
+| `title` | `string` | ✅ | 执行结果标题 |
+| `output` | `string` | ✅ | 工具输出 |
+| `metadata` | `object` | ✅ | 执行元数据 |
+| `attachments` | `FilePart[]` | ❌ | 可选的文件附件 |
+ 
+#### 简单示例
+ 
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+ 
+export default tool({
+  id: "greet",
+  description: "返回问候语",
+  parameters: z.object({
+    name: z.string().describe("用户名字")
+  }),
+  async execute(args) {
+    return {
+      title: "问候",
+      output: `你好，${args.name}！`,
+      metadata: { timestamp: Date.now() }
+    }
+  }
+})
+```
+ 
+#### Context 使用
+ 
+执行函数接收上下文对象，提供会话信息：
+ 
+```typescript
+async execute(args, ctx) {
+  // 获取会话信息
+  console.log(`Session: ${ctx.sessionID}`)
+  console.log(`Agent: ${ctx.agent}`)
   
-  // 调用邮件服务 API
-  const result = await emailService.send({
-    to,
-    subject,
-    body
-  });
+  // 检查是否被中止
+  if (ctx.abort.aborted) {
+    throw new Error("Tool execution was aborted")
+  }
   
-  return result;
+  // 设置元数据
+  ctx.metadata({
+    title: "正在处理...",
+    metadata: { startTime: Date.now() }
+  })
+  
+  // 请求权限
+  await ctx.ask({
+    permission: "file_access",
+    message: "需要访问文件"
+  })
+  
+  // 执行逻辑
+  return { ... }
 }
 ```
+ 
+### 创建自定义工具
+ 
+**方式 1：TypeScript 工具**
+ 
+在 `.opencode/tools/my-tool.ts` 中创建：
+ 
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+ 
+export default tool({
+  id: "send_email",
+  description: "发送邮件",
+  parameters: z.object({
+    to: z.string().email().describe("收件人邮箱"),
+    subject: z.string().describe("邮件主题"),
+    body: z.string().describe("邮件正文")
+  }),
+  async execute(args) {
+    // 实现发送邮件逻辑
+    await emailService.send({
+      to: args.to,
+      subject: args.subject,
+      body: args.body
+    })
+    
+    return {
+      title: "邮件发送",
+      output: `邮件已发送到 ${args.to}`,
+      metadata: { recipient: args.to }
+    }
+  }
+})
+```
+ 
+**方式 2：调用 Python 脚本**
+ 
+创建 Python 脚本 `.opencode/tools/script.py`：
+ 
+```python
+#!/usr/bin/env python3
+import sys
 
-3. 注册工具：
+def process_data(input_data):
+    return f"Processed: {input_data}"
 
-```yaml
-tools:
-  - name: "send_email"
-    type: "custom"
-    enabled: true
-    path: "./tools/send_email.js"
+if __name__ == "__main__":
+    result = process_data(sys.argv[1])
+    print(result)
+```
+ 
+创建 TypeScript 包装器 `.opencode/tools/python-wrapper.ts`：
+ 
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+import path from "path"
+ 
+export default tool({
+  id: "python_processor",
+  description: "使用 Python 处理数据",
+  parameters: z.object({
+    input: z.string().describe("输入数据")
+  }),
+  async execute(args, ctx) {
+    const script = path.join(ctx.worktree, ".opencode/tools/script.py")
+    const result = await Bun.$`python3 ${script} ${args.input}`.text()
+    
+    return {
+      title: "Python 处理",
+      output: result.trim(),
+      metadata: {}
+    }
+  }
+})
+```
+ 
+### 注册工具
+ 
+工具定义完成后，重启 OpenCode 会自动加载：
+ 
+```bash
+# 1. 创建工具目录
+mkdir -p .opencode/tools
+ 
+# 2. 创建工具文件
+# （如上所示）
+ 
+# 3. 重启 OpenCode
+# 工具会自动加载
 ```
 
 ## 工具使用场景
