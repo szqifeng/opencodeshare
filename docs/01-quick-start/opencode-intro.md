@@ -69,35 +69,187 @@ OpenCode 采用 v2 版本的消息结构，支持多种 Part 类型：
 ```
 用户输入
    ↓
-Session 处理
-   ├── 构建系统提示词
-   │   ├── Agent prompt
-   │   ├── Provider prompt
-   │   └── 用户自定义 prompt
-   ├── LLM 流式调用
-   │   ├── 处理流式事件
-   │   ├── 推理过程（reasoning）
-   │   ├── 工具调用（tool）
-   │   └── 文本生成（text）
-   ├── 工具执行协调
-   │   ├── 验证工具存在性
-   │   ├── 检测 doom loop
-   │   ├── 执行工具
-   │   └── 返回结果
-   └── 状态管理
-       ├── idle（空闲）
-       ├── busy（处理中）
-       └── retry（重试）
+创建 SessionProcessor
+   ├── 初始化工具调用映射表 (toolcalls)
+   ├── 初始化快照追踪 (snapshot)
+   ├── 设置阻塞标志 (blocked = false)
+   ├── 设置重试次数 (attempt = 0)
+   └── 设置压缩标志 (needsCompaction = false)
+   ↓
+进入处理循环 (while true)
+   ↓
+调用 LLM.stream(streamInput)
+   ├─ 构建系统提示词
+   │  ├── Agent prompt
+   │  ├── Provider prompt
+   │  └── 用户自定义 prompt
+   └─ 返回流式结果 (fullStream)
+   ↓
+处理流式事件 (for await)
+   ├─ start: 设置 Session 状态为 "busy"
+   ├─ reasoning-start/delta/end
+   │  ├── 创建 ReasoningPart
+   │  ├── 追加推理文本
+   │  └─ 完成推理，更新时间戳
+   ├─ tool-input-start/delta/end
+   │  └─ 创建 ToolPart (status: "pending")
+   ├─ tool-call
+   │  ├── 验证工具是否存在
+   │  ├── Doom Loop 检测 (连续3次相同调用)
+   │  │  └─ 触发权限询问 (PermissionNext.ask)
+   │  ├── 更新状态为 "running"
+   │  └─ 存储到 toolcalls 映射
+   ├─ tool-result
+   │  ├── 更新状态为 "completed"
+   │  ├── 记录输出和元数据
+   │  └─ 从 toolcalls 移除
+   ├─ tool-error
+   │  ├── 更新状态为 "error"
+   │  ├── 记录错误信息
+   │  ├── 检查是否被阻塞 (PermissionNext.RejectedError / Question.RejectedError)
+   │  └─ 从 toolcalls 移除
+   ├─ error: 抛出异常
+   ├─ start-step
+   │  └─ 开始快照追踪 (Snapshot.track())
+   ├─ finish-step
+   │  ├── 计算使用量 (tokens, cost)
+   │  ├── 更新消息完成原因 (finishReason)
+   │  ├── 创建 step-finish Part
+   │  ├── 生成文件变更快照 (Snapshot.patch)
+   │  │  └─ 创建 patch Part
+   │  ├── 触发摘要 (SessionSummary.summarize)
+   │  └─ 检查是否需要压缩 (SessionCompaction.isOverflow)
+   ├─ text-start/delta/end
+   │  ├── 创建 TextPart
+   │  ├── 追加文本内容
+   │  ├── 触发插件钩子 (experimental.text.complete)
+   │  └─ 完成文本，更新时间戳
+   └─ finish: 完成本次循环
+   ↓
+异常处理 (try-catch)
+   ├─ ContextOverflowError
+   │  └─ 设置 needsCompaction = true，发布错误事件
+   ├─ 可重试错误
+   │  ├── 计算重试延迟 (SessionRetry.delay)
+   │  ├── 设置状态为 "retry"
+   │  ├── 等待延迟时间
+   │  └─ continue (继续循环)
+   └─ 其他错误
+      ├─ 创建错误消息 (MessageV2.fromError)
+      ├─ 发布错误事件 (Bus.publish)
+      ├─ 设置状态为 "idle"
+      └─ 记录到消息 (assistantMessage.error)
+   ↓
+清理未完成的工具调用
+   └─ 将所有 running/pending 状态的工具设为 "error"
+   ↓
+更新消息完成时间
+   └─ assistantMessage.time.completed = Date.now()
+   ↓
+返回结果状态
+   ├─ "compact": 需要压缩
+   ├─ "stop": 停止 (blocked 或有错误)
+   └─ "continue": 继续
 ```
 
-### 工具调用机制
+### 关键机制详解
 
-工具调用通过事件流处理：
+#### Doom Loop 检测
 
-1. **tool-input-start**: 创建工具调用，存储到映射表
-2. **tool-call**: 验证工具，检测循环，执行工具
-3. **tool-result**: 更新状态为完成，记录输出
-4. **tool-error**: 更新状态为错误，检查是否阻塞
+当检测到连续 3 次相同的工具调用时，触发权限询问：
+
+```typescript
+const lastThree = parts.slice(-DOOM_LOOP_THRESHOLD)  // 获取最后3个工具调用
+
+if (
+  lastThree.length === DOOM_LOOP_THRESHOLD &&
+  lastThree.every(
+    (p) =>
+      p.type === "tool" &&
+      p.tool === value.toolName &&
+      p.state.status !== "pending" &&
+      JSON.stringify(p.state.input) === JSON.stringify(value.input),
+  )
+) {
+  // 触发权限询问
+  await PermissionNext.ask({
+    permission: "doom_loop",
+    patterns: [value.toolName],
+    sessionID: input.assistantMessage.sessionID,
+    metadata: {
+      tool: value.toolName,
+      input: value.input,
+    },
+    always: [value.toolName],
+    ruleset: agent.permission,
+  })
+}
+```
+
+#### 权限拒绝处理
+
+当工具因权限拒绝或问题拒绝而失败时，根据配置决定是否停止循环：
+
+```typescript
+const shouldBreak = (await Config.get()).experimental?.continue_loop_on_deny !== true
+
+if (
+  value.error instanceof PermissionNext.RejectedError ||
+  value.error instanceof Question.RejectedError
+) {
+  blocked = shouldBreak  // 如果 shouldBreak 为 true，则停止
+}
+```
+
+#### 快照和文件追踪
+
+在步骤开始和结束时进行快照追踪，自动生成文件变更：
+
+```typescript
+case "start-step":
+  snapshot = await Snapshot.track()  // 开始追踪
+
+case "finish-step":
+  const patch = await Snapshot.patch(snapshot)  // 生成变更快照
+  if (patch.files.length) {
+    await Session.updatePart({
+      type: "patch",
+      hash: patch.hash,
+      files: patch.files,  // 文件变更列表
+    })
+  }
+```
+
+#### 上下文压缩
+
+当 token 超出限制时，触发压缩机制：
+
+```typescript
+if (await SessionCompaction.isOverflow({ tokens: usage.tokens, model: input.model })) {
+  needsCompaction = true  // 标记需要压缩
+  break  // 退出循环，返回 "compact" 状态
+}
+```
+
+#### 重试机制
+
+对于可重试的错误，自动进行重试：
+
+```typescript
+const retry = SessionRetry.retryable(error)
+if (retry !== undefined) {
+  attempt++
+  const delay = SessionRetry.delay(attempt, error.name === "APIError" ? error : undefined)
+  SessionStatus.set(input.sessionID, {
+    type: "retry",
+    attempt,
+    message: retry,
+    next: Date.now() + delay,
+  })
+  await SessionRetry.sleep(delay, input.abort).catch(() => {})
+  continue  // 重试
+}
+```
 
 ### 事件系统
 
