@@ -21,7 +21,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'quick-start/opencode-intro',
         'quick-start/quick-experience',
-        'quick-start/quick-connect-zhipu',
+        'quick-start/quick-connect-model',
         'quick-start/workflow',
         'quick-start/tools-intro',
         'quick-start/configuration',
