@@ -267,237 +267,386 @@ OpenCode：[调用工具 search.local]
 
 ## 自定义工具 🔧
 
-### 创建自定义工具
+### 工具加载机制 🔄
 
-#### 方式 1：使用 JSON 配置 📝
+OpenCode 会在启动时自动加载所有符合规范的工具定义：
 
-在 `~/.opencode/tools/custom.json` 中定义：
+**自动加载规则：**
 
-```json
-{
-  "name": "my_weather_tool",
-  "description": "获取天气信息",
-  "type": "http",
-  "config": {
-    "method": "GET",
-    "url": "`https://api.weather.com/city/{city}`",
-    "headers": {
-      "Authorization": "Bearer YOUR_API_KEY"
-    },
-    "response_format": "json"
-  },
-  "parameters": {
-    "city": {
-      "type": "string",
-      "required": true,
-      "description": "城市名称"
-    }
-  }
-}
+```
+✅ 项目本地：.opencode/tools/
+✅ 全局目录：~/.config/opencode/tools/
+✅ 符合规范的文件：.ts/.js/.py 等
+✅ 导出默认 export：export default tool({...})
+✅ 多个导出：export const tool1 = tool({...})
 ```
 
-**使用示例：**
+**加载流程：**
 
-```bash
-# 重新加载工具
-opencode tools reload
+```
+项目启动
+   ↓
+扫描工具目录
+   ├─ .opencode/tools/ （项目本地）
+   └─ ~/.config/opencode/tools/ （全局）
+   ↓
+解析工具文件
+   ├─ TypeScript/JavaScript 工具定义
+   ├─ Python 脚本工具
+   └─ 其他语言脚本
+   ↓
+验证工具规范
+   ├─ 检查必需字段（description, args）
+   ├─ 验证参数类型
+   └─ 测试工具函数
+   ↓
+注册到上下文
+   ├─ 添加到工具列表
+   ├─ 映射到 LLM
+   └─ 生成工具调用能力
+   ↓
+✅ 工具可用
+```
 
-# 调用自定义工具
-用户：帮我查询北京天气
+**类型规范：**
 
-OpenCode：[调用工具 my_weather_tool]
-✅ 调用自定义工具：my_weather_tool
-[API 响应]
-{
-  "city": "北京",
-  "temperature": 25,
-  "weather": "晴天"
-}
+```typescript
+import { tool } from "@opencode-ai/plugin"
 
-北京今天天气是晴天，气温 25°C
+// 单工具文件
+export default tool({
+  description: "工具描述",
+  args: {
+    // 参数定义
+  },
+  async execute(args, context) {
+    // 执行逻辑
+    return result
+  }
+})
+
+// 多工具文件
+export const tool1 = tool({...})
+export const tool2 = tool({...})
+export const tool3 = tool({...})
 ```
 
 ---
 
-#### 方式 2：使用 Python 脚本 🐍
+### 创建自定义工具
 
-创建 `~/.opencode/tools/my_tool.py`：
+#### 方式 1：使用 TypeScript 定义 📝
+
+使用 `tool()` helper 提供类型安全和验证。
+
+**基础工具：**
+
+在 `.opencode/tools/database.ts` 中定义：
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+
+export default tool({
+  description: "查询项目数据库",
+  
+  // 参数定义（使用 Zod schema）
+  args: {
+    query: tool.schema.string().describe("SQL 查询语句"),
+  },
+  
+  // 执行函数
+  async execute(args) {
+    // 执行数据库查询
+    const result = await executeSQL(args.query)
+    return result
+  },
+})
+```
+
+**工具名称：**
+- 文件名：`database.ts` → 工具名：`database`
+- 文件名：`math.ts` → 工具名：`math`
+
+**多工具文件：**
+
+在 `.opencode/tools/math.ts` 中定义多个工具：
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+
+export const add = tool({
+  description: "加法运算",
+  args: {
+    a: tool.schema.number().describe("第一个数字"),
+    b: tool.schema.number().describe("第二个数字"),
+  },
+  async execute(args) {
+    return args.a + args.b
+  },
+})
+
+export const multiply = tool({
+  description: "乘法运算",
+  args: {
+    a: tool.schema.number().describe("第一个数字"),
+    b: tool.schema.number().describe("第二个数字"),
+  },
+  async execute(args) {
+    return args.a * args.b
+  },
+})
+```
+
+**工具名称：**
+- `math.ts` + `add` → 工具名：`math_add`
+- `math.ts` + `multiply` → 工具名：`math_multiply`
+
+**使用示例：**
+
+```bash
+# 创建工具文件
+touch .opencode/tools/database.ts
+
+# 编辑工具文件
+# （添加上面所示的代码）
+
+# 启动 OpenCode（自动加载工具）
+opencode start
+
+# 调用自定义工具
+用户：帮我查询用户数据
+
+OpenCode：[调用工具 database]
+✅ 执行 SQL: SELECT * FROM users LIMIT 10
+
+[查询结果]
+[
+  {"id": 1, "name": "张三", "email": "zhangsan@example.com"},
+  {"id": 2, "name": "李四", "email": "lisi@example.com"}
+]
+
+找到 2 条用户记录
+```
+
+---
+
+#### 方式 2：调用 Python 脚本 🐍
+
+你可以用任何语言编写工具，OpenCode 只需要工具定义在 TypeScript/JavaScript 中。
+
+**创建 Python 脚本：**
+
+在 `.opencode/tools/add.py` 中创建：
 
 ```python
 #!/usr/bin/env python3
-"""
-自定义工具示例：发送邮件
-"""
+"""Python 加法工具"""
 
-import smtplib
-from email.mime.text import MIMEText
+import sys
 
-def send_email(to, subject, body):
-    """
-    发送邮件
-    
-    参数:
-        to: 收件人邮箱
-        subject: 邮件主题
-        body: 邮件内容
-    """
-    # 配置 SMTP 服务器
-    smtp_server = "smtp.example.com"
-    smtp_port = 587
-    smtp_username = "your_email@example.com"
-    smtp_password = "your_password"  # 使用环境变量
-    
-    # 创建邮件
-    msg = MIMEText(body)
-    msg["Subject"] = subject
-    msg["From"] = smtp_username
-    msg["To"] = to
-    
-    # 发送邮件
-    with smtplib.SMTP(smtp_server, smtp_port) as server:
-        server.starttls()
-        server.login(smtp_username, smtp_password)
-        server.send_message(msg)
-    
-    return {
-        "success": True,
-        "message": "邮件发送成功"
-    }
-
-# 工具入口
-if __name__ == "__main__":
-    import sys
-    import json
-    
-    # 解析参数
-    params = json.loads(sys.argv[1])
-    
-    # 执行工具
-    result = send_email(
-        to=params.get("to"),
-        subject=params.get("subject"),
-        body=params.get("body")
-    )
-    
-    # 输出结果（JSON 格式）
-    print(json.dumps(result, ensure_ascii=False))
+a = int(sys.argv[1])
+b = int(sys.argv[2])
+print(a + b)
 ```
 
-**注册工具：**
+**创建工具定义：**
 
-在 `~/.opencode/tools/config.yaml` 中注册：
+在 `.opencode/tools/python-add.ts` 中定义：
 
-```yaml
-tools:
-  email_sender:
-    name: "邮件发送工具"
-    description: "发送电子邮件"
-    type: "python"
-    script: "./my_tool.py"
-    function: "send_email"
-    parameters:
-      to:
-        type: "string"
-        required: true
-        description: "收件人邮箱"
-      subject:
-        type: "string"
-        required: true
-        description: "邮件主题"
-      body:
-        type: "string"
-        required: true
-        description: "邮件内容"
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import path from "path"
+
+export default tool({
+  description: "使用 Python 进行加法运算",
+  
+  args: {
+    a: tool.schema.number().describe("第一个数字"),
+    b: tool.schema.number().describe("第二个数字"),
+  },
+  
+  async execute(args, context) {
+    // 获取 Python 脚本路径
+    const script = path.join(context.worktree, ".opencode/tools/add.py")
+    
+    // 使用 Bun 运行 Python 脚本
+    const result = await Bun.$`python3 ${script} ${args.a} ${args.b}`.text()
+    
+    return result.trim()
+  },
+})
 ```
 
 **使用示例：**
 
 ```bash
-# 重新加载工具
-opencode tools reload
+# 创建 Python 脚本
+cat > .opencode/tools/add.py << 'EOF'
+#!/usr/bin/env python3
+import sys
+a = int(sys.argv[1])
+b = int(sys.argv[2])
+print(a + b)
+EOF
+
+# 创建工具定义
+cat > .opencode/tools/python-add.ts << 'EOF'
+import { tool } from "@opencode-ai/plugin"
+import path from "path"
+
+export default tool({
+  description: "使用 Python 进行加法运算",
+  args: {
+    a: tool.schema.number().describe("第一个数字"),
+    b: tool.schema.number().describe("第二个数字"),
+  },
+  async execute(args, context) {
+    const script = path.join(context.worktree, ".opencode/tools/add.py")
+    const result = await Bun.$`python3 ${script} ${args.a} ${args.b}`.text()
+    return result.trim()
+  },
+})
+EOF
+
+# 启动 OpenCode（自动加载工具）
+opencode start
 
 # 调用自定义工具
-用户：帮我发一封邮件给客户
+用户：用 Python 帮我计算 5 加 3
 
-OpenCode：[调用工具 email_sender]
-收件人：client@example.com
-主题：OpenCode 开发进度汇报
-内容：您好，开发进度如下...
+OpenCode：[调用工具 python-add]
+✅ 执行: python3 add.py 5 3
 
-✅ 邮件发送成功！
+[执行结果]
+8
+
+5 加 3 等于 8
 ```
 
 ---
 
 ### 工具开发最佳实践 ✨
 
-#### 1. 错误处理 🛡️
+#### 1. 使用 Zod 进行参数验证 ✅
 
-```python
-def my_tool(params):
-    try:
-        # 执行主要逻辑
-        result = do_something(params)
-        return {
-            "success": True,
-            "data": result
-        }
-    except Exception as e:
-        # 错误处理
-        return {
-            "success": False,
-            "error": str(e),
-            "message": "工具执行失败"
-        }
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+
+export default tool({
+  description: "创建数据库记录",
+  
+  // 使用 Zod 定义参数
+  args: {
+    name: z.string().min(1).max(100).describe("用户名称"),
+    email: z.string().email().describe("用户邮箱"),
+    age: z.number().int().min(18).max(120).describe("用户年龄"),
+    role: z.enum(["admin", "user", "guest"]).describe("用户角色"),
+  },
+  
+  async execute(args, context) {
+    // Zod 会自动验证参数类型
+    // 如果不符合要求，会抛出验证错误
+    
+    // 执行数据库插入
+    const result = await db.users.insert(args)
+    return {
+      success: true,
+      id: result.id,
+      message: "用户创建成功"
+    }
+  },
+})
 ```
 
-#### 2. 参数验证 ✅
+#### 2. 使用 Context 获取会话信息 📍
 
-```python
-def validate_params(params, required_fields):
-    """
-    验证必需参数
-    
-    参数:
-        params: 用户提供的参数
-        required_fields: 必需字段列表
-    """
-    missing = []
-    for field in required_fields:
-        if field not in params or not params[field]:
-            missing.append(field)
-    
-    if missing:
-        raise ValueError(f"缺少必需参数: {', '.join(missing)}")
+```typescript
+import { tool } from "@opencode-ai/plugin"
 
-# 使用
-def my_tool(params):
-    validate_params(params, ["to", "subject", "body"])
-    # 继续执行...
+export default tool({
+  description: "获取项目信息",
+  args: {},
+  async execute(args, context) {
+    // 访问上下文信息
+    const { 
+      agent,        // 当前代理
+      sessionID,    // 会话 ID
+      messageID,    // 消息 ID
+      directory,    // 当前工作目录
+      worktree      // Git 工作树根目录
+    } = context
+    
+    return {
+      agent: agent.name,
+      session: sessionID,
+      message: messageID,
+      directory: directory,
+      worktree: worktree
+    }
+  },
+})
 ```
 
-#### 3. 日志记录 📝
+#### 3. 错误处理 🛡️
 
-```python
-import logging
+```typescript
+import { tool } from "@opencode-ai/plugin"
 
-# 配置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+export default tool({
+  description: "安全地执行命令",
+  args: {
+    command: tool.schema.string().describe("要执行的命令"),
+  },
+  async execute(args, context) {
+    try {
+      // 执行命令
+      const result = await Bun.$`${args.command}`.text()
+      return {
+        success: true,
+        output: result
+      }
+    } catch (error) {
+      // 错误处理
+      console.error("工具执行失败:", error)
+      return {
+        success: false,
+        error: error.message,
+        message: "命令执行失败"
+      }
+    }
+  },
+})
+```
 
-def my_tool(params):
-    logger.info(f"工具开始执行，参数: {params}")
-    
-    try:
-        result = do_something(params)
-        logger.info(f"工具执行成功，结果: {result}")
-        return result
-    except Exception as e:
-        logger.error(f"工具执行失败: {str(e)}")
-        raise
+#### 4. 工具命名和覆盖 🔧
+
+自定义工具会覆盖同名内置工具。
+
+**覆盖内置工具：**
+
+```typescript
+// .opencode/tools/bash.ts
+import { tool } from "@opencode-ai/plugin"
+
+export default tool({
+  description: "受限的 bash 执行",
+  args: {
+    command: tool.schema.string(),
+  },
+  async execute(args) {
+    // 返回受限执行
+    return `blocked: ${args.command}`
+  },
+})
+```
+
+**注意事项：**
+
+```
+⚠️ 建议使用唯一名称，除非有意覆盖内置工具
+⚠️ 覆盖工具可能影响系统稳定性
+⚠️ 如需禁用内置工具，使用权限配置
 ```
 
 ---
