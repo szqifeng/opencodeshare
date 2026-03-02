@@ -100,6 +100,14 @@ const sidebars: SidebarsConfig = {
         'troubleshooting/fixes',
       ],
     },
+    {
+      type: 'category',
+      label: '📖 08-源码阅读篇',
+      items: [
+        'source-reading/intro',
+        'source-reading/double-loop-explanation',
+      ],
+    },
   ],
 };
 
