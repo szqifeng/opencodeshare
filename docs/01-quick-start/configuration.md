@@ -1,314 +1,646 @@
 ---
-description: OpenCode 配置指南，包括网络代理配置、API Key 配置、AI 模型选择等。帮助您完成 OpenCode 的完整配置，确保系统正常运行。
-keywords: ["OpenCode 配置", "网络配置", "模型选择", "API Key 配置"]
+description: OpenCode 配置教程，介绍 JSON 配置格式、位置优先级、各种配置选项等。帮助您完成 OpenCode 的完整配置。
+keywords: ["OpenCode 配置", "JSON 配置", "配置优先级", "模型配置"]
 ---
 
 # 配置
 
-OpenCode 的正常运行依赖于正确的网络配置和合适的模型选择。本文将详细介绍如何配置网络代理、设置 API Key、选择合适的 AI 模型。
+OpenCode 使用 **JSON** 配置文件来控制系统行为。通过配置，您可以设置网络代理、选择 AI 模型、配置代理、自定义快捷键等。
 
-## 网络配置 🌐
+## 配置规范 🔧
 
-### API Key 配置 🔑
+### 配置格式
 
-OpenCode 支持多个 AI 服务的 API Key：
+OpenCode 支持 **JSON** 和 **JSONC**（带注释的 JSON）格式。
 
-#### 获取 API Key
+**基础配置示例：**
 
-**OpenAI API Key:**
-1. 访问 OpenAI 官网
-2. 登录您的账户
-3. 进入 API 设置页面
-4. 点击"Create new secret key"
-5. 复制生成的 API Key
-
-**Anthropic API Key:**
-1. 访问 Anthropic Console
-2. 登录您的账户
-3. 进入 API Keys 页面
-4. 点击"Create Key"
-5. 复制生成的 API Key
-
-#### 配置 API Key
-
-**配置文件方式：**
-
-编辑配置文件 `~/.opencode/config.yaml`：
-
-```yaml
-# OpenAI 配置
-openai:
-  api_key: "sk-xxxxxxxxxxxxxxxxxxxxxxxx"
-  base_url: "https://api.openai.com/v1"
-  organization: "org-xxxxxxxx"
-
-# Anthropic 配置
-anthropic:
-  api_key: "sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx"
-  base_url: "https://api.anthropic.com"
-  version: "2023-06-01"
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-sonnet-4-5",
+  "theme": "opencode",
+  "autoupdate": true
+}
 ```
 
-**环境变量方式：**
+### Schema 参考 🔍
 
-在 `.bashrc` 或 `.zshrc` 中添加：
+OpenCode 的配置 Schema 定义在 **https://opencode.ai/config.json**
+
+> 💡 **提示**：您可以在编辑器中引用此 URL 来获得配置的自动补全和验证支持。
+
+---
+
+## 配置位置 📍
+
+### 优先级顺序
+
+配置源按以下顺序加载（后面的源会覆盖前面的源）：
+
+```
+1. 远程配置（.well-known/opencode）
+   ↓ 组织默认值
+2. 全局配置（~/.config/opencode/opencode.json）
+   ↓ 用户偏好
+3. 环境变量（OPENCODE_CONFIG）
+   ↓ 自定义覆盖
+4. 项目配置（./opencode.json）
+   ↓ 项目特定设置
+5. .opencode 目录
+   ↓ 代理、命令、插件
+6. 内联配置（OPENCODE_CONFIG_CONTENT）
+   ↓ 运行时覆盖
+```
+
+### 配置文件位置
+
+| 类型 | 位置 | 说明 | 优先级 |
+|------|------|------|----------|
+| **远程配置** | `.well-known/opencode` | 组织提供的默认配置 | 1 |
+| **全局配置** | `~/.config/opencode/opencode.json` | 用户级配置 | 2 |
+| **环境变量** | `OPENCODE_CONFIG` | 自定义配置路径 | 3 |
+| **项目配置** | `./opencode.json` | 项目特定配置 | 4 |
+| **.opencode 目录** | `.opencode/` | 代理、命令、插件 | 5 |
+| **内联配置** | `OPENCODE_CONFIG_CONTENT` | 运行时覆盖 | 6 |
+
+### 自定义配置路径
+
+使用环境变量指定自定义配置文件：
 
 ```bash
-# OpenAI
-export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
-export OPENAI_BASE_URL="https://api.openai.com/v1"
-
-# Anthropic
-export ANTHROPIC_API_KEY="sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx"
-export ANTHROPIC_BASE_URL="https://api.anthropic.com"
+export OPENCODE_CONFIG=/path/to/custom-config.json
 ```
 
-重新加载配置：
+### 自定义配置目录
+
+使用环境变量指定自定义配置目录：
 
 ```bash
-source ~/.bashrc
-```
-
-### 代理配置 🛡️
-
-#### 国内网络环境 🇨🇳
-
-**使用国内镜像：**
-
-```yaml
-mirrors:
-  openai:
-    base_url: "https://api.openai-proxy.com/v1"
-    backup_url: "https://api.openai-backup.com/v1"
-  
-  anthropic:
-    base_url: "https://api.anthropic-proxy.com"
-```
-
-**配置系统代理：**
-
-编辑环境变量：
-
-```bash
-# HTTP 代理
-export HTTP_PROXY="http://127.0.0.1:7890"
-export HTTPS_PROXY="http://127.0.0.1:7890"
-
-# 不使用代理的地址
-export NO_PROXY="localhost,127.0.0.1"
-```
-
-在 `.bashrc` 中持久化：
-
-```bash
-echo 'export HTTP_PROXY="http://127.0.0.1:7890"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-**配置 OpenCode 专用代理：**
-
-在配置文件中指定：
-
-```yaml
-proxy:
-  enabled: true
-  type: "http"
-  host: "127.0.0.1"
-  port: 7890
-  username: ""
-  password: ""
-  
-  no_proxy:
-    - "localhost"
-    - "127.0.0.1"
-    - "192.168.*"
-```
-
-### 连接测试 🧪
-
-**测试 API 连通性：**
-
-```bash
-# 测试 OpenAI API
-opencode test --provider openai --endpoint
-
-# 测试所有配置的 API
-opencode test --all
-```
-
-**测试代理连接：**
-
-```bash
-# 测试代理连接
-opencode test --proxy
-
-# 检查代理延迟
-opencode test --proxy --latency
+export OPENCODE_CONFIG_DIR=/path/to/config-directory
 ```
 
 ---
 
-## 模型选择 🤖
+## 核心配置选项 ⚙️
 
-OpenCode 支持多种主流 AI 模型，不同的模型在性能、成本和适用场景上各有特点。
+### 模型配置 🤖
 
-### 主流模型对比
+#### 基础配置
 
-| 模型 | 能力 | 速度 | 成本 | 适用场景 |
-|------|------|------|------|----------|
-| GPT-4o ⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | 💰💰💰 | 复杂任务、高质量输出 |
-| GPT-3.5 Turbo | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 💰 | 简单任务、快速响应 |
-| Claude 3.5 Sonnet | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 💰💰💰 | 通用任务、长文本处理 |
-| Claude 3.5 Haiku | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 💰💰 | 快速响应 |
-| LLaMA 3 70B | ⭐⭐⭐⭐ | ⭐⭐ | 💸 | 通用任务、隐私场景 |
-
-### 按使用场景选择
-
-**📝 写作和内容创作：**
-
-推荐：GPT-4o, Claude 3.5 Sonnet
-
-```yaml
-model:
-  provider: "openai"
-  model: "gpt-4o"
-  temperature: 0.8
-  max_tokens: 3000
+```jsonc
+{
+  "model": "anthropic/claude-sonnet-4-5",
+  "small_model": "anthropic/claude-haiku-4-5"
+}
 ```
 
-**💻 代码开发：**
+**选项说明：**
+- `model`: 主要模型，格式为 `provider/model`
+- `small_model`: 轻量级模型，用于标题生成等简单任务
 
-推荐：GPT-4o
+#### 提供商选项
 
-```yaml
-model:
-  provider: "openai"
-  model: "gpt-4o"
-  temperature: 0.3
-  max_tokens: 2000
+```jsonc
+{
+  "provider": {
+    "anthropic": {
+      "options": {
+        "timeout": 600000,
+        "setCacheKey": true
+      }
+    }
+  }
+}
 ```
 
-**🗣️ 日常对话：**
+**提供商选项：**
+- `timeout`: 请求超时时间（毫秒），默认 300000
+- `setCacheKey`: 确保缓存键设置
 
-推荐：GPT-3.5 Turbo, Claude 3.5 Haiku
+#### 禁用/启用提供商
 
-```yaml
-model:
-  provider: "openai"
-  model: "gpt-3.5-turbo"
-  temperature: 0.7
-  max_tokens: 1000
+```jsonc
+{
+  "disabled_providers": ["openai", "gemini"],
+  "enabled_providers": ["anthropic", "openai"]
+}
 ```
 
-**🔒 隐私敏感场景：**
-
-推荐：LLaMA 3, ChatGLM3
-
-```yaml
-model:
-  provider: "local"
-  model: "llama-3-70b"
-  temperature: 0.7
-  max_tokens: 1500
-```
-
-### 模型参数配置
-
-**Temperature（温度）：**
-
-控制输出的随机性和创造性。
-
-```yaml
-temperature: 0.3  # 范围：0.0 - 2.0
-```
-
-- 0.0 - 0.3: 确定性输出（代码生成、事实回答）
-- 0.4 - 0.7: 平衡输出（日常对话、一般性任务）
-- 0.8 - 1.2: 创造性输出（故事创作、头脑风暴）
-
-**Max Tokens（最大令牌数）：**
-
-控制输出的最大长度。
-
-```yaml
-max_tokens: 2000
-```
-
-- 500-1000: 短对话（快速问答、简单指令）
-- 1000-2000: 中等对话（代码片段、文章段落）
-- 2000-4000: 长对话（完整代码、详细说明）
+> ⚠️ **注意**：`disabled_providers` 优先于 `enabled_providers`
 
 ---
 
-## 下一步
+### 服务器配置 🖥️
+
+为 `opencode serve` 和 `opencode web` 命令配置服务器：
+
+```jsonc
+{
+  "server": {
+    "port": 4096,
+    "hostname": "0.0.0.0",
+    "mdns": true,
+    "mdnsDomain": "myproject.local",
+    "cors": ["http://localhost:5173"]
+  }
+}
+```
+
+**选项说明：**
+- `port`: 监听端口
+- `hostname`: 监听主机名
+- `mdns`: 启用 mDNS 服务发现
+- `mdnsDomain`: mDNS 服务域名，默认 `opencode.local`
+- `cors`: CORS 允许的来源列表
+
+---
+
+### 主题配置 🎨
+
+```jsonc
+{
+  "theme": "opencode"
+}
+```
+
+主题选项：
+- `"opencode"`: OpenCode 默认主题
+- `"light"`: 浅色主题
+- `"dark"`: 深色主题
+- `"":`: 跟随系统
+
+---
+
+### 代理配置 🤖
+
+#### 默认代理
+
+```jsonc
+{
+  "default_agent": "plan"
+}
+```
+
+**说明：**
+- 默认代理必须是主代理（不能是子代理）
+- 如果指定不存在或为子代理，会回退到 `"build"`
+
+#### 自定义代理
+
+```jsonc
+{
+  "agent": {
+    "code-reviewer": {
+      "description": "Reviews code for best practices",
+      "model": "anthropic/claude-sonnet-4-5",
+      "prompt": "Focus on security, performance, and maintainability.",
+      "tools": {
+        "write": false,
+        "edit": false
+      }
+    }
+  }
+}
+```
+
+---
+
+## 高级配置选项 🚀
+
+### 工具配置 🛠️
+
+```jsonc
+{
+  "tools": {
+    "write": false,
+    "bash": false
+  }
+}
+```
+
+---
+
+### 权限配置 🔐
+
+默认情况下，OpenCode 允许所有操作。可以配置权限行为：
+
+```jsonc
+{
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  }
+}
+```
+
+**权限级别：**
+- `"allow"`: 自动允许
+- `"ask"`: 询问用户
+- `"deny"`: 自动拒绝
+
+---
+
+### 命令配置 💻
+
+为重复任务配置自定义命令：
+
+```jsonc
+{
+  "command": {
+    "test": {
+      "template": "Run full test suite with coverage",
+      "description": "Run tests with coverage",
+      "agent": "build"
+    },
+    "component": {
+      "template": "Create a new React component named $ARGUMENTS",
+      "description": "Create a new component"
+    }
+  }
+}
+```
+
+---
+
+### 快捷键配置 ⌨️
+
+```jsonc
+{
+  "keybinds": {}
+}
+```
+
+---
+
+### 格式化程序配置 ✨
+
+```jsonc
+{
+  "formatter": {
+    "prettier": {
+      "disabled": true
+    },
+    "custom-prettier": {
+      "command": ["npx", "prettier", "--write", "$FILE"],
+      "environment": {
+        "NODE_ENV": "development"
+      },
+      "extensions": [".js", ".ts", ".jsx", ".tsx"]
+    }
+  }
+}
+```
+
+---
+
+### 分享配置 🔗
+
+```jsonc
+{
+  "share": "manual"
+}
+```
+
+**分享模式：**
+- `"manual"`: 手动分享（默认）
+- `"auto"`: 自动分享新会话
+- `"disabled"`: 禁用分享
+
+---
+
+### 自动更新 🔄
+
+```jsonc
+{
+  "autoupdate": false
+}
+```
+
+**选项：**
+- `true`: 自动更新
+- `false`: 禁用自动更新
+- `"notify"`: 仅通知（需要非包管理器安装）
+
+---
+
+### 上下文压缩 💾
+
+```jsonc
+{
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  }
+}
+```
+
+**选项说明：**
+- `auto`: 自动压缩（默认 `true`）
+- `prune`: 删除旧工具输出（默认 `true`）
+- `reserved`: Token 缓冲区大小
+
+---
+
+### 文件监视器 👁️
+
+```jsonc
+{
+  "watcher": {
+    "ignore": ["node_modules/**", "dist/**", ".git/**"]
+  }
+}
+```
+
+---
+
+### MCP 服务器 🔌
+
+```jsonc
+{
+  "mcp": {}
+}
+```
+
+---
+
+### 插件插件 🔌
+
+```jsonc
+{
+  "plugin": ["opencode-helicone-session", "@my-org/custom-plugin"]
+}
+```
+
+---
+
+### 指令 📋
+
+```jsonc
+{
+  "instructions": ["CONTRIBUTING.md", "docs/guidelines.md"]
+}
+```
+
+---
+
+### 实验性功能 🧪
+
+```jsonc
+{
+  "experimental": {}
+}
+```
+
+> ⚠️ **警告**：实验性功能不稳定，可能会在未通知的情况下被更改或移除。
+
+---
+
+## 变量替换 🔄
+
+### 环境变量
+
+使用 `{env:VARIABLE_NAME}` 替换环境变量：
+
+```jsonc
+{
+  "model": "{env:OPENCODE_MODEL}",
+  "provider": {
+    "anthropic": {
+      "options": {
+        "apiKey": "{env:ANTHROPIC_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+### 文件内容
+
+使用 `{file:path/to/file}` 替换文件内容：
+
+```jsonc
+{
+  "provider": {
+    "openai": {
+      "options": {
+        "apiKey": "{file:~/.secrets/openai-key}"
+      }
+    }
+  },
+  "instructions": ["./custom-instructions.md"]
+}
+```
+
+**文件路径说明：**
+- 相对路径：相对于配置文件所在目录
+- 绝对路径：以 `/` 或 `~` 开头
+
+---
+
+## 配置示例 📝
+
+### 完整配置示例
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  
+  // 模型配置
+  "model": "anthropic/claude-sonnet-4-5",
+  "small_model": "anthropic/claude-haiku-4-5",
+  
+  // 服务器配置
+  "server": {
+    "port": 4096,
+    "mdns": true
+  },
+  
+  // 主题配置
+  "theme": "opencode",
+  
+  // 默认代理
+  "default_agent": "plan",
+  
+  // 权限配置
+  "permission": {
+    "bash": "ask",
+    "edit": "ask"
+  },
+  
+  // 分享配置
+  "share": "manual",
+  
+  // 自动更新
+  "autoupdate": true,
+  
+  // 日志级别
+  "logLevel": "INFO"
+}
+```
+
+### 开发环境配置
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  
+  "model": "anthropic/claude-3.5-sonnet-20240620",
+  "provider": {
+    "anthropic": {
+      "options": {
+        "timeout": 120000
+      }
+    }
+  },
+  
+  "permission": {
+    "bash": "allow",
+    "edit": "allow"
+  },
+  
+  "formatter": {
+    "prettier": {
+      "disabled": false
+    }
+  },
+  
+  "autoupdate": false,
+  "logLevel": "DEBUG"
+}
+```
+
+### 生产环境配置
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  
+  "model": "anthropic/claude-sonnet-4-5",
+  
+  "permission": {
+    "bash": "ask",
+    "edit": "ask"
+  },
+  
+  "share": "manual",
+  
+  "autoupdate": true,
+  "logLevel": "WARN"
+}
+```
+
+---
+
+## 配置验证 ✅
+
+### 使用 Schema 验证
+
+编辑器支持基于 Schema 的自动补全和验证：
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json"
+  // 配置内容...
+}
+```
+
+### 命令行验证
+
+```bash
+# 验证配置文件
+opencode config validate
+
+# 查看当前配置
+opencode config get
+
+# 测试配置
+opencode test
+```
+
+---
+
+## 常见问题 ❓
+
+### Q1: 配置不生效怎么办？
+
+**A:** 检查配置优先级
+
+```bash
+# 查看当前生效的配置
+opencode config get
+
+# 查看配置加载顺序
+opencode config --show-priority
+```
+
+### Q2: 如何调试配置问题？
+
+**A:** 启用调试日志
+
+```jsonc
+{
+  "logLevel": "DEBUG"
+}
+```
+
+### Q3: 配置文件放在哪里？
+
+**A:** 根据优先级选择合适的位置
+
+- **个人配置**: `~/.config/opencode/opencode.json`
+- **项目配置**: `./opencode.json`
+- **自定义路径**: 通过 `OPENCODE_CONFIG` 环境变量指定
+
+---
+
+## 下一步 ➡️
 
 配置完成后，您可以：
 
-1. **开始使用**：查看 [快速体验](./quick-experience)
-2. **学习基本使用**：查看 [日常使用](../02-daily-usage/tools)
+1. **学习工具使用**：查看 [工具介绍](./tools-intro)
+2. **了解命令**：查看 [命令](./commands)
+3. **查看日常使用**：查看 [日常使用](../02-daily-usage/tools)
 
 ---
 
-## 常见问题
+## 总结 📝
 
-### Q1: API Key 失效怎么办？
+**配置清单：**
 
-检查并更新 API Key：
+```
+📋 基础配置
+  [ ] 选择合适的 AI 模型
+  [ ] 配置 API Key
+  [ ] 设置网络代理
+  [ ] 选择主题
 
-```bash
-# 验证 API Key 有效性
-opencode verify --api-key sk-xxxxx
+🔧 高级配置
+  [ ] 配置默认代理
+  [ ] 设置权限规则
+  [ ] 自定义快捷键
+  [ ] 配置格式化程序
+  [ ] 管理插件
 
-# 查看剩余配额
-opencode quota --provider openai
-
-# 更新 API Key
-opencode config set openai.api_key sk-xxxxxxxxx
+🚀 环境配置
+  [ ] 开发环境配置
+  [ ] 生产环境配置
+  [ ] 测试配置
 ```
 
-### Q2: 代理配置后仍无法连接？
+**配置最佳实践：**
 
-逐步排查代理问题：
-
-```bash
-# 检查代理进程
-lsof -ti :7890
-
-# 测试代理连接
-curl -x http://127.0.0.1:7890 https://www.google.com
-
-# 查看当前代理配置
-opencode config get proxy
-
-# 测试代理连接
-opencode test --proxy
 ```
-
-### Q3: 可以同时使用多个模型吗？
-
-可以！OpenCode 支持多模型配置：
-
-```yaml
-models:
-  - provider: "openai"
-    model: "gpt-4o"
-  
-  - provider: "anthropic"
-    model: "claude-3-5-sonnet"
-  
-  - provider: "local"
-    model: "llama-3-70b"
-```
-
-使用时可以通过命令指定：
-
-```bash
-opencode chat --model gpt-4o
-opencode chat --model claude-3-5-sonnet
+✅ 使用 $schema 引用获得编辑器支持
+✅ 将敏感信息使用环境变量或文件引用
+✅ 根据使用场景配置不同的模型
+✅ 合理设置权限平衡安全和便利
+✅ 定期测试配置的有效性
 ```
 
 ---
 
 **🎉 配置完成！**
 
-现在可以开始使用 OpenCode 了！🚀
+现在 OpenCode 已完全配置，可以开始使用了！🚀
