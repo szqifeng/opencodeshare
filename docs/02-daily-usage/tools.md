@@ -333,6 +333,275 @@ export const tool3 = tool({...})
 
 ---
 
+### 完整工具定义规范 📋
+
+OpenCode 使用严格的工具定义接口，确保类型安全和一致性。
+
+#### Tool.Info 接口
+
+每个工具必须实现 `Tool.Info` 接口：
+
+```typescript
+interface Tool.Info<Parameters extends z.ZodType, Metadata> {
+  id: string
+  init: (ctx?: InitContext) => Promise<{
+    description: string
+    parameters: Parameters
+    execute(
+      args: z.infer<Parameters>,
+      ctx: Tool.Context<Metadata>
+    ): Promise<Tool.Result<Metadata>>
+    formatValidationError?(error: z.ZodError): string
+  }>
+}
+```
+
+**字段说明：**
+
+| 字段 | 类型 | 必需 | 说明 |
+|------|------|------|------|
+| `id` | `string` | ✅ | 工具唯一标识符 |
+| `description` | `string` | ✅ | 工具功能描述（给 LLM 看的） |
+| `parameters` | `z.ZodType` | ✅ | 使用 Zod 定义的参数类型 |
+| `execute` | `function` | ✅ | 工具执行函数 |
+| `formatValidationError` | `function` | ❌ | 自定义验证错误格式化 |
+
+---
+
+#### Execute 函数签名
+
+执行函数是工具的核心，负责实际执行逻辑：
+
+```typescript
+async execute(
+  args: z.infer<Parameters>,
+  ctx: Tool.Context<Metadata>
+): Promise<{
+  title: string
+  metadata: Metadata
+  output: string
+  attachments?: MessageV2.FilePart[]
+}>
+```
+
+**返回值说明：**
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `title` | `string` | 执行结果的标题 |
+| `metadata` | `Metadata` | 执行元数据 |
+| `output` | `string` | 工具输出（给 LLM 看的） |
+| `attachments` | `FilePart[]` | 可选的文件附件 |
+
+**完整示例：**
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+
+// 定义元数据类型
+interface DatabaseToolMetadata {
+  rowCount: number
+  executionTime: number
+}
+
+export default tool({
+  id: "database_query",
+  
+  description: "查询项目数据库，支持 SQL 语句执行",
+  
+  // 参数定义（使用 Zod）
+  parameters: z.object({
+    query: z.string().describe("SQL 查询语句"),
+    limit: z.number().min(1).max(1000).default(100).describe("返回结果数量限制"),
+  }),
+  
+  // 执行函数
+  async execute(
+    args: { query: string; limit: number },
+    ctx: Tool.Context<DatabaseToolMetadata>
+  ): Promise<Tool.Result<DatabaseToolMetadata>> {
+    const startTime = Date.now()
+    
+    try {
+      // 执行查询
+      const result = await executeSQL(args.query, args.limit)
+      
+      const executionTime = Date.now() - startTime
+      
+      // 返回结果
+      return {
+        title: "数据库查询",
+        output: JSON.stringify(result, null, 2),
+        metadata: {
+          rowCount: result.length,
+          executionTime,
+          success: true
+        },
+        attachments: []
+      }
+    } catch (error) {
+      return {
+        title: "数据库查询失败",
+        output: `查询失败: ${error.message}`,
+        metadata: {
+          rowCount: 0,
+          executionTime: Date.now() - startTime,
+          success: false,
+          error: error.message
+        }
+      }
+    }
+  },
+  
+  // 自定义验证错误格式化
+  formatValidationError(error: z.ZodError): string {
+    return `参数验证失败: ${error.errors.map(e => e.message).join(", ")}`
+  }
+})
+```
+
+---
+
+#### Context 接口
+
+执行函数接收上下文对象，提供会话信息：
+
+```typescript
+interface Tool.Context<Metadata> {
+  sessionID: string
+  messageID: string
+  agent: string
+  abort: AbortSignal
+  callID?: string
+  extra?: { [key: string]: any }
+  messages: MessageV2.WithParts[]
+  
+  // 设置工具执行元数据
+  metadata(input: { title?: string; metadata?: Metadata }): void
+  
+  // 请求权限
+  ask(input: Omit<PermissionNext.Request, "id" | "sessionID" | "tool">): Promise<void>
+}
+```
+
+**Context 使用示例：**
+
+```typescript
+async execute(args, ctx) {
+  // 获取会话信息
+  console.log(`Session: ${ctx.sessionID}`)
+  console.log(`Agent: ${ctx.agent}`)
+  
+  // 检查是否被中止
+  if (ctx.abort.aborted) {
+    throw new Error("Tool execution was aborted")
+  }
+  
+  // 设置元数据
+  ctx.metadata({
+    title: "正在处理...",
+    metadata: { startTime: Date.now() }
+  })
+  
+  // 请求权限
+  await ctx.ask({
+    permission: "database_access",
+    message: "需要访问数据库执行查询"
+  })
+  
+  // 获取历史消息
+  const lastMessages = ctx.messages.slice(-5)
+  
+  // 执行逻辑
+  return { ... }
+}
+```
+
+---
+
+#### 工具定义模式
+
+**模式 1：简单工具**
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+
+export default tool({
+  id: "hello",
+  description: "返回问候语",
+  parameters: z.object({}),
+  async execute() {
+    return {
+      title: "问候",
+      output: "你好！",
+      metadata: {}
+    }
+  }
+})
+```
+
+**模式 2：带参数的工具**
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+
+export default tool({
+  id: "calculate",
+  description: "执行数学计算",
+  parameters: z.object({
+    expression: z.string().describe("数学表达式，如：2 + 3 * 4"),
+  }),
+  async execute(args) {
+    const result = eval(args.expression)
+    return {
+      title: "计算结果",
+      output: `${args.expression} = ${result}`,
+      metadata: { result }
+    }
+  }
+})
+```
+
+**模式 3：带附件的工具**
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+
+export default tool({
+  id: "generate_chart",
+  description: "生成数据图表",
+  parameters: z.object({
+    data: z.array(z.object({
+      name: z.string(),
+      value: z.number()
+    })),
+    type: z.enum(["bar", "line", "pie"]).describe("图表类型"),
+  }),
+  async execute(args, ctx) {
+    const chartPath = await generateChart(args.data, args.type)
+    
+    return {
+      title: "图表生成",
+      output: `已生成 ${args.type} 图表，包含 ${args.data.length} 条数据`,
+      metadata: { type: args.type, count: args.data.length },
+      attachments: [
+        {
+          type: "file",
+          name: "chart.png",
+          content: await fs.readFile(chartPath),
+          mimeType: "image/png"
+        }
+      ]
+    }
+  }
+})
+```
+
+---
+
 ### 创建自定义工具
 
 #### 方式 1：使用 TypeScript 定义 📝
@@ -527,93 +796,271 @@ OpenCode：[调用工具 python-add]
 
 ### 工具开发最佳实践 ✨
 
-#### 1. 使用 Zod 进行参数验证 ✅
+#### 1. 使用 Zod 进行严格的参数验证 ✅
 
 ```typescript
 import { tool } from "@opencode-ai/plugin"
 import { z } from "zod"
 
+interface CreateUserMetadata {
+  userId: string
+  timestamp: number
+}
+
 export default tool({
-  description: "创建数据库记录",
+  id: "create_user",
+  description: "创建新用户记录",
   
-  // 使用 Zod 定义参数
-  args: {
-    name: z.string().min(1).max(100).describe("用户名称"),
-    email: z.string().email().describe("用户邮箱"),
-    age: z.number().int().min(18).max(120).describe("用户年龄"),
-    role: z.enum(["admin", "user", "guest"]).describe("用户角色"),
-  },
+  // 使用 Zod 定义严格的参数验证
+  parameters: z.object({
+    name: z.string()
+      .min(1, "名称不能为空")
+      .max(100, "名称不能超过100个字符")
+      .describe("用户名称"),
+    
+    email: z.string()
+      .email("邮箱格式不正确")
+      .describe("用户邮箱"),
+    
+    age: z.number()
+      .int("年龄必须是整数")
+      .min(18, "年龄不能小于18岁")
+      .max(120, "年龄不能大于120岁")
+      .describe("用户年龄"),
+    
+    role: z.enum(["admin", "user", "guest"])
+      .describe("用户角色"),
+  }),
   
-  async execute(args, context) {
-    // Zod 会自动验证参数类型
-    // 如果不符合要求，会抛出验证错误
+  async execute(
+    args: z.infer<typeof parameters>,
+    ctx: Tool.Context<CreateUserMetadata>
+  ): Promise<Tool.Result<CreateUserMetadata>> {
     
     // 执行数据库插入
     const result = await db.users.insert(args)
-    return {
-      success: true,
-      id: result.id,
-      message: "用户创建成功"
-    }
-  },
-})
-```
-
-#### 2. 使用 Context 获取会话信息 📍
-
-```typescript
-import { tool } from "@opencode-ai/plugin"
-
-export default tool({
-  description: "获取项目信息",
-  args: {},
-  async execute(args, context) {
-    // 访问上下文信息
-    const { 
-      agent,        // 当前代理
-      sessionID,    // 会话 ID
-      messageID,    // 消息 ID
-      directory,    // 当前工作目录
-      worktree      // Git 工作树根目录
-    } = context
     
     return {
-      agent: agent.name,
-      session: sessionID,
-      message: messageID,
-      directory: directory,
-      worktree: worktree
+      title: "用户创建成功",
+      output: `用户 ${args.name} 已创建，ID: ${result.id}`,
+      metadata: {
+        userId: result.id,
+        timestamp: Date.now()
+      }
     }
   },
 })
 ```
 
-#### 3. 错误处理 🛡️
+#### 2. 充分利用 Context 上下文 📍
 
 ```typescript
 import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+
+interface ProjectInfoMetadata {
+  filesAnalyzed: number
+  projectPath: string
+}
 
 export default tool({
-  description: "安全地执行命令",
-  args: {
-    command: tool.schema.string().describe("要执行的命令"),
+  id: "project_info",
+  description: "获取项目信息和文件结构",
+  parameters: z.object({
+    path: z.string().optional().describe("项目路径，默认为当前目录"),
+  }),
+  async execute(
+    args,
+    ctx: Tool.Context<ProjectInfoMetadata>
+  ): Promise<Tool.Result<ProjectInfoMetadata>> {
+    
+    // 检查中止信号
+    if (ctx.abort.aborted) {
+      throw new Error("Tool execution was aborted")
+    }
+    
+    // 使用 metadata() 更新执行状态
+    ctx.metadata({
+      title: "正在扫描项目...",
+      metadata: { status: "scanning" }
+    })
+    
+    // 获取项目信息
+    const projectPath = args.path || process.cwd()
+    const files = await scanDirectory(projectPath)
+    
+    // 获取历史消息（了解上下文）
+    const lastMessages = ctx.messages.slice(-3)
+    const hasPreviousAnalysis = lastMessages.some(m => 
+      m.parts.some(p => p.type === "tool" && p.tool === "project_info")
+    )
+    
+    return {
+      title: "项目信息",
+      output: JSON.stringify({
+        path: projectPath,
+        fileCount: files.length,
+        previousAnalysis: hasPreviousAnalysis
+      }, null, 2),
+      metadata: {
+        filesAnalyzed: files.length,
+        projectPath,
+        timestamp: Date.now()
+      }
+    }
   },
-  async execute(args, context) {
+})
+```
+
+#### 3. 完善的错误处理和自定义验证错误 🛡️
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+
+interface CommandMetadata {
+  exitCode: number
+  duration: number
+}
+
+export default tool({
+  id: "execute_command",
+  description: "安全地执行 Shell 命令",
+  parameters: z.object({
+    command: z.string()
+      .min(1)
+      .max(1000)
+      .describe("要执行的命令"),
+    timeout: z.number()
+      .min(1)
+      .max(300)
+      .default(30)
+      .describe("超时时间（秒）"),
+  }),
+  async execute(
+    args,
+    ctx: Tool.Context<CommandMetadata>
+  ): Promise<Tool.Result<CommandMetadata>> {
+    const startTime = Date.now()
+    
+    // 设置 metadata 进度
+    ctx.metadata({
+      title: `执行命令: ${args.command}`,
+      metadata: { startTime }
+    })
+    
     try {
       // 执行命令
       const result = await Bun.$`${args.command}`.text()
+      const duration = Date.now() - startTime
+      
       return {
-        success: true,
-        output: result
+        title: "命令执行成功",
+        output: result,
+        metadata: {
+          exitCode: 0,
+          duration
+        }
       }
     } catch (error) {
-      // 错误处理
-      console.error("工具执行失败:", error)
+      const duration = Date.now() - startTime
+      
+      // 返回错误结果（不是抛出异常）
       return {
-        success: false,
-        error: error.message,
-        message: "命令执行失败"
+        title: "命令执行失败",
+        output: `命令执行失败: ${error.message}`,
+        metadata: {
+          exitCode: error.exitCode || 1,
+          duration,
+          error: error.message
+        }
       }
+    }
+  },
+  
+  // 自定义验证错误格式化
+  formatValidationError(error: z.ZodError): string {
+    const issues = error.issues.map(issue => {
+      const path = issue.path.join('.')
+      return `${path}: ${issue.message}`
+    }).join('\n')
+    
+    return `参数验证失败:\n${issues}\n\n请检查输入并重试。`
+  }
+})
+```
+
+---
+
+#### 4. 处理输出截断和附件 📎
+
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import { z } from "zod"
+
+interface LargeDataMetadata {
+  totalCount: number
+  processedCount: number
+  truncated: boolean
+  outputPath?: string
+}
+
+export default tool({
+  id: "process_large_data",
+  description: "处理大量数据并返回结果",
+  parameters: z.object({
+    query: z.string().describe("查询语句"),
+    format: z.enum(["json", "csv"]).describe("输出格式"),
+  }),
+  async execute(
+    args,
+    ctx: Tool.Context<LargeDataMetadata>
+  ): Promise<Tool.Result<LargeDataMetadata>> {
+    
+    // 执行查询（可能返回大量数据）
+    const allData = await executeLargeQuery(args.query)
+    
+    // 如果数据量很小，直接返回
+    if (allData.length <= 100) {
+      return {
+        title: "数据查询结果",
+        output: JSON.stringify(allData, null, 2),
+        metadata: {
+          totalCount: allData.length,
+          processedCount: allData.length,
+          truncated: false
+        }
+      }
+    }
+    
+    // 数据量大，截断输出
+    const truncatedData = allData.slice(0, 100)
+    const outputPath = `/tmp/results_${Date.now()}.${args.format}`
+    
+    // 保存完整数据到文件
+    await saveToFile(allData, outputPath, args.format)
+    
+    return {
+      title: "数据查询结果（已截断）",
+      output: `找到 ${allData.length} 条记录，仅显示前 100 条:\n\n` +
+               JSON.stringify(truncatedData, null, 2) +
+               `\n\n完整数据已保存到: ${outputPath}`,
+      metadata: {
+        totalCount: allData.length,
+        processedCount: 100,
+        truncated: true,
+        outputPath
+      },
+      attachments: [
+        {
+          type: "file",
+          name: `results.${args.format}`,
+          content: await fs.readFile(outputPath),
+          mimeType: args.format === "json" 
+            ? "application/json" 
+            : "text/csv"
+        }
+      ]
     }
   },
 })
