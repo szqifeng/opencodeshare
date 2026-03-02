@@ -52,10 +52,10 @@ OpenCode 支持连接多种主流 AI 模型提供商，包括智谱、OpenAI、A
 
 #### 第一步：打开注册页面
 
-在终端中运行以下命令快速打开智谱平台：
+在 OpenCode 控制台中输入以下命令快速打开智谱平台：
 
 ```bash
-opencode connect
+/connect
 ```
 
 然后在界面中选择 **zhipu**（智谱）提供商。
@@ -87,10 +87,10 @@ https://www.bigmodel.cn/invite?icode=1hMx3Xc4q5I22%2BDSMJdnJP2gad6AKpjZefIo3dVEQ
 
 #### 方式 1：通过终端快速配置
 
-运行以下命令，OpenCode 会引导您完成配置：
+在 OpenCode 控制台输入以下命令，OpenCode 会引导您完成配置：
 
 ```bash
-opencode connect
+/connect
 ```
 
 选择 **zhipu** 提供商后，按提示操作：
@@ -116,8 +116,10 @@ opencode connect
 
 #### 方式 1：使用命令快速配置
 
+在 OpenCode 控制台输入以下命令：
+
 ```bash
-opencode connect
+/connect
 ```
 
 选择 **zhipu** 提供商，输入 API Key 即可完成配置。
