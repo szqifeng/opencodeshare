@@ -133,23 +133,21 @@ output_example = {...}
 你是一位 [角色]，请处理以下任务：
 
 ## 输入数据
-```{{input_format}}
-{{input_data}}
-```
+`<input_format>`
+`<input_data>`
 
 ## 任务要求
-{{requirements}}
+`<requirements>`
 
 ## 输出格式
-```{{output_format}}
+`<output_format>`
 [输出模板]
-```
 
 ## 约束条件
-{{constraints}}
+`<constraints>`
 
 ## 示例
-{{example}}
+`<example>`
 ```
 
 ---
@@ -815,17 +813,15 @@ prompt_template: |
   你是一位数据分析师，请清洗以下数据：
 
   ## 输入数据
-  ```{{input_format}}
-  {{input_data}}
-  ```
+  `<input_format>`
+  <input_data>
 
   ## 清洗规则
-  {{rules}}
+  <rules>
 
   ## 输出格式
-  ```{{output_format}}
-  {{output_template}}
-  ```
+  `<output_format>`
+  <output_template>
 
 validation_rules:
   - "输出必须为有效的 JSON"
