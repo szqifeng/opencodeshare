@@ -20,9 +20,11 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'quick-start/opencode-intro',
-        'quick-start/installation',
-        'quick-start/network-config',
-        'quick-start/model-selection',
+        'quick-start/quick-experience',
+        'quick-start/workflow',
+        'quick-start/tools-intro',
+        'quick-start/configuration',
+        'quick-start/commands',
       ],
     },
     {
