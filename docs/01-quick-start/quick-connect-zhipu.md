@@ -45,6 +45,8 @@ opencode connect
 
 ### 第二步：通过邀请链接注册
 
+**邀请码：** `/connect`
+
 复制以下邀请链接到浏览器打开：
 
 ```
@@ -54,13 +56,14 @@ https://www.bigmodel.cn/invite?icode=1hMx3Xc4q5I22%2BDSMJdnJP2gad6AKpjZefIo3dVEQ
 **注册流程：**
 
 1. 点击邀请链接打开注册页面
-2. 填写手机号或邮箱进行注册
-3. 完成手机号/邮箱验证
-4. 设置登录密码
+2. 在注册页面填写邀请码：`/connect`
+3. 填写手机号或邮箱进行注册
+4. 完成手机号/邮箱验证
+5. 设置登录密码
 
 ### 🎁 注册福利
 
-通过邀请链接注册可获得：
+通过邀请码 `/connect` 注册可获得：
 - **2000 万 Tokens 大礼包**
 - 早期访问新模型特权
 
@@ -382,6 +385,8 @@ opencode config set model zhipu/glm-4
 **🎉 恭喜！**
 
 您已成功连接智谱 AI 到 OpenCode，现在可以使用 GLM-4 等强大模型了！🚀
+
+**智谱邀请码：** `/connect`
 
 **智谱邀请链接（再次提醒）：**
 
