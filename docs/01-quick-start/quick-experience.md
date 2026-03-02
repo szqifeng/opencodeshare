@@ -7,173 +7,213 @@ keywords: ["OpenCode 快速体验", "OpenCode 示例", "快速上手"]
 
 通过这个简单的示例，快速了解 OpenCode 的核心功能和使用方式。
 
-## 前置条件
+## 概述
 
-在开始之前，请确保：
+**OpenCode** 是一个开源的 AI 编码代理。它提供终端界面（TUI）、桌面应用和 IDE 扩展等多种使用方式。
 
-- [ ] 已安装 Node.js
-- [ ] 已安装 OpenCode
-- [ ] 已配置 API Key 或使用本地模型
+## 前提条件
 
-## 第一步：启动 OpenCode
+要在终端中使用 OpenCode，你需要：
 
-打开终端，执行以下命令启动 OpenCode：
+1. 一款现代终端模拟器，例如：
+   - WezTerm（跨平台）
+   - Alacritty（跨平台）
+   - Ghostty（Linux 和 macOS）
+   - Kitty（Linux 和 macOS）
+
+2. 你想使用的 LLM 提供商的 API 密钥。
+
+## 安装
+
+安装 OpenCode 最简单的方法是通过安装脚本：
 
 ```bash
-opencode start
+curl -fsSL https://opencode.ai/install | bash
 ```
 
-服务将在 `http://localhost:3000` 启动。
+你也可以使用以下方式安装：
 
-## 第二步：打开对话界面
-
-在浏览器中访问 `http://localhost:3000`，你会看到对话界面。
-
-## 第三步：开始对话
-
-### 示例 1：简单的问答
-
-在对话框中输入：
-
-```
-你好，请介绍一下你自己
+**使用 Node.js:**
+```bash
+npm install -g opencode-ai
 ```
 
-OpenCode 会回复介绍自己的信息。
-
-### 示例 2：代码生成
-
-输入：
-
-```
-帮我写一个 Python 函数，实现快速排序算法
+**使用 Homebrew (macOS 和 Linux):**
+```bash
+brew install anomalyco/tap/opencode
 ```
 
-OpenCode 会生成快速排序的代码：
+**使用 Windows (推荐使用 WSL):**
+```bash
+# 使用 Chocolatey
+choco install opencode
 
-```python
-def quick_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    pivot = arr[len(arr) // 2]
-    left = [x for x in arr if x < pivot]
-    middle = [x for x in arr if x == pivot]
-    right = [x for x in arr if x > pivot]
-    return quick_sort(left) + middle + quick_sort(right)
+# 或使用 Scoop
+scoop install opencode
 ```
 
-### 示例 3：文件操作
+## 配置
 
-输入：
+通过 OpenCode，你可以配置 API 密钥来使用任意 LLM 提供商。
 
-```
-在当前目录创建一个 hello.txt 文件，内容是 "Hello World"
-```
+如果你刚开始接触 LLM 提供商，我们推荐使用 **OpenCode Zen**。这是一组经过 OpenCode 团队测试和验证的精选模型。
 
-OpenCode 会：
-1. 获取当前目录路径
-2. 使用 Write 工具创建文件
-3. 返回操作结果
-
-### 示例 4：执行命令
-
-输入：
+1. 在 TUI 中运行 `/connect` 命令，选择 opencode，然后前往 [opencode.ai/auth](https://opencode.ai/auth)
 
 ```
-帮我查看当前目录下的所有文件
+/connect
 ```
 
-OpenCode 会：
-1. 使用 Bash 工具执行 `ls` 命令
-2. 返回文件列表
+2. 登录并添加账单信息，然后复制你的 API 密钥。
 
-## 对话特点
+3. 粘贴你的 API 密钥。
 
-OpenCode 的对话有以下特点：
+## 初始化
 
-### 1. 理解上下文
+配置好提供商后，导航到你想要处理的项目目录。
 
-它记得对话历史，理解上下文关系：
-
-```
-你：帮我写一个快速排序函数
-OpenCode：[生成代码]
-
-你：把上面的代码改成降序
-OpenCode：[修改代码，直接改成降序]
+```bash
+cd /path/to/project
 ```
 
-### 2. 自动选择工具
+然后运行 OpenCode。
 
-它会自动选择合适的工具完成任务：
-
-```
-你：帮我查看 package.json 文件
-OpenCode：自动使用 Read 工具读取文件
-
-你：帮我安装依赖
-OpenCode：自动使用 Bash 工具执行 npm install
+```bash
+opencode
 ```
 
-### 3. 多步推理
-
-对于复杂任务，它会分解为多个步骤：
+接下来，运行以下命令为项目初始化 OpenCode。
 
 ```
-你：帮我创建一个 Express 服务器
-OpenCode：
-  1. 初始化项目（Bash）
-  2. 安装 Express（Bash）
-  3. 创建 server.js（Write）
-  4. 启动服务器（Bash）
+/init
 ```
 
-## 常用对话模式
+OpenCode 会分析你的项目并在项目根目录创建一个 `AGENTS.md` 文件。
 
-### 模式 1：直接指令
+**提示**：你应该将项目的 `AGENTS.md` 文件提交到 Git。这有助于 OpenCode 理解项目结构和编码规范。
 
-```
-写一个函数 xxx
-读取文件 xxx
-执行命令 xxx
-```
+## 使用
 
-### 模式 2：描述目标
+现在你已经准备好使用 OpenCode 来处理项目了，尽管提问吧！
 
-```
-我想要创建一个 xxx 功能
-帮我把这个文件优化一下
-帮我分析这个错误的原因
-```
+如果你是第一次使用 AI 编码代理，以下示例可能会对你有所帮助。
 
-### 模式 3：持续交互
+### 提问
+
+你可以让 OpenCode 为你讲解代码库。
+
+**提示**：使用 `@` 键可以模糊搜索项目中的文件。
 
 ```
-你：创建一个 React 组件
-OpenCode：[生成组件]
-
-你：添加一个按钮
-OpenCode：[修改组件，添加按钮]
-
-你：给按钮添加点击事件
-OpenCode：[添加点击事件处理]
+@packages/functions/src/api/index.ts 中的身份验证是如何处理的？
 ```
 
-## 提示技巧
+当你遇到不熟悉的代码时，这个功能非常有用。
 
-为了获得更好的效果，可以：
+### 添加功能
 
-1. **明确目标**：清楚地描述你想要什么
-2. **提供上下文**：如果有相关文件，让它先读取
-3. **指定格式**：如果需要特定格式，明确说明
-4. **分步进行**：复杂任务可以分多步完成
+你可以让 OpenCode 为项目添加新功能。不过我们建议先让它制定一个计划。
+
+#### 1. 制定计划
+
+OpenCode 有一个**计划模式**，该模式下它不会进行任何修改，而是建议**如何**实现该功能。
+
+使用 **Tab** 键切换到计划模式。你会在右下角看到模式指示器。
+
+```
+<TAB>
+```
+
+接下来描述你希望它做什么。
+
+```
+当用户删除笔记时，我们希望在数据库中将其标记为已删除。然后创建一个显示所有最近删除笔记的屏幕。从这个屏幕中，用户可以撤销删除或永久删除笔记。
+```
+
+你需要提供足够的细节，让 OpenCode 理解你的需求。
+
+#### 2. 迭代计划
+
+当它给出计划后，你可以提供反馈或补充更多细节。
+
+```
+我们希望使用我之前使用过的设计来设计这个新屏幕。[Image #1] 看看这张图片并将其作为参考。
+```
+
+**提示**：将图片拖放到终端中即可将其添加到提示词中。OpenCode 可以扫描你提供的图片并将其添加到提示词中。
+
+#### 3. 构建功能
+
+当你对计划满意后，再次按 **Tab** 键切换回**构建模式**。
+
+```
+<TAB>
+```
+
+然后让它开始实施。
+
+```
+听起来不错！继续进行更改。
+```
+
+### 直接修改
+
+对于比较简单的修改，你可以直接让 OpenCode 实施，无需先审查计划。
+
+```
+我们需要为 /settings 路由添加身份验证。查看 /notes 路由在 @packages/functions/src/notes.ts 中是如何处理的，并在 @packages/functions/src/settings.ts 中实现相同的逻辑
+```
+
+请确保提供足够的细节，以便 OpenCode 做出正确的修改。
+
+### 撤销修改
+
+假设你让 OpenCode 做了一些修改。
+
+```
+你能重构 @packages/functions/src/api/index.ts 中的函数吗？
+```
+
+但你发现结果不是你想要的。你**可以使用** `/undo` 命令来撤销修改。
+
+```
+/undo
+```
+
+OpenCode 会还原所做的修改，并重新显示你之前的消息。
+
+```
+你能重构 @packages/functions/src/api/index.ts 中的函数吗？
+```
+
+你可以调整提示词，让 OpenCode 重新尝试。
+
+**提示**：你可以多次运行 `/undo` 来撤销多次修改。
+
+你也**可以使用** `/redo` 命令来重做修改。
+
+```
+/redo
+```
+
+## 分享
+
+你与 OpenCode 的对话可以与团队分享。
+
+```
+/share
+```
+
+这会生成当前对话的链接并复制到剪贴板。
+
+**注意**：对话默认不会被分享。
 
 ## 下一步
 
 快速体验后，您可以：
 
 1. **了解工作流**：查看 [工作流](./workflow)
-2. **学习工具**：查看 [工具](./tools)
+2. **学习工具**：查看 [工具](./tools-intro)
 3. **配置系统**：查看 [配置](./configuration)
 4. **学习指令**：查看 [指令](./commands)
 
@@ -181,4 +221,4 @@ OpenCode：[添加点击事件处理]
 
 **🎉 恭喜完成快速体验！**
 
-继续深入学习 OpenCode 的更多功能吧！🚀
+要让它更符合你的习惯，我们推荐选择一个主题、自定义快捷键、配置代码格式化工具、创建自定义命令，或者探索 OpenCode 配置。
