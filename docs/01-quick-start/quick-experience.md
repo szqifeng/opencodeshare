@@ -23,11 +23,11 @@ keywords: ["OpenCode 快速体验", "OpenCode 示例", "快速上手"]
 opencode start
 ```
 
-服务将在 http://localhost:3000 启动。
+服务将在 `http://localhost:3000` 启动。
 
 ## 第二步：打开对话界面
 
-在浏览器中访问 http://localhost:3000，你会看到对话界面。
+在浏览器中访问 `http://localhost:3000`，你会看到对话界面。
 
 ## 第三步：开始对话
 

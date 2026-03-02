@@ -234,10 +234,9 @@ OpenCode 会：
 
 了解工作流后，您可以：
 
-1. **学习工具**：查看 [工具](./tools)
+1. **学习工具**：查看 [工具](./tools-intro)
 2. **配置系统**：查看 [配置](./configuration)
 3. **学习指令**：查看 [指令](./commands)
-4. **学习 Agent**：查看 [Agent 介绍](./agent-intro)
 
 ---
 

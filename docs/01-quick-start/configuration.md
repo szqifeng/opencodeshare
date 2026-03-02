@@ -244,9 +244,8 @@ max_tokens: 2000
 
 配置完成后，您可以：
 
-1. **学习工具使用**：查看 [工具介绍](./tools-intro)
-2. **学习 Agent 使用**：查看 [Agent 介绍](./agent-intro)
-3. **学习基本使用**：查看 [日常使用](../02-daily-usage/tools)
+1. **开始使用**：查看 [快速体验](./quick-experience)
+2. **学习基本使用**：查看 [日常使用](../02-daily-usage/tools)
 
 ---
 

@@ -433,7 +433,7 @@ export OPENCODE_PORT=3001
 
 了解指令后，您可以：
 
-1. **学习 Agent**：查看 [Agent 介绍](./agent-intro)
+1. **开始使用**：查看 [快速体验](./quick-experience)
 2. **学习日常使用**：查看 [日常使用](../02-daily-usage/tools)
 3. **学习最佳实践**：查看 [工作流设计](../04-best-practices/workflow-design)
 

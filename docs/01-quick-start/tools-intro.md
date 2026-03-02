@@ -323,7 +323,7 @@ Webfetch + Write → 保存网页内容
 
 了解工具后，您可以：
 
-1. **学习 Agent 使用**：查看 [Agent 介绍](./agent-intro)
+1. **了解架构**：查看 [工作流](./workflow)
 2. **学习日常使用**：查看 [日常使用](../02-daily-usage/tools)
 3. **学习最佳实践**：查看 [工作流设计](../04-best-practices/workflow-design)
 
@@ -331,4 +331,4 @@ Webfetch + Write → 保存网页内容
 
 **🎉 现在你已经了解了 OpenCode 的工具系统！**
 
-接下来让我们学习 Agent 系统。🚀
+接下来学习配置和指令。🚀
