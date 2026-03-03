@@ -37,6 +37,7 @@ const sidebars: SidebarsConfig = {
         'daily-usage/rules',
         'daily-usage/agents',
         'daily-usage/models',
+        'daily-usage/multimedia',
         'daily-usage/themes',
         'daily-usage/shortcuts',
         'daily-usage/commands',
