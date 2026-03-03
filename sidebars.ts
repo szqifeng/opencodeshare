@@ -109,6 +109,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'source-reading/intro',
         'source-reading/double-loop-explanation',
+        'source-reading/minimal-chat-prompts',
       ],
     },
   ],
