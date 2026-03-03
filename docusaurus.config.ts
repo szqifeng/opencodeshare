@@ -106,6 +106,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/club',
+          label: '加入社群',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/szqifeng/opencodeshare',
           label: 'GitHub',
           position: 'right',
