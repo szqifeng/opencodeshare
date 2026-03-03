@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
         'quick-start/workflow',
         'quick-start/tools-intro',
         'quick-start/configuration',
+        'quick-start/core-prompts',
         'quick-start/commands',
       ],
     },
