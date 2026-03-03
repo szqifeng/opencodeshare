@@ -1,12 +1,12 @@
 ---
-description: OpenCode 快速连接大模型教程，介绍如何连接智谱、OpenAI、Anthropic 等主流 AI 模型。
-keywords: ["OpenCode 大模型", "连接模型", "API Key 配置", "GLM-4", "GPT-4"]
+description: OpenCode 模型推荐教程，介绍智谱、OpenAI、Anthropic 等主流 AI 模型的特点和推荐场景。
+keywords: ["OpenCode 模型推荐", "模型选择", "GLM-4", "GPT-4", "Claude"]
 sidebar_position: 5
 ---
 
-# 快速连接大模型
+# 模型推荐
 
-OpenCode 支持连接多种主流 AI 模型提供商，包括智谱、OpenAI、Anthropic 等。本文将指导您快速连接这些大模型到 OpenCode，开始使用强大的 AI 能力。
+OpenCode 支持连接多种主流 AI 模型提供商，包括智谱、OpenAI、Anthropic 等。本文将介绍这些大模型的特点和推荐使用场景，帮助您选择最适合的模型。
 
 ---
 
