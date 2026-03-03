@@ -1,324 +1,26 @@
 ---
-description: OpenCode 命令行指令介绍，包括启动、配置、对话等相关命令。
-keywords: ["OpenCode 指令", "命令行", "CLI 命令"]
+description: OpenCode 命令行启动方式和可用命令列表
+keywords: ["OpenCode 命令", "CLI", "命令行"]
 ---
 
-# 指令
+# 命令
 
-OpenCode 提供了丰富的命令行指令，用于启动、配置和使用系统。
+OpenCode 提供了丰富的命令行工具，通过不同的命令实现各种功能。
 
-## 基础指令
+## 🚀 启动方式
 
-### 启动服务
-
-```bash
-opencode start
-```
-
-启动 OpenCode 服务，默认运行在 http://localhost:3000
-
-**选项：**
-- `--port`: 指定端口，如 `--port 3001`
-- `--daemon`: 后台运行
-- `--config`: 指定配置文件路径
-
-**示例：**
+### 基本用法
 
 ```bash
-opencode start --port 3001
-opencode start --daemon
-opencode start --config /path/to/config.yaml
+opencode <command> [options]
 ```
 
-### 停止服务
+### 查看帮助
 
 ```bash
-opencode stop
+opencode --help              # 查看所有命令
+opencode <command> --help     # 查看特定命令的帮助
 ```
-
-停止运行的 OpenCode 服务。
-
-**示例：**
-
-```bash
-opencode stop
-```
-
-### 重启服务
-
-```bash
-opencode restart
-```
-
-重启 OpenCode 服务。
-
-**示例：**
-
-```bash
-opencode restart
-```
-
-## 对话指令
-
-### 开始对话
-
-```bash
-opencode chat
-```
-
-打开对话界面进行交互。
-
-**选项：**
-- `--model`: 指定使用的模型
-- `--agent`: 指定使用的 Agent
-
-**示例：**
-
-```bash
-opencode chat --model gpt-4o
-opencode chat --agent coder
-```
-
-### 执行单次查询
-
-```bash
-opencode ask "你的问题"
-```
-
-执行单次查询并返回结果。
-
-**示例：**
-
-```bash
-opencode ask "帮我写一个快速排序函数"
-```
-
-### 批量处理
-
-```bash
-opencode batch --file tasks.json
-```
-
-批量执行任务列表。
-
-**示例：**
-
-```bash
-opencode batch --file tasks.json
-```
-
-## 配置指令
-
-### 查看配置
-
-```bash
-opencode config get
-```
-
-查看当前配置。
-
-**示例：**
-
-```bash
-opencode config get
-opencode config get model
-opencode config get proxy
-```
-
-### 设置配置
-
-```bash
-opencode config set <key> <value>
-```
-
-设置配置项。
-
-**示例：**
-
-```bash
-opencode config set model.provider openai
-opencode config set model.api_key sk-xxxxx
-opencode config set proxy.enabled true
-```
-
-### 重置配置
-
-```bash
-opencode config reset
-```
-
-重置为默认配置。
-
-**示例：**
-
-```bash
-opencode config reset
-```
-
-## 模型指令
-
-### 查看可用模型
-
-```bash
-opencode model list
-```
-
-列出所有可用的模型。
-
-**示例：**
-
-```bash
-opencode model list
-```
-
-### 切换模型
-
-```bash
-opencode model use <model>
-```
-
-切换使用的模型。
-
-**示例：**
-
-```bash
-opencode model use gpt-4o
-opencode model use claude-3-5-sonnet
-```
-
-### 测试模型
-
-```bash
-opencode model test <model>
-```
-
-测试模型连接。
-
-**示例：**
-
-```bash
-opencode model test gpt-4o
-```
-
-## 工具指令
-
-### 查看工具列表
-
-```bash
-opencode tool list
-```
-
-列出所有可用的工具。
-
-**示例：**
-
-```bash
-opencode tool list
-```
-
-### 查看工具详情
-
-```bash
-opencode tool info <tool>
-```
-
-查看工具的详细信息。
-
-**示例：**
-
-```bash
-opencode tool info read
-opencode tool info bash
-```
-
-## Agent 指令
-
-### 查看 Agent 列表
-
-```bash
-opencode agent list
-```
-
-列出所有可用的 Agent。
-
-**示例：**
-
-```bash
-opencode agent list
-```
-
-### 切换 Agent
-
-```bash
-opencode agent use <agent>
-```
-
-切换使用的 Agent。
-
-**示例：**
-
-```bash
-opencode agent use coder
-opencode agent use writer
-```
-
-## 调试指令
-
-### 查看日志
-
-```bash
-opencode logs
-```
-
-查看系统日志。
-
-**选项：**
-- `--tail`: 显示最后 N 行
-- `--follow`: 持续跟踪日志
-
-**示例：**
-
-```bash
-opencode logs
-opencode logs --tail 100
-opencode logs --follow
-```
-
-### 测试连接
-
-```bash
-opencode test
-```
-
-测试系统各项连接。
-
-**选项：**
-- `--provider`: 测试指定服务商
-- `--proxy`: 测试代理连接
-
-**示例：**
-
-```bash
-opencode test
-opencode test --provider openai
-opencode test --proxy
-```
-
-### 诊断问题
-
-```bash
-opencode diagnose
-```
-
-运行诊断检查，找出潜在问题。
-
-**示例：**
-
-```bash
-opencode diagnose
-```
-
-## 系统指令
 
 ### 查看版本
 
@@ -326,119 +28,236 @@ opencode diagnose
 opencode --version
 ```
 
-查看 OpenCode 版本信息。
+## 📋 命令列表
 
-**示例：**
+### 核心命令
 
-```bash
-opencode --version
-```
-
-### 查看状态
+#### run
+启动 OpenCode 并运行对话
 
 ```bash
-opencode status
+opencode run [message]
 ```
 
-查看运行状态。
-
-**示例：**
+#### serve
+启动 HTTP 服务器
 
 ```bash
-opencode status
+opencode serve
 ```
 
-### 检查更新
+#### web
+启动 Web 界面
 
 ```bash
-opencode update
+opencode web
 ```
 
-检查并更新到最新版本。
-
-**示例：**
+#### tui-thread
+启动 TUI（终端用户界面）线程
 
 ```bash
-opencode update
+opencode tui-thread
 ```
 
-### 清理缓存
+#### attach
+附加到现有会话
 
 ```bash
-opencode clean
+opencode attach [session-id]
 ```
 
-清理缓存文件。
+### 交互式命令
 
-**选项：**
-- `--all`: 清理所有缓存
-- `--cache`: 清理模型缓存
-- `--logs`: 清理日志文件
-
-**示例：**
+#### agent
+Agent 相关操作
 
 ```bash
-opencode clean
-opencode clean --all
+opencode agent list           # 列出所有 Agent
+opencode agent use <name>     # 使用指定 Agent
 ```
 
-## 帮助指令
-
-### 查看帮助
+#### session
+会话管理
 
 ```bash
-opencode --help
+opencode session list         # 列出所有会话
+opencode session create       # 创建新会话
+opencode session delete <id>  # 删除会话
 ```
 
-查看帮助信息。
-
-**示例：**
+#### models
+模型相关操作
 
 ```bash
-opencode --help
-opencode start --help
+opencode models list          # 列出可用模型
+opencode models test <model>  # 测试模型
 ```
 
-## 指令别名
+### 开发命令
 
-为了方便使用，OpenCode 支持指令别名：
+#### generate
+代码生成
 
 ```bash
-# 常用别名
-opencode start → op s
-opencode stop → op stop
-opencode chat → op c
-opencode ask → op a
+opencode generate <prompt>
 ```
 
-## 环境变量
-
-OpenCode 支持通过环境变量配置：
+#### debug
+调试模式
 
 ```bash
-# API Key
-export OPENAI_API_KEY="sk-xxxxx"
-export ANTHROPIC_API_KEY="sk-ant-xxxxx"
-
-# 代理
-export HTTP_PROXY="http://127.0.0.1:7890"
-export HTTPS_PROXY="http://127.0.0.1:7890"
-
-# 配置
-export OPENCODE_CONFIG="/path/to/config.yaml"
-export OPENCODE_PORT=3001
+opencode debug [options]
 ```
 
-## 下一步
+#### stats
+查看统计信息
 
-了解指令后，您可以：
+```bash
+opencode stats
+```
 
-1. **开始使用**：查看 [快速体验](./quick-experience)
-2. **学习日常使用**：查看 [日常使用](../02-daily-usage/tools)
-3. **学习最佳实践**：查看 [工作流设计](../04-best-practices/workflow-design)
+### 数据管理
 
----
+#### export
+导出数据
 
-**🎉 现在你已经掌握了 OpenCode 的常用指令！**
+```bash
+opencode export [options]
+```
 
-开始使用吧！🚀
+#### import
+导入数据
+
+```bash
+opencode import [options]
+```
+
+#### db
+数据库操作
+
+```bash
+opencode db <subcommand>
+```
+
+### 集成命令
+
+#### github
+GitHub 集成
+
+```bash
+opencode github <subcommand>
+```
+
+#### pr
+Pull Request 操作
+
+```bash
+opencode pr <subcommand>
+```
+
+### 协议命令
+
+#### acp
+Agent Control Protocol 操作
+
+```bash
+opencode acp <subcommand>
+```
+
+#### mcp
+Model Context Protocol 操作
+
+```bash
+opencode mcp <subcommand>
+```
+
+### 系统命令
+
+#### auth
+认证管理
+
+```bash
+opencode auth login           # 登录
+opencode auth logout          # 登出
+opencode auth status          # 查看认证状态
+```
+
+#### upgrade
+升级 OpenCode
+
+```bash
+opencode upgrade
+```
+
+#### uninstall
+卸载 OpenCode
+
+```bash
+opencode uninstall
+```
+
+#### completion
+生成 Shell 自动补全脚本
+
+```bash
+opencode completion bash     # Bash 补全
+opencode completion zsh      # Zsh 补全
+opencode completion fish     # Fish 补全
+```
+
+## 🔧 常用场景
+
+### 快速开始
+
+```bash
+# 启动并输入消息
+opencode run "帮我写一个函数"
+
+# 启动服务器
+opencode serve
+
+# 启动 Web 界面
+opencode web
+```
+
+### 会话管理
+
+```bash
+# 列出所有会话
+opencode session list
+
+# 附加到特定会话
+opencode attach <session-id>
+```
+
+### Agent 使用
+
+```bash
+# 查看可用 Agent
+opencode agent list
+
+# 切换到特定 Agent
+opencode agent use coder
+```
+
+### 数据管理
+
+```bash
+# 导出所有会话
+opencode export --format json
+
+# 导入会话
+opencode import --file data.json
+```
+
+## 💡 提示
+
+- 使用 `--help` 查看任何命令的详细用法
+- 大多数命令支持自动补全，建议配置 `completion`
+- 服务器默认端口为 4096，可通过选项修改
+
+## 📖 相关文章
+
+- [快速体验](./quick-experience)
+- [配置管理](./configuration)
