@@ -25,21 +25,7 @@ const sidebars: SidebarsConfig = {
         'quick-start/workflow',
         'quick-start/tools-intro',
         'quick-start/configuration',
-        {
-          type: 'category',
-          label: '📝 命令',
-          collapsed: true,
-          items: [
-            'quick-start/commands-basics',
-            'quick-start/commands-chat',
-            'quick-start/commands-config',
-            'quick-start/commands-model',
-            'quick-start/commands-tool',
-            'quick-start/commands-agent',
-            'quick-start/commands-debug',
-            'quick-start/commands-advanced',
-          ],
-        },
+        'quick-start/commands',
       ],
     },
     {
