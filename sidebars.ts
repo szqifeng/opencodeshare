@@ -22,6 +22,7 @@ const sidebars: SidebarsConfig = {
         'quick-start/starter-guide',
         'quick-start/quick-connect-model',
         'quick-start/workflow',
+        'quick-start/agents-intro',
         'quick-start/skills-intro',
         'quick-start/tools-intro',
         'quick-start/configuration',

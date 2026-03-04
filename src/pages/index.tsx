@@ -553,7 +553,7 @@ export default function Home(): ReactNode {
                    <p style={cardDesc} className="card-desc">内置工具集合，快速获取自定义工具，例如：Excel 操作、邮件发送、数据库管理</p>
                    <Link to="/docs/quick-start/tools-intro" style={cardLink}>了解工具 →</Link>
                  </Link>
-                 <Link to="/docs/02-daily-usage/agents" style={card}>
+                 <Link to="/docs/quick-start/agents-intro" style={card}>
                    <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
                     <defs>
                       <linearGradient id="agentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
