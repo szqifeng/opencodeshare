@@ -166,7 +166,7 @@ export default function Home(): ReactNode {
 
   const cardGrid: CSSProperties = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateColumns: 'repeat(4, 1fr)',
     gap: '1.5rem',
   };
 
@@ -175,8 +175,10 @@ export default function Home(): ReactNode {
     borderRadius: '16px',
     padding: '2rem',
     border: `1px solid ${isDarkMode ? '#374151' : '#f3f4f6'}`,
-    transition: 'all 0.25s ease',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     cursor: 'pointer',
+    position: 'relative' as const,
+    overflow: 'hidden',
   };
 
   const cardHover: CSSProperties = {
@@ -186,6 +188,12 @@ export default function Home(): ReactNode {
 
   const cardIcon: CSSProperties = {
     fontSize: '2rem',
+    marginBottom: '1rem',
+  };
+
+  const svgIcon: CSSProperties = {
+    width: '64px',
+    height: '64px',
     marginBottom: '1rem',
   };
 
@@ -215,6 +223,39 @@ export default function Home(): ReactNode {
 
   const cardLinkHover: CSSProperties = {
     transform: 'translateX(4px)',
+  };
+
+  const cardVideo: CSSProperties = {
+    position: 'absolute' as const,
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover' as const,
+    opacity: '0',
+    transition: 'opacity 0.3s ease',
+    borderRadius: '16px',
+  };
+
+  const cardVideoContainer: CSSProperties = {
+    position: 'absolute' as const,
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    borderRadius: '16px',
+    overflow: 'hidden' as const,
+  };
+
+  const cardPlayIcon: CSSProperties = {
+    position: 'absolute' as const,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    fontSize: '3rem',
+    opacity: '0',
+    transition: 'all 0.3s ease',
+    filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3))',
   };
 
   const roadmap: CSSProperties = {
@@ -414,30 +455,138 @@ export default function Home(): ReactNode {
         </section>
 
         <section style={sectionBg} id="features">
-          <div style={container}>
-             <h2 style={sectionTitle}>为什么选择 OpenCode</h2>
-             <div style={cardGrid}>
-               <div style={card}>
-                 <div style={cardIcon}>🎯</div>
-                 <h3 style={cardTitle}>零基础友好</h3>
-                 <p style={cardDesc} className="card-desc">无需深厚技术背景，从最基础的概念开始，循序渐进地学习 AI 编程</p>
-                  <Link to="/docs/quick-start/opencode-intro" style={cardLink}>开始学习 →</Link>
-                </div>
-                <div style={card}>
-                  <div style={cardIcon}>💡</div>
-                  <h3 style={cardTitle}>生动有趣</h3>
-                  <p style={cardDesc} className="card-desc">用生活中的比喻解释复杂概念，让学习过程轻松愉快，不再枯燥</p>
-                  <Link to="/docs/terminology/llm" style={cardLink}>查看原理 →</Link>
-                </div>
-                <div style={card}>
-                  <div style={cardIcon}>⚡</div>
-                  <h3 style={cardTitle}>实战导向</h3>
-                  <p style={cardDesc} className="card-desc">丰富的真实案例和练习，学完就能应用到实际工作中，立竿见影</p>
-                  <Link to="/docs/best-practices/code-review" style={cardLink}>查看案例 →</Link>
-                </div>
-             </div>
-          </div>
-        </section>
+           <div style={container}>
+              <h2 style={sectionTitle}>核心能力</h2>
+               <div style={cardGrid}>
+                 <Link to="/docs/01-quick-start/starter-guide" style={card}>
+                  <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
+                    <defs>
+                      <linearGradient id="starterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{stopColor: '#ec4899', stopOpacity: 1}} />
+                        <stop offset="100%" style={{stopColor: '#db2777', stopOpacity: 1}} />
+                      </linearGradient>
+                    </defs>
+                    <g>
+                      <circle cx="32" cy="32" r="28" fill="url(#starterGradient)" opacity="0.15">
+                        <animate attributeName="r" values="28;32;28" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.15;0.25;0.15" dur="2s" repeatCount="indefinite"/>
+                      </circle>
+                      <path d="M32 16L40 32H34L38 48L28 48L24 32H18L32 16Z" fill="url(#starterGradient)">
+                        <animate attributeName="d" values="M32 16L40 32H34L38 48L28 48L24 32H18L32 16Z;M32 14L40 30H34L38 50L28 50L24 30H18L32 14Z;M32 16L40 32H34L38 48L28 48L24 32H18L32 16Z" dur="1.5s" repeatCount="indefinite"/>
+                      </path>
+                      <circle cx="32" cy="20" r="5" fill="url(#starterGradient)" opacity="0.8">
+                        <animate attributeName="r" values="5;8;5" dur="1.2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1.2s" repeatCount="indefinite"/>
+                      </circle>
+                      <circle cx="36" cy="44" r="3" fill="url(#starterGradient)" opacity="0.6">
+                        <animate attributeName="r" values="3;5;3" dur="0.8s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.6;0.3;0.6" dur="0.8s" repeatCount="indefinite"/>
+                      </circle>
+                      <circle cx="28" cy="44" r="3" fill="url(#starterGradient)" opacity="0.6">
+                        <animate attributeName="r" values="3;5;3" dur="0.8s" repeatCount="indefinite" begin="0.4s"/>
+                        <animate attributeName="opacity" values="0.6;0.3;0.6" dur="0.8s" repeatCount="indefinite" begin="0.4s"/>
+                      </circle>
+                      <circle cx="40" cy="36" r="2" fill="url(#starterGradient)" opacity="0.4">
+                        <animate attributeName="r" values="2;4;2" dur="0.6s" repeatCount="indefinite" begin="0.2s"/>
+                        <animate attributeName="opacity" values="0.4;0.2;0.4" dur="0.6s" repeatCount="indefinite" begin="0.2s"/>
+                      </circle>
+                      <circle cx="24" cy="36" r="2" fill="url(#starterGradient)" opacity="0.4">
+                        <animate attributeName="r" values="2;4;2" dur="0.6s" repeatCount="indefinite" begin="0.5s"/>
+                        <animate attributeName="opacity" values="0.4;0.2;0.4" dur="0.6s" repeatCount="indefinite" begin="0.5s"/>
+                      </circle>
+                    </g>
+                    <animateTransform attributeName="transform" type="translate" values="0,0;0,-1.5;0,0" dur="1.2s" repeatCount="indefinite"/>
+                  </svg>
+                  <h3 style={cardTitle}>0 基础入门</h3>
+                   <p style={cardDesc} className="card-desc">纯享版学习路径，本地部署、云上部署都支持讲解，5分钟上手，30分钟掌握核心概念</p>
+                    <Link to="/docs/01-quick-start/starter-guide" style={cardLink}>立即开始 →</Link>
+                  </Link>
+                 <Link to="/docs/01-quick-start/skills-intro" style={card}>
+                  <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
+                    <defs>
+                      <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{stopColor: '#10b981', stopOpacity: 1}} />
+                        <stop offset="100%" style={{stopColor: '#059669', stopOpacity: 1}} />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="32" cy="32" r="28" fill="url(#skillGradient)" opacity="0.1">
+                      <animate attributeName="r" values="28;32;28" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <path d="M32 8L56 24V40L32 56L8 40V24L32 8Z" stroke="url(#skillGradient)" strokeWidth="2" fill="none">
+                      <animate attributeName="stroke-dasharray" values="0,200;200,0;200,0" dur="1.5s" repeatCount="indefinite"/>
+                    </path>
+                    <circle cx="32" cy="32" r="8" fill="url(#skillGradient)">
+                      <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="32" cy="32" r="4" fill="#fff"/>
+                  </svg>
+                  <h3 style={cardTitle}>Skills</h3>
+                  <p style={cardDesc} className="card-desc">技能集合，一键添加成熟技能，例如：发送邮件</p>
+                   <Link to="/docs/01-quick-start/skills-intro" style={cardLink}>了解技能 →</Link>
+                 </Link>
+                 <Link to="/docs/01-quick-start/tools-intro" style={card}>
+                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
+                    <defs>
+                      <linearGradient id="toolGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{stopColor: '#8b5cf6', stopOpacity: 1}} />
+                        <stop offset="100%" style={{stopColor: '#7c3aed', stopOpacity: 1}} />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="32" cy="32" r="28" fill="url(#toolGradient)" opacity="0.1">
+                      <animate attributeName="r" values="28;32;28" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <rect x="16" y="24" width="32" height="16" rx="4" stroke="url(#toolGradient)" strokeWidth="2" fill="none">
+                      <animate attributeName="x" values="16;14;16" dur="2s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="20" y="28" width="24" height="8" rx="2" fill="url(#toolGradient)">
+                      <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <circle cx="48" cy="32" r="6" stroke="url(#toolGradient)" strokeWidth="2" fill="none">
+                      <animate attributeName="r" values="6;8;6" dur="1s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="16" cy="32" r="6" stroke="url(#toolGradient)" strokeWidth="2" fill="none">
+                      <animate attributeName="r" values="6;8;6" dur="1s" repeatCount="indefinite" begin="0.5s"/>
+                    </circle>
+                  </svg>
+                  <h3 style={cardTitle}>Tools</h3>
+                  <p style={cardDesc} className="card-desc">工具集合，快速获取自定义工具，例如：操作无头浏览器</p>
+                   <Link to="/docs/01-quick-start/tools-intro" style={cardLink}>了解工具 →</Link>
+                 </Link>
+                 <Link to="/docs/02-daily-usage/agents" style={card}>
+                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
+                    <defs>
+                      <linearGradient id="agentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{stopColor: '#f59e0b', stopOpacity: 1}} />
+                        <stop offset="100%" style={{stopColor: '#d97706', stopOpacity: 1}} />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="32" cy="32" r="28" fill="url(#agentGradient)" opacity="0.1">
+                      <animate attributeName="r" values="28;32;28" dur="3.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="32" cy="20" r="8" stroke="url(#agentGradient)" strokeWidth="2" fill="none">
+                      <animate attributeName="cy" values="20;18;20" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <path d="M18 40Q32 32 46 40" stroke="url(#agentGradient)" strokeWidth="2" fill="none">
+                      <animate attributeName="d" values="M18 40Q32 32 46 40;M18 38Q32 34 46 38;M18 40Q32 32 46 40" dur="1.5s" repeatCount="indefinite"/>
+                    </path>
+                    <circle cx="20" cy="24" r="2" fill="url(#agentGradient)">
+                      <animate attributeName="opacity" values="1;0.3;1" dur="0.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="44" cy="24" r="2" fill="url(#agentGradient)">
+                      <animate attributeName="opacity" values="1;0.3;1" dur="0.5s" repeatCount="indefinite" begin="0.25s"/>
+                    </circle>
+                    <rect x="26" y="44" width="12" height="2" rx="1" fill="url(#agentGradient)">
+                      <animate attributeName="width" values="12;14;12" dur="1s" repeatCount="indefinite"/>
+                    </rect>
+                  </svg>
+                  <h3 style={cardTitle}>Agent</h3>
+                  <p style={cardDesc} className="card-desc">代理规则集合，自主处理复杂任务</p>
+                   <Link to="/docs/02-daily-usage/agents" style={cardLink}>了解代理 →</Link>
+                 </Link>
+              </div>
+            </div>
+         </section>
 
         <section style={section} id="roadmap">
           <div style={container}>
@@ -538,32 +687,35 @@ export default function Home(): ReactNode {
             padding: 0 1.5rem !important;
           }
           section[id="features"] .container,
-          section[id="scenarios"] .container,
-          section[id="resources"] .container {
+           section[id="scenarios"] .container,
+           section[id="resources"] .container,
+           section[id="starter"] .container {
             padding: 0 1rem !important;
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
           }
-          section[id="features"] .cardGrid,
-          section[id="scenarios"] .scenarioGrid,
-          section[id="resources"] .resourceGrid {
-            display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-            gap: 0.75rem !important;
-            justify-content: center !important;
-            width: 100% !important;
-          }
-          section[id="features"] h2,
-          section[id="scenarios"] h2,
-          section[id="resources"] h2 {
+           section[id="features"] .cardGrid,
+            section[id="scenarios"] .scenarioGrid,
+            section[id="resources"] .resourceGrid {
+              display: grid !important;
+              grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+              gap: 0.75rem !important;
+              justify-content: center !important;
+              width: 100% !important;
+            }
+           section[id="features"] h2,
+           section[id="scenarios"] h2,
+           section[id="resources"] h2,
+           section[id="starter"] h2 {
             font-size: 1.5rem !important;
             text-align: center !important;
             margin-bottom: 1rem !important;
           }
-          section[id="features"] .card,
-          section[id="scenarios"] .scenarioCard,
-          section[id="resources"] .resourceCard {
+           section[id="features"] .card,
+           section[id="scenarios"] .scenarioCard,
+           section[id="resources"] .resourceCard,
+           section[id="starter"] .starterCard {
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
@@ -615,30 +767,39 @@ export default function Home(): ReactNode {
             font-size: 0.85rem !important;
             white-space: nowrap !important;
           }
-          .cardGrid {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-            gap: 1rem !important;
-            width: max-content !important;
-          }
+           .cardGrid {
+             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+             gap: 1rem !important;
+             width: max-content !important;
+           }
           .scenarioGrid {
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
             gap: 0.75rem !important;
             width: max-content !important;
           }
-          .resourceGrid {
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
-            gap: 0.75rem !important;
-            width: max-content !important;
-          }
+           .resourceGrid {
+             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+             gap: 0.75rem !important;
+             width: max-content !important;
+           }
           .section {
             padding: 2rem 0.75rem !important;
             min-width: 100vw !important;
           }
-          .container {
-            min-width: 100% !important;
+           .container {
+             min-width: 100% !important;
+           }
+           section[id="starter"] .starterFeatures {
+             flex-direction: column !important;
+             gap: 0.75rem !important;
+             align-items: flex-start !important;
+           }
+           section[id="starter"] .starterBtn {
+             width: 100% !important;
+             justify-content: center !important;
+           }
           }
-         }
-         @media (max-width: 480px) {
+          @media (max-width: 480px) {
            section[id="hero"] {
              padding: 1.5rem 0.5rem !important;
            }
@@ -664,11 +825,21 @@ export default function Home(): ReactNode {
            .sectionTitle {
              font-size: 1.3rem !important;
            }
-           .card,
-           .scenarioCard,
-           .resourceCard {
-             padding: 1rem !important;
-           }
+            .card,
+            .scenarioCard,
+            .resourceCard,
+            section[id="starter"] .starterCard {
+              padding: 1rem !important;
+            }
+            section[id="starter"] .starterTitle {
+              font-size: 1.5rem !important;
+            }
+            section[id="starter"] .starterDesc {
+              font-size: 1rem !important;
+            }
+            section[id="starter"] .starterFeatures {
+              gap: 0.5rem !important;
+            }
            .roadmapIcon {
              width: 48px !important;
              height: 48px !important;
@@ -680,18 +851,26 @@ export default function Home(): ReactNode {
              padding: 6rem 2rem !important;
              gap: 3rem !important;
            }
-           .cardGrid {
-             grid-template-columns: repeat(2, 1fr) !important;
-             gap: 1.25rem !important;
-           }
-           .scenarioGrid {
+             .cardGrid {
+               grid-template-columns: repeat(4, 1fr) !important;
+               gap: 1rem !important;
+             }
+            section[id="starter"] .starterCard {
+              padding: 2rem !important;
+            }
+            section[id="starter"] .starterFeatures {
+              flex-wrap: wrap !important;
+              gap: 1rem !important;
+              justify-content: center !important;
+            }
+            .scenarioGrid {
              grid-template-columns: repeat(2, 1fr) !important;
              gap: 1rem !important;
            }
-           .resourceGrid {
-             grid-template-columns: repeat(2, 1fr) !important;
-             gap: 1.25rem !important;
-           }
+            .resourceGrid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 1.25rem !important;
+            }
          }
          .btn-primary:hover {
            transform: translateY(-2px);
@@ -701,10 +880,11 @@ export default function Home(): ReactNode {
            transform: translateY(-2px);
            background-color: ${isDarkMode ? '#374151' : '#f9fafb'};
          }
-         .card:hover {
-           transform: translateY(-4px);
-           box-shadow: ${isDarkMode ? '0 20px 40px rgba(0, 0, 0, 0.3)' : '0 20px 40px rgba(0, 0, 0, 0.1)'};
-         }
+          .card:hover {
+            transform: translateY(-8px);
+            box-shadow: ${isDarkMode ? '0 30px 60px rgba(16, 185, 129, 0.2)' : '0 30px 60px rgba(16, 185, 129, 0.15)'};
+            border-color: #10b981;
+          }
          .cardLink:hover {
            transform: translateX(4px);
          }
@@ -716,11 +896,55 @@ export default function Home(): ReactNode {
            transform: translateY(-4px);
            border-color: #10b981;
          }
-         .roadmapIcon:hover {
-           transform: scale(1.1);
-         }
-        `
-      }} />
+          .roadmapIcon:hover {
+            transform: scale(1.1);
+          }
+          @keyframes cardGlow {
+            0%, 100% {
+              box-shadow: 0 0 20px rgba(16, 185, 129, 0);
+            }
+            50% {
+              box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+            }
+          }
+          @keyframes slideUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .card {
+            animation: slideUp 0.6s ease-out forwards, cardGlow 3s ease-in-out infinite;
+          }
+          .card:nth-child(1) {
+            animation-delay: 0s;
+          }
+          .card:nth-child(2) {
+            animation-delay: 0.1s;
+          }
+          .card:nth-child(3) {
+            animation-delay: 0.2s;
+          }
+          .card:nth-child(4) {
+            animation-delay: 0.3s;
+          }
+          @keyframes starterFloat {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+          .starterCard {
+            animation: slideUp 0.8s ease-out forwards, cardGlow 4s ease-in-out infinite;
+          }
+         `
+       }} />
     </Layout>
   );
 }

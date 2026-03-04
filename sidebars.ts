@@ -19,10 +19,12 @@ const sidebars: SidebarsConfig = {
       label: '🚀 01-快速起步',
       collapsed: false,
       items: [
+        'quick-start/starter-guide',
         'quick-start/opencode-intro',
         'quick-start/quick-experience',
         'quick-start/quick-connect-model',
         'quick-start/workflow',
+        'quick-start/skills-intro',
         'quick-start/tools-intro',
         'quick-start/configuration',
         'quick-start/core-prompts',
