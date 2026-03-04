@@ -1,332 +1,338 @@
 ---
-description: OpenCode 0 基础入门指南 - 本地部署、云上部署都支持讲解。无需编程基础，5分钟上手，30分钟掌握核心概念。
-keywords: ["OpenCode 入门", "本地部署", "云上部署", "快速上手", "零基础"]
+description: OpenCode 0 基础入门指南 - macOS、Linux、Windows 一步步安装部署。
+keywords: ["OpenCode 入门", "macOS", "Linux", "Windows", "安装教程"]
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # 0 基础入门
 
 ## 一句话总结
-> 无需任何编程基础，5 分钟上手 OpenCode，本地部署、云上部署都支持讲解，30 分钟掌握核心概念，1 小时完成第一个项目。
+> 不说废话，按你的操作系统一步步安装 OpenCode，5 分钟完成。
 
 ---
 
-## 核心笔记 / 精华总结
+## 核心笔记
 
 - ✅ OpenCode 是基于 LLM 的 Agent 运行时框架
-- ✅ 支持本地部署和云上部署两种方式
-- ✅ 零基础也能快速上手
+- ✅ 支持 macOS、Linux、Windows 三大系统
 - ✅ 自然语言交互，无需学习复杂命令
-- ✅ 开箱即用，提供丰富工具和技能
+- ✅ 开箱即用
 
 ---
 
 ## 学完你能做什么
 
-- 🚀 在本地或云端快速部署 OpenCode
-- 💬 使用自然语言与 AI 对话完成任务
-- 🛠️ 调用内置工具进行文件操作、命令执行等
-- 🎯 快速集成自定义技能和工具
-- 📝 独立完成简单的自动化任务
-
----
-
-## 你现在的困境
-
-- ❓ 不知道如何开始学习 AI 编程
-- ❓ 担心需要深厚的技术背景
-- ❓ 不确定应该本地部署还是云上部署
-- ❓ 对复杂的配置和命令感到困惑
-- ❓ 想要快速看到实际效果
-
----
-
-## 什么时候用这一招
-
-- 🎯 刚开始接触 AI 编程
-- 🎯 想要快速了解 OpenCode 基本功能
-- 🎯 需要在本地环境或云环境部署
-- 🎯 零基础用户学习第一步
+- 🚀 成功安装 OpenCode
+- 💬 与 AI 对话完成任务
+- 🛠️ 使用内置工具
 
 ---
 
 ## 核心思路
 
-### OpenCode 是什么？
-
-OpenCode 是一个基于大语言模型（LLM）的 Agent 运行时框架，让你通过**自然语言**与 AI 对话，自动完成各种任务。
-
-### 两种部署方式
-
-#### 1. 本地部署
-
-**适用场景：**
-- 有自己的电脑或服务器
-- 数据隐私要求高
-- 需要离线使用
-- 想要完全控制环境
-
-**优势：**
-- ✅ 数据安全，完全本地运行
-- ✅ 无需担心网络延迟
-- ✅ 可以使用自定义模型
-- ✅ 完全掌控配置
-
-#### 2. 云上部署
-
-**适用场景：**
-- 没有合适的硬件
-- 需要共享访问
-- 希望开箱即用
-- 不想维护环境
-
-**优势：**
-- ✅ 无需安装配置
-- ✅ 随时随地访问
-- ✅ 自动更新维护
-- ✅ 按需付费
+OpenCode 需要 Node.js 环境运行。安装步骤：安装 Node.js → 安装 OpenCode → 连接模型 → 开始使用。
 
 ---
 
 ## 跟我做（分步骤）
 
-### 步骤 1：选择部署方式
+<Tabs groupId="os" values={[
+  {label: 'macOS', value: 'macos'},
+  {label: 'Linux', value: 'linux'},
+  {label: 'Windows', value: 'windows'}
+]}>
 
-根据你的需求选择：
+<TabItem value="macos">
 
-**如果你有本地电脑** → 选择本地部署
-**如果想要开箱即用** → 选择云上部署
-**如果不确定** → 先尝试云上部署，再考虑本地部署
+#### 一键安装（推荐）
+
+执行以下命令，自动完成所有安装：
+
+```bash
+curl -fsSL https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/install-mac.sh | bash
+```
+
+<details>
+<summary>一键安装失败？查看手动安装步骤</summary>
 
 ---
 
-### 步骤 2：本地部署（5 分钟）
+#### 步骤 1：检查 Node.js
 
-#### 2.1 安装 Node.js
+打开终端，输入：
 
 ```bash
-# 检查是否已安装 Node.js
 node -v
-
-# 如果未安装，访问 https://nodejs.org 下载安装
-# 推荐使用 LTS 版本（v20 或更高）
 ```
 
-#### 2.2 安装 OpenCode
+**如果显示版本号（如 v20.x.x）** → 已安装，跳到步骤 3
+
+**如果提示 command not found** → 需要安装 Node.js
+
+#### 步骤 2：安装 Node.js
+
+**方法一：使用 Homebrew（推荐）**
 
 ```bash
-# 使用 npm 安装（推荐）
+# 安装 Homebrew（如果还没有）
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 安装 Node.js
+brew install node
+```
+
+**方法二：官网下载**
+
+1. 访问 https://nodejs.org
+2. 下载 LTS 版本（.pkg 文件）
+3. 双击安装，一路点击"继续"
+4. 安装完成后重启终端
+
+#### 步骤 3：安装 OpenCode
+
+```bash
 npm install -g @opencode-ai/cli
-
-# 或使用 yarn
-yarn global add @opencode-ai/cli
-
-# 或使用 pnpm
-pnpm add -g @opencode-ai/cli
 ```
 
-#### 2.3 初始化项目
+#### 步骤 4：验证安装
 
 ```bash
-# 创建新项目
-opencode init my-project
-
-# 进入项目目录
-cd my-project
-
-# 启动 OpenCode
-opencode start
+opencode --version
 ```
 
-#### 2.4 配置模型
+**如果显示版本号** → 安装成功
 
-OpenCode 支持多种 LLM 提供商：
+**如果提示 command not found** → 检查环境变量
+
+**【配图描述】**：终端显示 opencode 版本号的截图
+
+</details>
+
+</TabItem>
+
+<TabItem value="linux">
+
+#### 步骤 1：检查 Node.js
+
+打开终端，输入：
 
 ```bash
-# 连接 OpenAI
-opencode config set model.provider openai
-opencode config set model.api_key YOUR_API_KEY
-
-# 或连接其他提供商
-opencode config set model.provider anthropic
-opencode config set model.api_key YOUR_API_KEY
+node -v
 ```
+
+**如果显示版本号** → 已安装，跳到步骤 3
+
+**如果提示 command not found** → 需要安装 Node.js
+
+#### 步骤 2：安装 Node.js
+
+**Ubuntu/Debian：**
+
+```bash
+# 使用 NodeSource 仓库
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+**CentOS/RHEL：**
+
+```bash
+# 使用 NodeSource 仓库
+curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
+sudo yum install -y nodejs
+```
+
+**Arch Linux：**
+
+```bash
+sudo pacman -S nodejs npm
+```
+
+#### 步骤 3：安装 OpenCode
+
+```bash
+sudo npm install -g @opencode-ai/cli
+```
+
+#### 步骤 4：验证安装
+
+```bash
+opencode --version
+```
+
+**如果显示版本号** → 安装成功
+
+**【配图描述】**：终端显示 opencode 版本号的截图
+
+</TabItem>
+
+<TabItem value="windows">
+
+#### 步骤 1：检查 Node.js
+
+打开 PowerShell 或 CMD，输入：
+
+```cmd
+node -v
+```
+
+**如果显示版本号** → 已安装，跳到步骤 3
+
+**如果提示不是内部或外部命令** → 需要安装 Node.js
+
+#### 步骤 2：安装 Node.js
+
+1. 访问 https://nodejs.org
+2. 下载 LTS 版本（Windows Installer .msi）
+3. 双击安装程序
+
+**【配图描述】**：Node.js 安装向导界面截图，点击 "Next" 按钮
+
+4. 同意许可协议，点击 "Next"
+
+**【配图描述】**：选择安装路径界面截图，使用默认路径
+
+5. 点击 "Next" 开始安装
+
+**【配图描述】**：安装进度界面截图
+
+6. 安装完成后点击 "Finish"
+
+**【配图描述】**：安装完成界面截图
+
+7. **重启 PowerShell** 以生效环境变量
+
+#### 步骤 3：安装 OpenCode
+
+打开 PowerShell（管理员），输入：
+
+```cmd
+npm install -g @opencode-ai/cli
+```
+
+**【配图描述】**：npm 安装进度截图
+
+#### 步骤 4：验证安装
+
+```cmd
+opencode --version
+```
+
+**如果显示版本号** → 安装成功
+
+**【配图描述】**：PowerShell 显示 opencode 版本号的截图
+
+</TabItem>
+
+</Tabs>
 
 ---
 
-### 步骤 3：云上部署（3 分钟）
+### 所有系统：连接模型
 
-#### 3.1 访问 OpenCode Cloud
-
-打开浏览器，访问：
-- 官方云服务：https://opencode.cloud
-- 或使用第三方托管平台
-
-#### 3.2 注册账号
-
-1. 点击"注册"按钮
-2. 填写邮箱和密码
-3. 验证邮箱地址
-
-#### 3.3 创建工作空间
-
-1. 登录后点击"创建工作空间"
-2. 输入工作空间名称
-3. 选择免费或付费计划
-4. 等待创建完成（通常 1-2 分钟）
-
-#### 3.4 开始使用
-
-创建完成后，你将获得：
-- Web 界面访问地址
-- API 端点
-- 文档和示例
-
----
-
-### 步骤 4：第一次对话（1 分钟）
-
-#### 本地部署用户
+#### 步骤 5：启动 OpenCode
 
 ```bash
-# 在终端中输入你的问题
-opencode chat "你好，帮我查看当前目录的文件"
+opencode
 ```
 
-#### 云上部署用户
+进入交互模式后，你会看到欢迎信息。
 
-在 Web 界面的对话框中输入：
-```
-你好，帮我创建一个 hello.txt 文件，内容是 "Hello World"
-```
+**【配图描述】**：OpenCode 启动后的欢迎界面截图
 
 ---
 
-### 步骤 5：快速体验（5 分钟）
+#### 步骤 6：连接模型
 
-尝试以下命令，感受 OpenCode 的强大功能：
-
-#### 查看文件
+在 OpenCode 交互模式中，输入 `/connect` 命令：
 
 ```
-帮我查看 package.json 文件的内容
+/connect
 ```
 
-#### 创建文件
+系统会提示你选择模型提供商：
 
 ```
-创建一个 README.md 文件，内容包括项目名称和简介
+请选择模型提供商：
+1. OpenAI
+2. Anthropic Claude
+3. 国内模型（通义千问、文心一言等）
+请输入选项编号：
 ```
 
-#### 执行命令
+输入对应的编号，按提示操作即可。
+
+**【配图描述】**：/connect 命令执行后的选择界面截图
+
+---
+
+#### 步骤 7：开始对话
+
+连接成功后，直接输入你想说的话：
 
 ```
-运行 npm install 安装依赖
+你好
 ```
 
-#### 搜索代码
+AI 会回复你，表示连接成功。
 
-```
-搜索所有包含 "function" 的文件
-```
-
-#### 获取帮助
-
-```
-告诉我你都能做什么？
-```
+**【配图描述】**：与 AI 对话的终端截图
 
 ---
 
 ## 检查点
 
-✔ 核心掌握确认
-
-完成以下任务表示你已经掌握了基础：
-
-- [ ] 成功安装或访问 OpenCode
-- [ ] 完成第一次对话
-- [ ] 尝试至少 3 个不同的任务
-- [ ] 理解本地部署和云上部署的区别
-- [ ] 能够独立完成简单的文件操作
+- [ ] Node.js 已安装（node -v 显示版本）
+- [ ] OpenCode 已安装（opencode --version 显示版本）
+- [ ] 能与 AI 正常对话
+- [ ] 尝试一个简单任务（如：查看当前目录文件）
 
 ---
 
-## 踩坑提醒（FAQ）
+## 踩坑提醒
 
-### Q1: 本地部署安装失败怎么办？
+### Q1: npm install 很慢或失败？
 
-**原因：** 可能是 Node.js 版本过低或网络问题
+**macOS/Linux：** 使用国内镜像
 
-**解决：**
-1. 检查 Node.js 版本是否 >= 20.0
-2. 尝试使用国内镜像源
-3. 先尝试云上部署
+```bash
+npm config set registry https://registry.npmmirror.com
+```
 
----
-
-### Q2: 云上部署后无法访问怎么办？
-
-**原因：** 可能是网络问题或账号状态
-
-**解决：**
-1. 检查网络连接
-2. 确认账号已激活
-3. 联系客服支持
+**Windows：** 同上命令
 
 ---
 
-### Q3: API Key 在哪里获取？
+### Q2: Windows 下 opencode 命令找不到？
 
-**原因：** 不熟悉 LLM 提供商的流程
-
-**解决：**
-- OpenAI: https://platform.openai.com/api-keys
-- Anthropic: https://console.anthropic.com/
-- 其他提供商查看各自官网
+**解决：** 重启 PowerShell 或 CMD
 
 ---
 
-### Q4: 本地部署和云上部署可以切换吗？
+### Q3: Linux 下需要 sudo？
 
-**原因：** 想要灵活使用不同环境
+**解决：** 某些发行版需要 sudo 安装全局包
 
-**解决：**
-✅ 可以！两者的功能完全相同，只是部署方式不同。你可以：
-- 在本地开发测试
-- 在云端发布共享
-- 随时导入导出配置
+```bash
+sudo npm install -g @opencode-ai/cli
+```
 
 ---
 
-### Q5: 零基础真的能学会吗？
+### Q4: API Key 在哪里获取？
 
-**原因：** 对自己不自信
-
-**解决：**
-✅ 完全可以！OpenCode 专为降低门槛设计：
-- 自然语言交互，无需编程基础
-- 智能提示和错误引导
-- 丰富的教程和示例
-- 活跃的社区支持
+**OpenAI:** https://platform.openai.com/api-keys
 
 ---
 
 ## 本课小结
 
-本课我们学习了：
-
-1. **OpenCode 简介** - 基于 LLM 的 Agent 运行时框架
-2. **两种部署方式** - 本地部署 vs 云上部署
-3. **本地部署步骤** - 安装 Node.js → 安装 OpenCode → 初始化项目
-4. **云上部署步骤** - 注册 → 创建工作空间 → 开始使用
-5. **第一次对话** - 使用自然语言完成任务
-6. **快速体验** - 尝试多种实用功能
-
-**核心收获：**
-- 无需编程基础也能快速上手
-- 本地和云上部署都支持
-- 5 分钟即可开始使用
-- 自然语言交互简单直观
+1. 检查并安装 Node.js
+2. 安装 OpenCode CLI
+3. 连接模型 API
+4. 开始对话
 
 ---
 
@@ -334,10 +340,4 @@ opencode chat "你好，帮我查看当前目录的文件"
 
 📚 **下一课：快速连接模型**
 
-学习如何连接和配置各种 LLM 提供商，包括：
-- OpenAI GPT 系列
-- Anthropic Claude 系列
-- 国内主流 LLM 服务
-- 本地模型部署
-
-准备好让你的 AI 助手更强大了吗？让我们继续前进！🚀
+学习如何连接更多 LLM 提供商（Claude、国内大模型等）。

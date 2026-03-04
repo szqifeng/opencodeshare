@@ -458,7 +458,7 @@ export default function Home(): ReactNode {
            <div style={container}>
               <h2 style={sectionTitle}>核心能力</h2>
                <div style={cardGrid}>
-                 <Link to="/docs/01-quick-start/starter-guide" style={card}>
+                 <Link to="/docs/quick-start/starter-guide" style={card}>
                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
                     <defs>
                       <linearGradient id="starterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -499,7 +499,7 @@ export default function Home(): ReactNode {
                   </svg>
                   <h3 style={cardTitle}>0 基础入门</h3>
                    <p style={cardDesc} className="card-desc">本地部署、云上部署都支持讲解，5分钟上手，30分钟掌握核心概念</p>
-                    <Link to="/docs/01-quick-start/starter-guide" style={cardLink}>立即开始 →</Link>
+                    <Link to="/docs/quick-start/starter-guide" style={cardLink}>立即开始 →</Link>
                   </Link>
                  <Link to="/docs/01-quick-start/skills-intro" style={card}>
                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
@@ -630,11 +630,11 @@ export default function Home(): ReactNode {
                  <h3 style={scenarioTitle}>文档创作</h3>
                  <p style={scenarioDesc} className="scenario-desc">自动生成文档</p>
                </div>
-               <div style={scenarioCard}>
-                 <div style={scenarioIcon}>🎨</div>
-                 <h3 style={scenarioTitle}>创意设计</h3>
-                 <p style={scenarioDesc} className="scenario-desc">AI 辅助设计</p>
-               </div>
+                <div style={scenarioCard}>
+                  <div style={scenarioIcon}>🤖</div>
+                  <h3 style={scenarioTitle}>个人助手</h3>
+                  <p style={scenarioDesc} className="scenario-desc">智能助手服务</p>
+                </div>
                <div style={scenarioCard}>
                  <div style={scenarioIcon}>🔧</div>
                  <h3 style={scenarioTitle}>自动化</h3>
