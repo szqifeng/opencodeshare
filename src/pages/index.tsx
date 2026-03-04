@@ -386,7 +386,7 @@ export default function Home(): ReactNode {
               让编程变得简单有趣。无需深厚的技术背景，通过直观的学习和实践，掌握 AI 编程的核心技能
             </p>
             <div style={heroButtons}>
-              <Link to="/docs/quick-start/opencode-intro" style={btnPrimary}>免费开始学习</Link>
+              <Link to="/docs/quick-start/starter-guide" style={btnPrimary}>免费开始学习</Link>
               <Link to="#scenarios" style={btnSecondary}>探索应用场景</Link>
               {showInstallBtn && (
                 <button
@@ -648,7 +648,7 @@ export default function Home(): ReactNode {
           <div style={container}>
             <h2 style={sectionTitle}>开始你的学习之旅</h2>
             <div style={resourceGrid}>
-              <Link to="/docs/quick-start/opencode-intro" style={resourceCard}>
+              <Link to="/docs/quick-start/starter-guide" style={resourceCard}>
                 <div style={resourceIcon}>🚀</div>
                 <div style={resourceTitle}>快速入门</div>
               </Link>

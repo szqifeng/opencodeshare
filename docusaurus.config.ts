@@ -91,7 +91,7 @@ const config: Config = {
         },
         {
           type: 'doc',
-          docId: 'quick-start/opencode-intro',
+          docId: 'quick-start/starter-guide',
           position: 'left',
           label: '文档',
         },

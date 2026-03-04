@@ -20,7 +20,6 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'quick-start/starter-guide',
-        'quick-start/opencode-intro',
         'quick-start/quick-connect-model',
         'quick-start/workflow',
         'quick-start/skills-intro',
