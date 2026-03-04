@@ -501,7 +501,7 @@ export default function Home(): ReactNode {
                    <p style={cardDesc} className="card-desc">本地部署、云上部署都支持讲解，5分钟上手，30分钟掌握核心概念</p>
                     <Link to="/docs/quick-start/starter-guide" style={cardLink}>立即开始 →</Link>
                   </Link>
-                 <Link to="/docs/01-quick-start/skills-intro" style={card}>
+                 <Link to="/docs/quick-start/skills-intro" style={card}>
                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
                     <defs>
                       <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -523,9 +523,9 @@ export default function Home(): ReactNode {
                   </svg>
                   <h3 style={cardTitle}>Skills</h3>
                    <p style={cardDesc} className="card-desc">技能集合，一键添加成熟技能，例如：发送邮件</p>
-                   <Link to="/docs/01-quick-start/skills-intro" style={cardLink}>了解技能 →</Link>
+                   <Link to="/docs/quick-start/skills-intro" style={cardLink}>了解技能 →</Link>
                  </Link>
-                 <Link to="/docs/01-quick-start/tools-intro" style={card}>
+                 <Link to="/docs/quick-start/tools-intro" style={card}>
                    <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
                     <defs>
                       <linearGradient id="toolGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -551,7 +551,7 @@ export default function Home(): ReactNode {
                   </svg>
                   <h3 style={cardTitle}>Tools</h3>
                    <p style={cardDesc} className="card-desc">内置工具集合，快速获取自定义工具，例如：Excel 操作、邮件发送、数据库管理</p>
-                   <Link to="/docs/01-quick-start/tools-intro" style={cardLink}>了解工具 →</Link>
+                   <Link to="/docs/quick-start/tools-intro" style={cardLink}>了解工具 →</Link>
                  </Link>
                  <Link to="/docs/02-daily-usage/agents" style={card}>
                    <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
