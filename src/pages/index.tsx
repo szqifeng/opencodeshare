@@ -498,7 +498,7 @@ export default function Home(): ReactNode {
                     <animateTransform attributeName="transform" type="translate" values="0,0;0,-1.5;0,0" dur="1.2s" repeatCount="indefinite"/>
                   </svg>
                   <h3 style={cardTitle}>0 基础入门</h3>
-                   <p style={cardDesc} className="card-desc">本地部署、云上部署都支持讲解<br/>5分钟上手，30分钟掌握核心概念</p>
+                   <p style={cardDesc} className="card-desc">本地部署、云上部署都支持讲解，5分钟上手，30分钟掌握核心概念</p>
                     <Link to="/docs/01-quick-start/starter-guide" style={cardLink}>立即开始 →</Link>
                   </Link>
                  <Link to="/docs/01-quick-start/skills-intro" style={card}>
@@ -522,7 +522,7 @@ export default function Home(): ReactNode {
                     <circle cx="32" cy="32" r="4" fill="#fff"/>
                   </svg>
                   <h3 style={cardTitle}>Skills</h3>
-                  <p style={cardDesc} className="card-desc">技能集合，一键添加成熟技能，例如：发送邮件</p>
+                   <p style={cardDesc} className="card-desc">技能集合，一键添加成熟技能，例如：发送邮件</p>
                    <Link to="/docs/01-quick-start/skills-intro" style={cardLink}>了解技能 →</Link>
                  </Link>
                  <Link to="/docs/01-quick-start/tools-intro" style={card}>
@@ -550,7 +550,7 @@ export default function Home(): ReactNode {
                     </circle>
                   </svg>
                   <h3 style={cardTitle}>Tools</h3>
-                  <p style={cardDesc} className="card-desc">工具集合，快速获取自定义工具，例如：操作无头浏览器</p>
+                   <p style={cardDesc} className="card-desc">内置工具集合，快速获取自定义工具，例如：操作无头浏览器</p>
                    <Link to="/docs/01-quick-start/tools-intro" style={cardLink}>了解工具 →</Link>
                  </Link>
                  <Link to="/docs/02-daily-usage/agents" style={card}>
@@ -581,7 +581,7 @@ export default function Home(): ReactNode {
                     </rect>
                   </svg>
                   <h3 style={cardTitle}>Agent</h3>
-                  <p style={cardDesc} className="card-desc">代理规则集合，自主处理复杂任务</p>
+                   <p style={cardDesc} className="card-desc">代理规则集合，自主处理复杂任务，例如：任务编排</p>
                    <Link to="/docs/02-daily-usage/agents" style={cardLink}>了解代理 →</Link>
                  </Link>
               </div>
