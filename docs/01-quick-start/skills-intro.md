@@ -175,6 +175,31 @@ A: OpenCode 会在响应中明确显示使用的 Skill 名称和任务 ID。
 
 A: 可以，参考 Skills 定义规范，在指定目录创建自定义 Skill。
 
+---
+
+## 相关文件
+
+### 官方 Skills
+
+以下链接指向 OpenCode 官方提供的 Skills 源码和文档：
+
+- **General 代理** - [GitHub 源码](https://github.com/szqifeng/opencodeshare/tree/main/skills/general) | [文档](#)
+- **Explore 代理** - [GitHub 源码](https://github.com/szqifeng/opencodeshare/tree/main/skills/explore) | [文档](#)
+- **Code-reviewer** - [GitHub 源码](https://github.com/szqifeng/opencodeshare/tree/main/skills/code-reviewer) | [文档](#)
+- **Security-auditor** - [GitHub 源码](https://github.com/szqifeng/opencodeshare/tree/main/skills/security-auditor) | [文档](#)
+
+### 自定义 Skills
+
+创建自定义 Skills 的资源：
+
+- [Skills 定义规范](#)
+- [Skills 开发指南](#)
+- [Skills 示例仓库](#)
+
+> 💡 **提示：** 更多自定义 Skills 示例和文档正在添加中，敬请期待！
+
+---
+
 ## 下一步
 
 了解 Skills 后，您可以：

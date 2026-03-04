@@ -651,6 +651,33 @@ agents:
 
 ---
 
+## 相关文件 🔗
+
+### 官方 Agents
+
+以下链接指向 OpenCode 官方提供的 Agents 源码和配置：
+
+| 代理 | 功能 | GitHub 源码 | 配置文件 |
+|------|------|-------------|----------|
+| **代码专家** | 代码开发、调试、审查 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/agents/coder) | [配置](#) |
+| **文案顾问** | 内容创作、文案写作 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/agents/writer) | [配置](#) |
+| **数据分析师** | 数据分析、可视化 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/agents/analyst) | [配置](#) |
+| **测试专家** | 测试用例、质量保证 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/agents/tester) | [配置](#) |
+| **文档专家** | 技术文档、API 文档 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/agents/doc-writer) | [配置](#) |
+
+### 自定义 Agents
+
+创建自定义 Agents 的资源：
+
+- [Agent 定义规范](#)
+- [Agent 开发指南](#)
+- [Agent 配置示例](#)
+- [Agent 工作流设计](#)
+
+> 💡 **提示：** 更多自定义 Agents 示例和配置模板正在添加中，敬请期待！
+
+---
+
 ## 下一步 ➡️
 
 代理配置完成后，您可以：

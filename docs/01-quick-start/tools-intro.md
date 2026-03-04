@@ -490,6 +490,37 @@ Webfetch + Write → 保存网页内容
 # 如果网络请求失败，重试或使用备用方案
 ```
 
+---
+
+## 相关文件
+
+### 官方 Tools
+
+以下链接指向 OpenCode 官方提供的 Tools 源码和文档：
+
+| 工具 | 功能 | GitHub 源码 | 文档 |
+|------|------|-------------|------|
+| **Read** | 读取文件内容 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/read) | [文档](#) |
+| **Write** | 写入文件 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/write) | [文档](#) |
+| **Edit** | 编辑文件 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/edit) | [文档](#) |
+| **Bash** | 执行命令 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/bash) | [文档](#) |
+| **Glob** | 文件搜索 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/glob) | [文档](#) |
+| **Grep** | 内容搜索 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/grep) | [文档](#) |
+| **Webfetch** | 获取网页 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/webfetch) | [文档](#) |
+| **Task** | 子任务代理 | [源码](https://github.com/szqifeng/opencodeshare/tree/main/tools/task) | [文档](#) |
+
+### 自定义 Tools
+
+创建自定义 Tools 的资源：
+
+- [Tools 定义规范](#)
+- [Tools 开发指南](#)
+- [Tools 示例仓库](#)
+
+> 💡 **提示：** 更多自定义 Tools 示例和文档正在添加中，敬请期待！
+
+---
+
 ## 下一步
 
 了解工具后，您可以：
