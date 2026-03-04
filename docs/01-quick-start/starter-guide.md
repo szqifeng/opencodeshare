@@ -6,7 +6,7 @@ keywords: ["OpenCode 入门", "macOS", "Linux", "Windows", "安装教程"]
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# 0 基础入门
+# 快速体验
 
 ## 一句话总结
 > 不说废话，按你的操作系统一步步安装 OpenCode，5 分钟完成。
