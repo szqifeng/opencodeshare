@@ -12,7 +12,7 @@ const config: Config = {
   },
 
   url: process.env.SITE_URL || 'https://szqifeng.github.io',
-  baseUrl: process.env.BASE_URL || '/',
+  baseUrl: process.env.BASE_URL || '/opencodeshare/',
 
   onBrokenLinks: 'warn',
 
