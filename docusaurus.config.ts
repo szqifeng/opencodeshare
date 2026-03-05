@@ -11,8 +11,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: process.env.SITE_URL || 'https://szqifeng.github.io',
-  baseUrl: process.env.BASE_URL || '/opencodeshare/',
+  url: process.env.SITE_URL || 'https://opencodeshare.cn',
+  baseUrl: process.env.BASE_URL || '/',
 
   onBrokenLinks: 'warn',
 
@@ -28,6 +28,17 @@ const config: Config = {
         name: 'baidu-site-verification',
         content: 'codeva-UYjQgfVPGZ',
       },
+    },
+    {
+      tagName: 'script',
+      innerHTML: `var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?32a7abfa0751c91b0f1136314baf5459";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();`,
+      attributes: {},
     },
   ],
 
