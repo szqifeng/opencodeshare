@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: SITE_URL=https://szqifeng.github.io BASE_URL=/opencodeshare/ npm run build
+        run: SITE_URL=https://szqifeng.github.io BASE_URL=/opencodeshare npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
