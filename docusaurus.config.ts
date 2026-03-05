@@ -35,12 +35,12 @@ const config: Config = {
           {
             tagName: 'link',
             rel: 'icon',
-            href: '/opencodeshare/img/logo.svg',
+            href: `${process.env.BASE_URL || '/'}img/logo.svg`,
           },
           {
             tagName: 'link',
             rel: 'manifest',
-            href: '/opencodeshare/manifest.json',
+            href: `${process.env.BASE_URL || '/'}manifest.json`,
           },
           {
             tagName: 'meta',
