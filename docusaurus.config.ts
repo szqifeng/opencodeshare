@@ -11,8 +11,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: process.env.SITE_URL || 'https://opencodeshare.cn',
-  baseUrl: process.env.BASE_URL || '/opencodeshare/',
+  url: process.env.SITE_URL || 'https://szqifeng.github.io',
+  baseUrl: process.env.BASE_URL || '/',
 
   onBrokenLinks: 'warn',
 
