@@ -5,6 +5,8 @@ keywords: ["OpenCode 入门", "macOS", "Linux", "Windows", "安装教程"]
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DocImage from '@site/src/components/DocImage';
+import DocVideo from '@site/src/components/DocVideo';
 
 # 快速体验
 
@@ -53,6 +55,26 @@ OpenCode 需要 Node.js 环境运行。安装步骤：安装 Node.js → 安装 
 ```bash
 curl -fsSL https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/install-mac.sh | bash
 ```
+
+#### 演示视频
+
+<DocVideo 
+  src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/mac-opencode-demo.mov"
+  alt="macOS 安装 OpenCode 并配置智谱模型演示视频"
+/>
+
+#### API Key 去哪里获取
+
+OpenCode 连接智谱模型需要 API Key，可通过以下方式免费获取：
+
+🚀 **速来拼好模，智谱 GLM Coding 超值订阅，邀你一起薅羊毛！Claude Code、Cline 等 20+ 大编程工具无缝支持，"码力"全开，越拼越爽！立即开拼，享限时惊喜价！**
+
+**链接：** https://www.bigmodel.cn/glm-coding?ic=84BFRMHJCG
+
+<DocVideo
+  src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/zhipu-api-key-demo.mov"
+  alt="获取智谱 AI API Key 演示视频"
+/>
 
 <details>
 <summary>一键安装失败？查看手动安装步骤</summary>
@@ -106,13 +128,46 @@ opencode --version
 
 **如果提示 command not found** → 检查环境变量
 
-**【配图描述】**：终端显示 opencode 版本号的截图
+<DocImage alt="终端显示 opencode 版本号的截图" />
 
 </details>
 
 </TabItem>
 
 <TabItem value="linux">
+
+#### 一键安装（推荐）
+
+执行以下命令，自动完成所有安装：
+
+```bash
+curl -fsSL https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/install-linux.sh | bash
+```
+
+#### 演示视频
+
+<DocVideo 
+  src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/mac-opencode-demo.mov"
+  alt="Linux 安装 OpenCode 并配置智谱模型演示视频"
+/>
+
+#### API Key 去哪里获取
+
+OpenCode 连接智谱模型需要 API Key，可通过以下方式免费获取：
+
+🚀 **速来拼好模，智谱 GLM Coding 超值订阅，邀你一起薅羊毛！Claude Code、Cline 等 20+ 大编程工具无缝支持，"码力"全开，越拼越爽！立即开拼，享限时惊喜价！**
+
+**链接：** https://www.bigmodel.cn/glm-coding?ic=84BFRMHJCG
+
+<DocVideo
+  src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/zhipu-api-key-demo.mov"
+  alt="获取智谱 AI API Key 演示视频"
+/>
+
+<details>
+<summary>一键安装失败？查看手动安装步骤</summary>
+
+---
 
 #### 步骤 1：检查 Node.js
 
@@ -164,11 +219,39 @@ opencode --version
 
 **如果显示版本号** → 安装成功
 
-**【配图描述】**：终端显示 opencode 版本号的截图
+<DocImage alt="终端显示 opencode 版本号的截图" />
+
+</details>
 
 </TabItem>
 
 <TabItem value="windows">
+
+#### 一键安装（推荐）
+
+在 PowerShell 中执行以下命令，自动完成所有安装：
+
+```powershell
+irm https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/install-opencode.ps1 | iex
+```
+
+#### API Key 去哪里获取
+
+OpenCode 连接智谱模型需要 API Key，可通过以下方式免费获取：
+
+🚀 **速来拼好模，智谱 GLM Coding 超值订阅，邀你一起薅羊毛！Claude Code、Cline 等 20+ 大编程工具无缝支持，"码力"全开，越拼越爽！立即开拼，享限时惊喜价！**
+
+**链接：** https://www.bigmodel.cn/glm-coding?ic=84BFRMHJCG
+
+<DocVideo
+  src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/zhipu-api-key-demo.mov"
+  alt="获取智谱 AI API Key 演示视频"
+/>
+
+<details>
+<summary>一键安装失败？查看手动安装步骤</summary>
+
+---
 
 #### 步骤 1：检查 Node.js
 
@@ -188,19 +271,19 @@ node -v
 2. 下载 LTS 版本（Windows Installer .msi）
 3. 双击安装程序
 
-**【配图描述】**：Node.js 安装向导界面截图，点击 "Next" 按钮
+<DocImage alt="Node.js 安装向导界面截图，点击 Next 按钮" />
 
 4. 同意许可协议，点击 "Next"
 
-**【配图描述】**：选择安装路径界面截图，使用默认路径
+<DocImage alt="选择安装路径界面截图，使用默认路径" />
 
 5. 点击 "Next" 开始安装
 
-**【配图描述】**：安装进度界面截图
+<DocImage alt="安装进度界面截图" />
 
 6. 安装完成后点击 "Finish"
 
-**【配图描述】**：安装完成界面截图
+<DocImage alt="安装完成界面截图" />
 
 7. **重启 PowerShell** 以生效环境变量
 
@@ -212,7 +295,7 @@ node -v
 npm install -g @opencode-ai/cli
 ```
 
-**【配图描述】**：npm 安装进度截图
+<DocImage alt="npm 安装进度截图" />
 
 #### 步骤 4：验证安装
 
@@ -222,7 +305,9 @@ opencode --version
 
 **如果显示版本号** → 安装成功
 
-**【配图描述】**：PowerShell 显示 opencode 版本号的截图
+<DocImage alt="PowerShell 显示 opencode 版本号的截图" />
+
+</details>
 
 </TabItem>
 
@@ -239,8 +324,6 @@ opencode
 ```
 
 进入交互模式后，你会看到欢迎信息。
-
-**【配图描述】**：OpenCode 启动后的欢迎界面截图
 
 ---
 
@@ -264,8 +347,6 @@ opencode
 
 输入对应的编号，按提示操作即可。
 
-**【配图描述】**：/connect 命令执行后的选择界面截图
-
 ---
 
 #### 步骤 7：开始对话
@@ -277,8 +358,6 @@ opencode
 ```
 
 AI 会回复你，表示连接成功。
-
-**【配图描述】**：与 AI 对话的终端截图
 
 ---
 
