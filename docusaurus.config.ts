@@ -21,6 +21,16 @@ const config: Config = {
     locales: ['zh-Hans'],
   },
 
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'baidu-site-verification',
+        content: 'codeva-UYjQgfVPGZ',
+      },
+    },
+  ],
+
   plugins: [
     [
       require.resolve('@docusaurus/plugin-pwa'),
