@@ -196,48 +196,16 @@ export default function Home(): ReactNode {
         margin-bottom: 0.5rem !important;
       }
       .card-title-full {
-        display: inline;
+        display: none !important;
       }
       .card-title-short {
-        display: none;
+        display: inline !important;
       }
       .card-link-full {
-        display: inline;
+        display: none !important;
       }
       .card-link-icon {
-        display: none;
-      }
-      @media (max-width: 576px) {
-        .cardGrid {
-          grid-template-columns: 1fr !important;
-        }
-        .card {
-          display: flex !important;
-          flex-direction: column !important;
-          align-items: center !important;
-          text-align: center !important;
-          padding: 1.5rem !important;
-        }
-        .card svg {
-          width: 48px !important;
-          height: 48px !important;
-          margin-bottom: 0.75rem !important;
-        }
-        .card h3 {
-          margin-bottom: 0.5rem !important;
-        }
-        .card-title-full {
-          display: none;
-        }
-        .card-title-short {
-          display: inline !important;
-        }
-        .card-link-full {
-          display: none;
-        }
-        .card-link-icon {
-          display: inline !important;
-        }
+        display: inline !important;
       }
     }
   `;
