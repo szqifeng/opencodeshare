@@ -80,7 +80,15 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
         },
-        blog: false,
+        blog: {
+          blogTitle: '技术博客',
+          blogDescription: 'OpenCode 的技术分享与思考',
+          postsPerPage: 10,
+          feedOptions: {
+            type: 'rss',
+            copyright: 'Copyright © 2026 LearnOpenCode',
+          },
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -117,6 +125,11 @@ const config: Config = {
           label: '文档',
         },
         {
+          to: '/blog',
+          label: '博客',
+          position: 'left',
+        },
+        {
           to: '/#features',
           label: '核心能力',
           position: 'left',
@@ -140,7 +153,7 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-      copyright: '本教程采用 CC BY-NC-SA 4.0 许可协议 | 隐私政策 | © 2026 LearnOpenCode',
+      copyright: '辽ICP备2026003919号',
     },
     prism: {
       theme: prismThemes.github,
