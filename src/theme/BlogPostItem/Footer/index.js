@@ -34,6 +34,27 @@ function ShareButtons() {
     }
   };
   
+  const handleSaveImage = () => {
+    if (typeof window !== 'undefined') {
+      const img = document.querySelector('.blog-share-qr-image');
+      if (img && img instanceof HTMLImageElement) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 200;
+        canvas.height = 200;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, 200, 200);
+          ctx.drawImage(img, 0, 0, 200, 200);
+          const link = document.createElement('a');
+          link.download = 'qrcode.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        }
+      }
+    }
+  };
+  
   return (
     <>
       <div className="blog-share-buttons">
@@ -65,13 +86,17 @@ function ShareButtons() {
       {showModal && (
         <div className="blog-share-modal" onClick={() => setShowModal(false)}>
           <div className="blog-share-modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>扫码分享到微信</h3>
+            <h3>扫描查看</h3>
             <div className="blog-share-title">{blogTitle}</div>
             <img 
+              className="blog-share-qr-image"
               src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(fullUrl)}`} 
               alt="QR Code"
             />
-            <p>打开微信扫一扫</p>
+            <p>扫描查看文章</p>
+            <button className="blog-share-save-btn" onClick={handleSaveImage}>
+              保存二维码
+            </button>
             <div className="blog-share-url">{blogUrl}</div>
           </div>
         </div>
@@ -131,13 +156,15 @@ function ShareButtons() {
         }
         
         .blog-share-modal-content {
-          background: var(--ifm-background-surface-color);
+          background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
           padding: 1.75rem;
           border-radius: 12px;
           text-align: center;
           max-width: 320px;
           margin: 1rem;
           cursor: default;
+          border: 2px solid #d1fae5;
+          box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
         }
         
         .blog-share-modal-content h3 {
@@ -155,11 +182,14 @@ function ShareButtons() {
           line-height: 1.5;
         }
         
-        .blog-share-modal-content img {
+        .blog-share-qr-image {
           width: 180px;
           height: 180px;
           border-radius: 8px;
           margin-bottom: 0.875rem;
+          border: 2px solid #10b981;
+          padding: 4px;
+          background: white;
         }
         
         .blog-share-modal-content p {
@@ -167,6 +197,24 @@ function ShareButtons() {
           color: #4b5563;
           font-size: 0.875rem;
           font-weight: 500;
+        }
+        
+        .blog-share-save-btn {
+          margin: 0.5rem 0;
+          padding: 0.625rem 1.25rem;
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+          color: white;
+          border: none;
+          border-radius: 6px;
+          font-size: 0.8125rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        
+        .blog-share-save-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         
         .blog-share-url {
@@ -212,7 +260,7 @@ function ShareButtons() {
             font-size: 1rem;
           }
           
-          .blog-share-modal-content img {
+          .blog-share-qr-image {
             width: 160px;
             height: 160px;
           }
@@ -220,6 +268,11 @@ function ShareButtons() {
           .blog-share-title {
             font-size: 0.875rem;
             margin-bottom: 0.75rem;
+          }
+          
+          .blog-share-save-btn {
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
           }
           
           .blog-share-url {
