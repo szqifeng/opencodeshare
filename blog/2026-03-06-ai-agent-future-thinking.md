@@ -1,7 +1,6 @@
 ---
 slug: ai-agent-future-thinking
 title: 从看不起到追不上：理性看待 OpenCode 和 Agent 时代
-authors: [qifeng]
 tags: [AI Agent, 技术思考, 行业趋势]
 ---
 
