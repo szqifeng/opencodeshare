@@ -43,34 +43,6 @@ const config: Config = {
   ],
 
   plugins: [
-    [
-      require.resolve('@docusaurus/plugin-pwa'),
-      {
-        debug: true,
-        offlineModeActivationStrategies: [
-          'appInstalled',
-          'standalone',
-          'queryString',
-        ],
-        pwaHead: [
-          {
-            tagName: 'link',
-            rel: 'icon',
-            href: `${process.env.BASE_URL || '/'}img/logo.svg`,
-          },
-          {
-            tagName: 'link',
-            rel: 'manifest',
-            href: `${process.env.BASE_URL || '/'}manifest.json`,
-          },
-          {
-            tagName: 'meta',
-            name: 'theme-color',
-            content: '#10b981',
-          },
-        ],
-      },
-    ],
   ],
 
   presets: [

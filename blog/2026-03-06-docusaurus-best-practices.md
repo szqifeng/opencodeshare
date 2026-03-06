@@ -60,40 +60,31 @@ docs/
     └── reference.md
 ```
 
-### 实践 2：使用 MDX
+### 实践 2：使用 MDX 示例
 
-```jsx
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+Docusaurus 支持 MDX，可以在 Markdown 中使用 React 组件。比如 Tabs 组件：
 
-<Tabs>
-  <TabItem value="js" label="JavaScript">
-    ```js
-    console.log('Hello');
-    ```
-  </TabItem>
-  <TabItem value="ts" label="TypeScript">
-    ```ts
-    console.log('Hello');
-    ```
-  </TabItem>
-</Tabs>
+```js
+console.log('JavaScript');
+```
+
+```ts
+console.log('TypeScript');
 ```
 
 ### 实践 3：优化 SEO
 
-```javascript
-// docusaurus.config.ts
-module.exports = {
-  themeConfig: {
-    metadata: [
-      {
-        name: 'description',
-        content: '你的网站描述',
-      },
-    ],
-  },
-};
+在 `docusaurus.config.ts` 中添加元数据优化 SEO：
+
+```ts
+themeConfig: {
+  metadata: [
+    {
+      name: 'description',
+      content: '你的网站描述',
+    },
+  ],
+},
 ```
 
 ### 实践 4：自定义主题
