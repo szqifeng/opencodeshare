@@ -114,6 +114,13 @@ const sidebars: SidebarsConfig = {
         'source-reading/minimal-chat-prompts',
       ],
     },
+    {
+      type: 'category',
+      label: '🦀 09-OpenClaw',
+      items: [
+        'openclaw/mac-docker-install',
+      ],
+    },
   ],
 };
 
