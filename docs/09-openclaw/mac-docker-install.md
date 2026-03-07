@@ -336,7 +336,7 @@ openclaw devices approve ${requestID}
 
 ```bash
 # 查看运行中的容器
-docker ps | grep openclaw
+docker ps | grep fastclaw
 
 # 停止容器
 docker stop fastclaw
