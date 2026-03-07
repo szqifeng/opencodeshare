@@ -219,7 +219,7 @@ chmod +x run.sh
 
 ```bash
 # 查看运行中的容器
-docker ps | grep openclaw
+docker ps | grep fastclaw
 
 # 查看容器日志
 docker logs fastclaw
