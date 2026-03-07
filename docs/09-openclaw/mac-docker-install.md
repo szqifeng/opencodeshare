@@ -326,7 +326,9 @@ openclaw devices approve ${requestID}
 
 观看手机端配置飞书通讯的完整演示视频：
 
-<video src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/phone_config_feishu.mp4" controls playsinline style={{width: '100%', borderRadius: '12px', margin: '1.5rem 0'}}></video>
+<div style={{display: 'flex', justifyContent: 'center', margin: '1.5rem 0'}}>
+  <video src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/phone_config_feishu.mp4" controls playsinline style={{maxWidth: '400px', borderRadius: '12px', width: '100%'}}></video>
+</div>
 
 通过视频了解如何在手机端完成飞书通讯配置，让 OpenClaw 正常接收和回复飞书消息。
 
