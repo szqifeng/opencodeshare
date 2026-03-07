@@ -177,13 +177,13 @@ docker --version
 docker-compose --version
 ```
 
-## 🎥 本地安装演示动画
+## 🎥 本地安装演示视频
 
-观看 OpenClaw 本地安装过程的完整演示动画：
+观看 OpenClaw 本地安装过程的完整演示视频：
 
-<GifViewer src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/installfastclaw.gif" alt="本地安装演示动画" />
+<video src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/installopenclaw.mp4" controls playsinline style={{width: '100%', borderRadius: '12px', margin: '1.5rem 0'}}></video>
 
-通过动画了解从下载到部署的完整流程。
+通过视频了解从下载到部署的完整流程。
 
 ## 🚀 启动 OpenClaw
 
@@ -322,13 +322,13 @@ openclaw devices approve ${requestID}
 
 机器人接收到消息后会自动回复你的问题。
 
-### 演示动画
+### 演示视频
 
-观看手机端配置飞书通讯的完整演示动画：
+观看手机端配置飞书通讯的完整演示视频：
 
-<GifViewer src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/phone_config_feishu.gif" alt="手机端配置演示动画" />
+<video src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/phone_config_feishu.gif" controls playsinline style={{width: '100%', borderRadius: '12px', margin: '1.5rem 0'}}></video>
 
-通过动画了解如何在手机端完成飞书通讯配置，让 OpenClaw 正常接收和回复飞书消息。
+通过视频了解如何在手机端完成飞书通讯配置，让 OpenClaw 正常接收和回复飞书消息。
 
 ## 🎮 容器管理
 
