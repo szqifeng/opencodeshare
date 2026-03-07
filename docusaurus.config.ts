@@ -68,6 +68,8 @@ const config: Config = {
     ],
   ],
 
+  clientModules: ['./src/components/GifViewer.tsx'],
+
   markdown: {
     mermaid: true,
   },

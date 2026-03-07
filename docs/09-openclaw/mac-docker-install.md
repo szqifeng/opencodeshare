@@ -181,7 +181,7 @@ docker-compose --version
 
 观看 OpenClaw 本地安装过程的完整演示动画：
 
-![本地安装演示动画](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/installfastclaw.gif)
+<GifViewer src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/installfastclaw.gif" alt="本地安装演示动画" />
 
 通过动画了解从下载到部署的完整流程。
 
@@ -326,7 +326,7 @@ openclaw devices approve ${requestID}
 
 观看手机端配置飞书通讯的完整演示动画：
 
-![手机端配置演示动画](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/phone_config_feishu.gif)
+<GifViewer src="https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/phone_config_feishu.gif" alt="手机端配置演示动画" />
 
 通过动画了解如何在手机端完成飞书通讯配置，让 OpenClaw 正常接收和回复飞书消息。
 
