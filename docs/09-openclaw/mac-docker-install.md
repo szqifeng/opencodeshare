@@ -23,7 +23,7 @@ OpenClaw 是一个强大的自动化工具，不使用 Docker 的风险：
 
 ## 准备工作
 
-### 📘 配置飞书应用
+### 📘 配置飞书应用（第一步）
 
 飞书管理后台：https://open.feishu.cn/app?lang=zh-CN
 
@@ -79,7 +79,13 @@ OpenClaw 是一个强大的自动化工具，不使用 Docker 的风险：
 
 ![获取飞书应用ID和密钥](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/get_feishu_appid_secret.jpg)
 
-#### 7️⃣ 配置应用权限和用户权限
+#### 7️⃣ 开启授权
+
+配置权限管理和事件订阅。
+
+![开启飞书授权步骤1](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/open_feishu_auth_step_1.jpg)
+
+#### 8️⃣ 配置应用权限和用户权限
 
 在"权限管理"中启用必要的应用身份权限和用户权限。
 
@@ -87,59 +93,13 @@ OpenClaw 是一个强大的自动化工具，不使用 Docker 的风险：
 
 ![配置用户权限](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/open_feishu_auth_step_2.jpg)
 
-#### 8️⃣ 配置回调地址
-
-在"事件订阅"中配置回调地址。
-
-⚠️ **注意：** 开启回调地址需要在 OpenClaw 安装完成后才能配置。请先完成后续的 OpenClaw 安装步骤，然后再回来配置回调地址。
-
-![配置回调地址](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/configure_callback_url.jpg)
-
-#### 9️⃣ 开启长连接权限
-
-在"权限管理"中配置长连接相关权限。
-
-![开启长连接权限](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_long_connection_permission.jpg)
-
-#### 🔟 开启回调权限
-
-在"权限管理"中开启回调相关权限。
-
-![开启回调权限](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_callback_permission.jpg)
-
-#### 1️⃣1️⃣ 开启长连接回调地址
-
-配置长连接回调地址。
-
-⚠️ **注意：** 开启长连接回调地址也需要在 OpenClaw 安装完成后才能配置。
-
-![开启长连接回调地址](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_long_connection_callback_url.jpg)
-
-#### 1️⃣2️⃣ 开通回调事件
-
-在"事件订阅"中开通需要监听的回调事件。
-
-![开通回调事件](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_callback_events.jpg)
-
-#### 1️⃣3️⃣ 开启授权
-
-配置权限管理和事件订阅。
-
-![开启飞书授权步骤1](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/open_feishu_auth_step_1.jpg)
-
-#### 1️⃣4️⃣ 发布应用版本
+#### 9️⃣ 发布应用版本（第一次）
 
 完成配置后，需要创建并发布应用版本。
 
 ![发布飞书应用版本步骤1](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/put_feishu_app_version_step1.jpg)
 
 ![发布飞书应用版本步骤2](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/put_feishu_app_version_step2.jpg)
-
-#### 1️⃣5️⃣ 修改后重新发布版本
-
-如果后续修改了配置，需要重新发布版本。
-
-![修改后重新发布版本](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/republish_version_after_modification.jpg)
 
 **参数汇总：**
 ```bash
@@ -294,7 +254,45 @@ openclaw devices approve ${requestID}
 
 授权完成后，重新访问 OpenClaw 地址即可。
 
-📌 **后续操作持续更新中...**
+## 📘 配置飞书应用（第二步）
+
+**⚠️ 重要：** 必须先完成 OpenClaw 本地安装并启动，再执行以下步骤！配置回调地址的前提是本地已经启动了 FastClaw 才能识别到。**
+
+#### 1️⃣1️⃣ 配置回调地址
+
+在"事件订阅"中配置回调地址。
+
+⚠️ **注意：** 此步骤必须在 OpenClaw 安装启动完成后才能配置。
+
+![配置回调地址](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/configure_callback_url.jpg)
+
+#### 1️⃣2️⃣ 开启长连接权限
+
+在"权限管理"中配置长连接相关权限。
+
+![开启长连接权限](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_long_connection_permission.jpg)
+
+#### 1️⃣3️⃣ 开启长连接回调地址
+
+配置长连接回调地址。
+
+⚠️ **注意：** 此步骤必须在 OpenClaw 安装启动完成后才能配置。
+
+![开启长连接回调地址](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_long_connection_callback_url.jpg)
+
+#### 1️⃣4️⃣ 开通回调事件
+
+在"事件订阅"中开通需要监听的回调事件。
+
+⚠️ **注意：** 此步骤必须在 OpenClaw 安装启动完成后才能配置。
+
+![开通回调事件](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_callback_events.jpg)
+
+#### 1️⃣5️⃣ 修改后重新发布版本
+
+完成上述配置后，需要重新发布应用版本。
+
+![修改后重新发布版本](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/republish_version_after_modification.jpg)
 
 ## 📱 手机端配置飞书通讯
 
@@ -375,3 +373,5 @@ docker logs fastclaw
 通过 Docker 容器化部署，OpenClaw 实现了安全隔离、一键管理。遇到问题只需 `docker stop` 即可完全停止，无需担心程序失控。
 
 **⚠️ 重要：** 必须使用 Docker 运行 OpenClaw，这是保障安全和可控的唯一正确方式！
+
+📌 **后续操作持续更新中...**
