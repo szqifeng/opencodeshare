@@ -119,8 +119,16 @@ const sidebars: SidebarsConfig = {
       label: '🦀 09-OpenClaw',
       items: [
         'openclaw/mac-docker-install',
-        'openclaw/openclaw-plugin-architecture',
-        'openclaw/react-pattern-agent',
+        {
+          type: 'doc',
+          id: 'openclaw/openclaw-plugin-architecture',
+          label: '🚀 OpenClaw 插件架构生态全解',
+        },
+        {
+          type: 'doc',
+          id: 'openclaw/react-pattern-agent',
+          label: '🔄 ReAct 模式：Agent 通用思维链模式全解',
+        },
       ],
     },
   ],
