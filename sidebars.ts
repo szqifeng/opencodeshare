@@ -119,6 +119,8 @@ const sidebars: SidebarsConfig = {
       label: '🦀 09-OpenClaw',
       items: [
         'openclaw/mac-docker-install',
+        'openclaw/openclaw-plugin-architecture',
+        'openclaw/react-pattern-agent',
       ],
     },
   ],
