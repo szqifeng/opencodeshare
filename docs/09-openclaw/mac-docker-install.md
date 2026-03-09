@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 🐳 Mac 版本使用 Docker 一键安装 OpenClaw 无感对接飞书
 
-> 使用 Docker 在 Mac 上快速部署 OpenClaw，实现无感对接飞书，无需复杂配置
+> 使用 Docker 在 Mac 上快速部署 OpenClaw，通过 WebSocket 长连接实现无感对接飞书，无需复杂配置
 
 ## ⚠️ 重要安全警告
 
@@ -256,39 +256,23 @@ openclaw devices approve ${requestID}
 
 ## 📘 配置飞书应用（第二步）
 
-**⚠️ 重要：** 必须先完成 OpenClaw 本地安装并启动，再执行以下步骤！配置回调地址的前提是本地已经启动了 FastClaw 才能识别到。**
+**⚠️ 重要：** 必须先完成 OpenClaw 本地安装并启动，再执行以下步骤！OpenClaw 使用 WebSocket 长连接模式对接飞书，无需配置 Webhook 回调地址。**
 
-#### 1️⃣1️⃣ 配置回调地址
-
-在"事件订阅"中配置回调地址。
-
-⚠️ **注意：** 此步骤必须在 OpenClaw 安装启动完成后才能配置。
-
-![配置回调地址](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/configure_callback_url.jpg)
-
-#### 1️⃣2️⃣ 开启长连接权限
+#### 1️⃣1️⃣ 开启长连接权限
 
 在"权限管理"中配置长连接相关权限。
 
 ![开启长连接权限](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_long_connection_permission.jpg)
 
-#### 1️⃣3️⃣ 开启长连接回调地址
+#### 1️⃣2️⃣ 配置事件订阅（可选）
 
-配置长连接回调地址。
+在"事件订阅"中开通需要监听的事件。
 
-⚠️ **注意：** 此步骤必须在 OpenClaw 安装启动完成后才能配置。
-
-![开启长连接回调地址](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_long_connection_callback_url.jpg)
-
-#### 1️⃣4️⃣ 开通回调事件
-
-在"事件订阅"中开通需要监听的回调事件。
-
-⚠️ **注意：** 此步骤必须在 OpenClaw 安装启动完成后才能配置。
+**⚠️ 注意：** WebSocket 长连接模式下，主要消息通过长连接接收，但部分特殊事件仍需通过事件订阅配置。
 
 ![开通回调事件](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/enable_callback_events.jpg)
 
-#### 1️⃣5️⃣ 修改后重新发布版本
+#### 1️⃣3️⃣ 修改后重新发布版本
 
 完成上述配置后，需要重新发布应用版本。
 
@@ -365,7 +349,13 @@ docker logs fastclaw
 检查参数是否正确，确认端口未被占用。
 
 ### Q: 无法连接到飞书？
-验证飞书应用配置，检查网络连接，确保权限已启用。
+验证飞书应用配置，检查网络连接，确保权限已启用。确认长连接权限已开启。
+
+### Q: WebSocket 长连接和 Webhook 有什么区别？
+- **WebSocket 长连接**：双向实时通信，OpenClaw 主动连接飞书服务器，无需配置回调地址
+- **Webhook**：单向被动接收，需要飞书主动推送消息到配置的回调地址
+
+OpenClaw 默认使用 WebSocket 长连接模式，更稳定且无需外网回调地址。
 
 ### Q: 镜像拉取速度慢？
 配置国内镜像源或使用代理加速。

@@ -12,7 +12,7 @@ keywords: [OpenClaw插件, 插件架构, Channel插件, 工具插件, 消息流,
 ## 📌 核心笔记
 
 - **8 大插件类型**：Tool、Channel、Command、Service、Provider、HTTP Route、Hook、TypedHook
-- **消息流转机制**：Webhook → HTTP Route → Channel.receive → 内部处理 → Channel.send
+- **消息流转机制**：WebSocket 长连接 / Webhook → Channel.receive → 内部处理 → Channel.send
 - **插件注册方式**：`api.registerTool`、`api.registerChannel`、`api.registerCommand` 等
 - **核心设计理念**：插件解耦、职责单一、可复用、易扩展
 
@@ -73,21 +73,26 @@ Plugin 系统
 │   ├─ 核心接口:
 │   │    ├─ receive(msg) ← 消息入口
 │   │    └─ send(msg) ← 消息出口
-│   ├─ 消息触发 (Webhook/HTTP):
-│   │    ├─ Channel 插件本身不主动监听外部消息
-│   │    ├─ 通过 HTTP Route 注册 Webhook:
-│   │    │    api.registerHttpRoute({
-│   │    │      path: "/webhook/feishu",
-│   │    │      handler: async (req, res) => {
-│   │    │        const msg = req.body;
-│   │    │        const channel = registry.channels.find(c => c.plugin.id === "feishu-channel");
-│   │    │        if (channel) await channel.plugin.receive(msg);
-│   │    │        res.sendStatus(200);
-│   │    │      },
-│   │    │      auth: "plugin",
-│   │    │      match: "exact"
-│   │    │    });
-│   │    └─ 系统收到 Webhook → 调用 channel.receive(msg)
+│   ├─ 消息触发方式:
+│   │    ├─ WebSocket 长连接（推荐）:
+│   │    │    ├─ OpenClaw 主动连接外部系统
+│   │    │    ├─ 双向实时通信
+│   │    │    └─ 配置: connectionMode: "websocket"
+│   │    └─ Webhook（HTTP 回调）:
+│   │         ├─ 外部系统主动推送消息
+│   │         ├─ 通过 HTTP Route 注册:
+│   │         │    api.registerHttpRoute({
+│   │         │      path: "/webhook/feishu",
+│   │         │      handler: async (req, res) => {
+│   │         │        const msg = req.body;
+│   │         │        const channel = registry.channels.find(c => c.plugin.id === "feishu-channel");
+│   │         │        if (channel) await channel.plugin.receive(msg);
+│   │         │        res.sendStatus(200);
+│   │         │      },
+│   │         │      auth: "plugin",
+│   │         │      match: "exact"
+│   │         │    });
+│   │         └─ 系统收到 Webhook → 调用 channel.receive(msg)
 │   ├─ 内部消息处理:
 │   │    ├─ 调用工具插件 (Tool Plugin)
 │   │    ├─ 调用命令插件 (Command Plugin)
@@ -121,20 +126,34 @@ Plugin 系统
 
 ---
 
-## 🔄 Channel Webhook 消息流
+## 🔄 Channel 消息流
 
-### 消息触发完整流程
+### 消息触发方式
+
+OpenClaw 支持两种消息接收方式：
+
+1. **WebSocket 长连接**（推荐，如 Feishu）
+   - 双向实时通信
+   - OpenClaw 主动连接外部系统
+   - 无需配置回调地址
+
+2. **Webhook**（HTTP 回调）
+   - 单向被动接收
+   - 外部系统主动推送消息
+   - 需要配置回调地址
+
+### WebSocket 长连接流程（以 Feishu 为例）
 
 ```mermaid
 [Feishu 用户消息]
         ↓
-    Feishu Webhook
+     Feishu WebSocket 服务器
         ↓
-[系统 HTTP Route 接口]  ← 注册 api.registerHttpRoute("/webhook/feishu")
+[OpenClaw WebSocket 客户端]  ← connectionMode: "websocket"
         ↓
 [Channel 插件 receive(msg)]
         ↓
-    内部逻辑处理
+     内部逻辑处理
         ├─ 调用工具插件 (Tool)
         │     api.tools.translate.execute({ text })
         ├─ 调用命令插件 (Command)
@@ -145,6 +164,25 @@ Plugin 系统
 [Channel 插件 send(msg)] → 返回消息到 Feishu
 ```
 
+### Webhook 流程（传统方式）
+
+```mermaid
+[用户消息]
+        ↓
+     Webhook
+        ↓
+[系统 HTTP Route 接口]  ← 注册 api.registerHttpRoute("/webhook/xxx")
+        ↓
+[Channel 插件 receive(msg)]
+        ↓
+     内部逻辑处理
+        ├─ 调用工具插件 (Tool)
+        ├─ 调用命令插件 (Command)
+        └─ 调用 Agent / Runtime
+        ↓
+[Channel 插件 send(msg)] → 返回消息
+```
+
 ### 核心要点
 
 **Channel 插件只是消息入口和出口**
@@ -152,10 +190,10 @@ Plugin 系统
 - `receive(msg)` → 外部消息进入
 - `send(msg)` → 处理结果返回
 
-**Webhook / HTTP Route 是触发机制**
+**WebSocket / Webhook 是触发机制**
 
-- Channel 不主动监听外部消息
-- 必须通过系统 HTTP Route 调用 `receive(msg)`
+- WebSocket：OpenClaw 主动连接，实时双向通信
+- Webhook：HTTP Route 接收外部回调
 
 **内部处理可以调用**
 
@@ -296,7 +334,12 @@ api.registerProvider({
 
 ### 6. HTTP Route 插件
 
-**功能**：注册 HTTP 路由，接收外部请求（Webhook）
+**功能**：注册 HTTP 路由，接收外部请求
+
+**说明**：
+- 用于 Webhook 模式的 Channel 消息接收
+- 提供 HTTP API 接口
+- WebSocket 模式下不需要此插件
 
 **注册示例**：
 
@@ -357,12 +400,13 @@ api.on('prompt:build', async (context) => {
 
 ## 📝 实践示例
 
-### 示例 1：开发 Feishu Channel 插件
+### 示例 1：开发 Feishu Channel 插件（WebSocket 模式）
 
 ```javascript
 api.registerChannel({
   id: 'feishu-channel',
   name: '飞书通道',
+  connectionMode: 'websocket',
   receive: async (msg) => {
     // 调用工具插件处理消息
     if (msg.type === 'text') {
@@ -377,20 +421,48 @@ api.registerChannel({
     }
   },
   send: async (msg) => {
-    // 发送消息到飞书 API
-    await fetch('https://open.feishu.cn/open-apis/bot/v2/hook/xxx', {
+    // 发送消息到飞书（通过 WebSocket）
+    console.log(`[Feishu Send] ${msg.chatId}: ${msg.text}`);
+  }
+});
+
+// WebSocket 连接由系统自动管理
+// 配置文件中设置: connectionMode: "websocket"
+```
+
+### 示例 2：开发 Slack Channel 插件（Webhook 模式）
+
+```javascript
+api.registerChannel({
+  id: 'slack-channel',
+  name: 'Slack 通道',
+  receive: async (msg) => {
+    const result = await api.tools.translate.execute({
+      text: msg.text,
+      targetLang: 'en'
+    });
+    await this.send({
+      channelId: msg.channel,
+      text: result.translatedText
+    });
+  },
+  send: async (msg) => {
+    await fetch('https://slack.com/api/chat.postMessage', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ msg_type: 'text', content: { text: msg.text } })
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SLACK_TOKEN}`
+      },
+      body: JSON.stringify({ channel: msg.channelId, text: msg.text })
     });
   }
 });
 
 // 注册 Webhook 接口
 api.registerHttpRoute({
-  path: '/webhook/feishu',
+  path: '/webhook/slack',
   handler: async (req, res) => {
-    const channel = registry.channels.find(c => c.plugin.id === 'feishu-channel');
+    const channel = registry.channels.find(c => c.plugin.id === 'slack-channel');
     if (channel) {
       await channel.plugin.receive(req.body);
     }
@@ -443,14 +515,12 @@ OpenClaw 插件系统
 - 处理消息 → 调用工具/命令/Agent
 - 返回消息 → `send(msg)`
 
-### 2️⃣ 通道插件消息流
+### 2️⃣ Feishu 消息流（WebSocket 模式）
 
 ```
 外部系统 (Feishu)
         ↓
-Webhook 消息
-        ↓
-HTTP Route 插口 (api.registerHttpRoute)
+WebSocket 长连接
         ↓
 【通道插件】receive(msg)
         ↓
@@ -464,7 +534,7 @@ HTTP Route 插口 (api.registerHttpRoute)
 消息返回到外部系统 (Feishu)
 ```
 
-**核心**：外部消息 → HTTP Route → 通道.receive → 工具/Agent → 通道.send → 外部
+**核心**：外部消息 → WebSocket 长连接 → 通道.receive → 工具/Agent → 通道.send → 外部
 
 ### 3️⃣ 插件目录结构
 

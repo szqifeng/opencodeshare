@@ -126,6 +126,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
+          id: 'openclaw/openclaw-deepseek-config',
+          label: '🔧 OpenClaw DeepSeek 配置顺序指南',
+        },
+        {
+          type: 'doc',
           id: 'openclaw/react-pattern-agent',
           label: '💡 ReAct 模式：Agent 通用思维链模式全解',
         },
