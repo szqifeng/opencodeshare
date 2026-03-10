@@ -118,21 +118,53 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: '🦀 09-OpenClaw',
       items: [
-        'openclaw/mac-docker-install',
         {
-          type: 'doc',
-          id: 'openclaw/openclaw-plugin-architecture',
-          label: '🚀 OpenClaw 插件架构生态全解',
+          type: 'category',
+          label: '🚀 快速安装',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/mac-docker-install',
+              label: 'Mac Docker 一键安装',
+            },
+          ],
         },
         {
-          type: 'doc',
-          id: 'openclaw/openclaw-deepseek-config',
-          label: '🔧 OpenClaw DeepSeek 配置顺序指南',
+          type: 'category',
+          label: '⚙️ 配置',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/openclaw-deepseek-config',
+              label: 'DeepSeek 模型配置',
+            },
+          ],
         },
         {
-          type: 'doc',
-          id: 'openclaw/react-pattern-agent',
-          label: '💡 ReAct 模式：Agent 通用思维链模式全解',
+          type: 'category',
+          label: '🔌 插件',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/openclaw-plugin-architecture',
+              label: '插件架构生态全解',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: '🎯 技能',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/react-pattern-agent',
+              label: 'ReAct 模式全解',
+            },
+          ],
         },
       ],
     },
