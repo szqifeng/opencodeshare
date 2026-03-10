@@ -207,6 +207,9 @@ export default function Home(): ReactNode {
       .card-link-icon {
         display: inline !important;
       }
+      .card:nth-child(n+3) {
+        display: none !important;
+      }
     }
   `;
 
