@@ -561,9 +561,9 @@ export default function Home(): ReactNode {
                     </g>
                     <animateTransform attributeName="transform" type="translate" values="0,0;0,-1.5;0,0" dur="1.2s" repeatCount="indefinite"/>
                   </svg>
-  <h3 style={cardTitle}>
-  <span className="card-title-short">Start</span></h3>
-                   <p style={cardDesc} className="card-desc">本地部署、云上部署都支持讲解，5分钟上手，30分钟掌握核心概念</p>
+   <h3 style={cardTitle}>
+   <span className="card-title-short">OpenCode</span></h3>
+                    <p style={cardDesc} className="card-desc">本地部署、云上部署都支持讲解，5分钟上手，30分钟掌握核心概念</p>
                    <Link to="/docs/quick-start/starter-guide" style={cardLink}><span className="card-link-full">立即开始</span><span className="card-link-icon">→</span></Link>
                   </Link>
                  <Link to="/docs/quick-start/skills-intro" className="card" style={card}>
