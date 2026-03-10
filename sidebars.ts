@@ -130,7 +130,32 @@ const sidebars: SidebarsConfig = {
             {
               type: 'doc',
               id: 'openclaw/mac-docker-install',
-              label: 'Mac Docker 一键安装',
+              label: 'Mac Docker 安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/mac-native-install',
+              label: 'Mac 原生安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/windows-docker-install',
+              label: 'Windows Docker 安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/windows-native-install',
+              label: 'Windows 原生安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/linux-native-install',
+              label: 'Linux 原生安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/cloud-server-install',
+              label: '云服务器安装',
             },
           ],
         },
