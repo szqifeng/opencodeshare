@@ -177,38 +177,11 @@ export default function Home(): ReactNode {
       }
     }
     @media (max-width: 576px) {
-      .cardGrid {
-        grid-template-columns: 1fr !important;
-      }
-      .card {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        padding: 1.5rem !important;
-      }
-      .card svg {
-        width: 48px !important;
-        height: 48px !important;
-        margin-bottom: 0.75rem !important;
-      }
-      .card h3 {
-        margin-bottom: 0.5rem !important;
-      }
-      .card-title-full {
+      section[id="features"] {
         display: none !important;
       }
-      .card-title-short {
-        display: inline !important;
-      }
-      .card-link-full {
-        display: none !important;
-      }
-      .card-link-icon {
-        display: inline !important;
-      }
-      .card:nth-child(n+3) {
-        display: none !important;
+      section[id="mobile-menu"] {
+        display: block !important;
       }
     }
   `;
@@ -416,6 +389,42 @@ export default function Home(): ReactNode {
     color: isDarkMode ? '#f9fafb' : '#111827',
   };
 
+  const mobileMenuGrid: CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '1rem',
+  };
+
+  const mobileMenuItem: CSSProperties = {
+    backgroundColor: isDarkMode ? '#1f2937' : '#fff',
+    borderRadius: '12px',
+    padding: '1rem',
+    border: `1px solid ${isDarkMode ? '#374151' : '#f3f4f6'}`,
+    textDecoration: 'none',
+    color: 'inherit',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    transition: 'all 0.2s ease',
+  };
+
+  const mobileMenuIcon: CSSProperties = {
+    fontSize: '2rem',
+    flexShrink: 0,
+  };
+
+  const mobileMenuTitle: CSSProperties = {
+    fontWeight: 600,
+    fontSize: '1rem',
+    color: isDarkMode ? '#f9fafb' : '#111827',
+    marginBottom: '0.25rem',
+  };
+
+  const mobileMenuDesc: CSSProperties = {
+    fontSize: '0.875rem',
+    color: isDarkMode ? '#9ca3af' : '#6b7280',
+  };
+
   return (
     <Layout>
       <main>
@@ -501,29 +510,29 @@ export default function Home(): ReactNode {
            <div style={container}>
                <h2 style={sectionTitle}>核心能力</h2>
 <div style={cardGrid}>
-                  <Link to="/docs/09-openclaw/mac-docker-install" className="card" style={card}>
+                  <Link to="/docs/openclaw/quick-install" className="card" style={card}>
                    <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
-                     <defs>
-                       <linearGradient id="openclawGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                         <stop offset="0%" style={{stopColor: '#ef4444', stopOpacity: 1}} />
-                         <stop offset="100%" style={{stopColor: '#dc2626', stopOpacity: 1}} />
-                       </linearGradient>
-                     </defs>
-                     <circle cx="32" cy="32" r="28" fill="url(#openclawGradient)" opacity="0.1">
-                       <animate attributeName="r" values="28;32;28" dur="3s" repeatCount="indefinite"/>
-                     </circle>
-                     <path d="M32 12L44 24V40L32 52L20 40V24L32 12Z" stroke="url(#openclawGradient)" strokeWidth="2" fill="none">
-                       <animate attributeName="stroke-dasharray" values="0,200;200,0;200,0" dur="2s" repeatCount="indefinite"/>
-                     </path>
-                     <circle cx="32" cy="32" r="8" fill="url(#openclawGradient)">
-                       <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
-                       <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
-                     </circle>
-                     <circle cx="32" cy="32" r="4" fill="#fff"/>
-                   </svg>
-                   <h3 style={cardTitle}>OpenClaw</h3>
-                    <p style={cardDesc} className="card-desc">强大的 AI 自动化工具，通过飞书等渠道实现智能交互和任务自动化</p>
-                    <Link to="/docs/09-openclaw/mac-docker-install" style={cardLink}><span className="card-link-full">快速安装</span><span className="card-link-icon">→</span></Link>
+                      <defs>
+                        <linearGradient id="openclawGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style={{stopColor: '#ef4444', stopOpacity: 1}} />
+                          <stop offset="100%" style={{stopColor: '#dc2626', stopOpacity: 1}} />
+                        </linearGradient>
+                      </defs>
+                      <circle cx="32" cy="32" r="28" fill="url(#openclawGradient)" opacity="0.1">
+                        <animate attributeName="r" values="28;32;28" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <path d="M32 12L44 24V40L32 52L20 40V24L32 12Z" stroke="url(#openclawGradient)" strokeWidth="2" fill="none">
+                        <animate attributeName="stroke-dasharray" values="0,200;200,0;200,0" dur="2s" repeatCount="indefinite"/>
+                      </path>
+                      <circle cx="32" cy="32" r="8" fill="url(#openclawGradient)">
+                        <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+                      </circle>
+                      <circle cx="32" cy="32" r="4" fill="#fff"/>
+                    </svg>
+                    <h3 style={cardTitle}>OpenClaw</h3>
+                     <p style={cardDesc} className="card-desc">强大的 AI 自动化工具，通过飞书等渠道实现智能交互和任务自动化</p>
+                     <Link to="/docs/openclaw/quick-install" style={cardLink}><span className="card-link-full">快速安装</span><span className="card-link-icon">→</span></Link>
                   </Link>
                   <Link to="/docs/quick-start/starter-guide" className="card" style={card}>
                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
@@ -654,9 +663,59 @@ export default function Home(): ReactNode {
                  </Link>
               </div>
             </div>
+          </section>
+
+         <section style={sectionBg} id="mobile-menu" className="mobile-menu-section">
+           <div style={container}>
+             <h2 style={sectionTitle}>快速导航</h2>
+             <div style={mobileMenuGrid}>
+                <Link to="/docs/openclaw/quick-install" style={mobileMenuItem}>
+                  <div style={mobileMenuIcon}>🦀</div>
+                  <div>
+                    <h3 style={mobileMenuTitle}>OpenClaw</h3>
+                    <p style={mobileMenuDesc}>AI 自动化工具</p>
+                  </div>
+                </Link>
+                <Link to="/docs/quick-start/starter-guide" style={mobileMenuItem}>
+                  <div style={mobileMenuIcon}>🚀</div>
+                  <div>
+                    <h3 style={mobileMenuTitle}>OpenCode</h3>
+                    <p style={mobileMenuDesc}>快速开始学习</p>
+                  </div>
+                </Link>
+                <Link to="/docs/quick-start/skills-intro" style={mobileMenuItem}>
+                  <div style={mobileMenuIcon}>🎯</div>
+                  <div>
+                    <h3 style={mobileMenuTitle}>技能</h3>
+                    <p style={mobileMenuDesc}>技能集合</p>
+                  </div>
+                </Link>
+                <Link to="/docs/quick-start/tools-intro" style={mobileMenuItem}>
+                  <div style={mobileMenuIcon}>🔧</div>
+                  <div>
+                    <h3 style={mobileMenuTitle}>工具</h3>
+                    <p style={mobileMenuDesc}>内置工具</p>
+                  </div>
+                </Link>
+                <Link to="/docs/02-daily-usage/agents" style={mobileMenuItem}>
+                  <div style={mobileMenuIcon}>🤖</div>
+                  <div>
+                    <h3 style={mobileMenuTitle}>代理</h3>
+                    <p style={mobileMenuDesc}>Agent 规则</p>
+                  </div>
+                </Link>
+                <Link to="/blog" style={mobileMenuItem}>
+                  <div style={mobileMenuIcon}>📚</div>
+                  <div>
+                    <h3 style={mobileMenuTitle}>博客</h3>
+                    <p style={mobileMenuDesc}>技术文章</p>
+                  </div>
+                </Link>
+             </div>
+           </div>
          </section>
 
-        <section style={section} id="roadmap">
+         <section style={section} id="roadmap">
           <div style={container}>
             <h2 style={sectionTitle}>学习之旅从这里开始</h2>
             <div style={roadmap}>
