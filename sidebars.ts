@@ -121,6 +121,10 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '🚀 快速安装',
+          link: {
+            type: 'doc',
+            id: 'openclaw/quick-install',
+          },
           collapsed: true,
           items: [
             {
@@ -133,6 +137,10 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '⚙️ 配置',
+          link: {
+            type: 'doc',
+            id: 'openclaw/config-guide',
+          },
           collapsed: true,
           items: [
             {
@@ -145,6 +153,10 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '🔌 插件',
+          link: {
+            type: 'doc',
+            id: 'openclaw/plugin-dev',
+          },
           collapsed: true,
           items: [
             {
@@ -157,6 +169,10 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '🎯 技能',
+          link: {
+            type: 'doc',
+            id: 'openclaw/skills',
+          },
           collapsed: true,
           items: [
             {
