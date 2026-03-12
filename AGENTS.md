@@ -24,6 +24,24 @@ nohup npm start > /dev/null 2>&1 &  # Run asynchronously to avoid blocking
 
 ---
 
+## 部署命令
+
+当用户说"部署"时，必须完成以下 3 件事：
+
+1. **本地运行验证**：先运行 `npm run build` 确保构建成功
+2. **提交并推送代码**：执行 git add、commit、push
+3. **远程服务器部署**：SSH 连接到 47 服务器执行部署
+
+```bash
+# 部署流程
+npm run build                           # 1. 本地构建验证
+git add . && git commit -m "deploy"     # 2. 提交代码
+git push                                # 2. 推送代码
+ssh root@47.x.x.x "cd /path/to/repo && ./deploy.sh"  # 3. 远程部署
+```
+
+---
+
 ## TypeScript/React Style
 
 ### Imports

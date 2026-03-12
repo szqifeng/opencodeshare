@@ -34,6 +34,8 @@ keywords: [AI, LLM, OpenClaw, 道法术器, 编程思维, 人工智能]
 
 ## 一、道（原理）：为什么龙虾能帮我们做事
 
+![道（原理）- AI能思考、写代码、用工具的三种能力](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/ai-principle-three-abilities.png)
+
 "道"是底层原理。
 
 龙虾之所以能完成任务，是因为它有三种能力：
@@ -79,6 +81,8 @@ keywords: [AI, LLM, OpenClaw, 道法术器, 编程思维, 人工智能]
 
 ## 二、法（方法）：如何让龙虾做事
 
+![法（方法）- 给AI清晰的任务流程和规则](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/ai-methods-task-flow-rules.png)
+
 "法"是 **方法和做法**。
 
 简单说就是：
@@ -105,6 +109,8 @@ keywords: [AI, LLM, OpenClaw, 道法术器, 编程思维, 人工智能]
 ---
 
 ## 三、术（技巧）：怎么让龙虾做好事情
+
+![术（技巧）- 用清晰指令和拆分任务与AI沟通](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/ai-techniques-clear-instructions.png)
 
 "术"是 **使用技巧**。
 
@@ -138,6 +144,8 @@ keywords: [AI, LLM, OpenClaw, 道法术器, 编程思维, 人工智能]
 ---
 
 ## 四、器（工具）：有哪些好用的工具
+
+![器（工具）- AI工具、技术环境、工具系统](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/ai-tools-technology-environment.png)
 
 "器"就是 **工具本身**。
 
