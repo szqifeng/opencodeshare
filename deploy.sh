@@ -13,7 +13,7 @@ echo "开始构建..."
 BASE_URL=/ npm run build
 
 # 3. 移动到 nginx 目录
-NGINX_DIR="/var/www/opencodeshare"
+NGINX_DIR="/var/www/opencodeshare.cn"
 BACKUP_DIR="/usr/share/nginx/html_backup_$(date +%Y%m%d_%H%M%S)"
 
 echo "备份当前 nginx 目录..."
