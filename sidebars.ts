@@ -169,9 +169,26 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             {
+              type: 'category',
+              label: '📦 模型配置',
+              collapsed: true,
+              items: [
+                {
+                  type: 'doc',
+                  id: 'openclaw/openclaw-deepseek-config',
+                  label: 'DeepSeek 模型配置',
+                },
+                {
+                  type: 'doc',
+                  id: 'openclaw/openclaw-minimax-config',
+                  label: 'MiniMax 模型配置',
+                },
+              ],
+            },
+            {
               type: 'doc',
-              id: 'openclaw/openclaw-deepseek-config',
-              label: 'DeepSeek 模型配置',
+              id: 'openclaw/openclaw-config-full-guide',
+              label: '全局配置指南',
             },
           ],
         },

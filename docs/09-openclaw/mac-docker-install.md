@@ -103,25 +103,11 @@ OpenClaw 是一个强大的自动化工具，不使用 Docker 的风险：
 
 **参数汇总：**
 ```bash
+ZHIPU_API_KEY: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 FEISHU_APP_ID: "cli_xxxxxxxx"
 FEISHU_APP_SECRET: "xxxxxxxxxxxxxxx"
 FEISHU_VERIFICATION_TOKEN: "xxxxxx"
 FEISHU_ENCRYPT_KEY: "xxxxxx"
-OPENCLAW_AGENT_MODEL: "glm-4.7"
-```
-
-### 🤖 获取 Zhipu AI API Key
-
-**🎁 专属邀请链接：** https://www.bigmodel.cn/glm-coding?ic=84BFRMHJCG
-
-使用邀请链接注册可享受限时惊喜价和更高 API 调用额度。
-
-![获取智谱AI API Key](https://opencodeshare.oss-cn-shenzhen.aliyuncs.com/get_zhipu_api_key.jpg)
-
-**⚠️ 重要提醒：** API Key 只显示一次，请立即复制保存。
-
-```bash
-ZHIPU_API_KEY: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 OPENCLAW_AGENT_MODEL: "glm-4.7"
 ```
 
@@ -208,11 +194,11 @@ chmod +x run.sh
 ```
 
 按照提示输入前面准备好的参数：
+- ZHIPU_API_KEY
 - FEISHU_APP_ID
 - FEISHU_APP_SECRET
 - FEISHU_VERIFICATION_TOKEN
 - FEISHU_ENCRYPT_KEY
-- ZHIPU_API_KEY
 - OPENCLAW_AGENT_MODEL（默认 glm-4.7）
 
 ### 步骤 3：验证部署
