@@ -169,6 +169,11 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             {
+              type: 'doc',
+              id: 'openclaw/openclaw-config-full-guide',
+              label: '⚙️ 全局配置',
+            },
+            {
               type: 'category',
               label: '📦 模型配置',
               collapsed: true,
@@ -184,11 +189,6 @@ const sidebars: SidebarsConfig = {
                   label: 'MiniMax 模型配置',
                 },
               ],
-            },
-            {
-              type: 'doc',
-              id: 'openclaw/openclaw-config-full-guide',
-              label: '全局配置指南',
             },
           ],
         },
