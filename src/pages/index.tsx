@@ -832,14 +832,15 @@ export default function Home(): ReactNode {
               justify-content: center !important;
               width: 100% !important;
             }
-           section[id="features"] h2,
-           section[id="scenarios"] h2,
-           section[id="resources"] h2,
-           section[id="starter"] h2 {
-            font-size: 1.5rem !important;
-            text-align: center !important;
-            margin-bottom: 1rem !important;
-          }
+            section[id="features"] h2,
+            section[id="scenarios"] h2,
+            section[id="resources"] h2,
+            section[id="starter"] h2,
+            section[id="mobile-menu"] h2 {
+             font-size: 1.5rem !important;
+             text-align: center !important;
+             margin-bottom: 1.5rem !important;
+           }
            section[id="features"] .card,
            section[id="scenarios"] .scenarioCard,
            section[id="resources"] .resourceCard,
@@ -900,16 +901,21 @@ export default function Home(): ReactNode {
              gap: 1rem !important;
              width: max-content !important;
            }
-          .scenarioGrid {
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-            gap: 0.75rem !important;
-            width: max-content !important;
-          }
-           .resourceGrid {
-             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+           .scenarioGrid {
+             grid-template-columns: repeat(2, 1fr) !important;
              gap: 0.75rem !important;
-             width: max-content !important;
+             width: 100% !important;
            }
+            .resourceGrid {
+              grid-template-columns: repeat(3, 1fr) !important;
+              gap: 0.75rem !important;
+              width: 100% !important;
+            }
+            .mobile-menu-section .mobileMenuGrid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 0.75rem !important;
+              width: 100% !important;
+            }
           .section {
             padding: 2rem 0.75rem !important;
             min-width: 100vw !important;
@@ -943,16 +949,24 @@ export default function Home(): ReactNode {
             gap: 0.75rem !important;
           }
            .scenarioGrid {
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
-            gap: 0.75rem !important;
-          }
-           .resourceGrid {
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
-            gap: 0.75rem !important;
-          }
-           .sectionTitle {
-             font-size: 1.3rem !important;
+             grid-template-columns: repeat(2, 1fr) !important;
+             gap: 0.75rem !important;
+             width: 100% !important;
            }
+            .resourceGrid {
+             grid-template-columns: repeat(3, 1fr) !important;
+             gap: 0.75rem !important;
+             width: 100% !important;
+           }
+            .mobile-menu-section .mobileMenuGrid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 0.5rem !important;
+              width: 100% !important;
+            }
+           .sectionTitle {
+              font-size: 1.3rem !important;
+              margin-bottom: 1.5rem !important;
+            }
             .card,
             .scenarioCard,
             .resourceCard,
