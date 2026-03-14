@@ -31,18 +31,20 @@ git checkout -- .                  # 恢复所有未提交的文件
 
 ## 部署命令
 
-当用户说"部署"时，必须完成以下 3 件事：
+当用户说"部署"时，必须完成以下 4 件事：
 
-1. **本地运行验证**：先运行 `npm run build` 确保构建成功
-2. **提交并推送代码**：执行 git add、commit、push
-3. **远程服务器部署**：SSH 连接到 47 服务器执行部署
+1. **本地验证**：先运行 `npm run typecheck` + `npm run build` 确保构建成功
+2. **提交代码**：每项改动单独提交（不要一次性提交多个改动）
+3. **推送代码**：验证无误后执行 `git push`
+4. **远程服务器部署**：SSH 连接到 47 服务器执行部署
 
 ```bash
 # 部署流程
-npm run build                           # 1. 本地构建验证
-git add . && git commit -m "deploy"     # 2. 提交代码
-git push                                # 2. 推送代码
-ssh root@47.x.x.x "cd /path/to/repo && ./deploy.sh"  # 3. 远程部署
+npm run typecheck                          # 1. 类型检查
+npm run build                             # 1. 构建验证
+git add . && git commit -m "feat: xxx"   # 2. 提交改动（每项单独提交，描述要清晰）
+git push                                  # 3. 验证无误后推送
+ssh root@47.93.214.178 "cd /opt/opencodeshare && git pull && ./deploy.sh"  # 4. 远程部署
 ```
 
 ---
