@@ -210,6 +210,42 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: '🏗️ 架构',
+          link: {
+            type: 'doc',
+            id: 'openclaw/architecture/openclaw-architecture-layers',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-architecture-layers',
+              label: '架构设计分层',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-code-architecture',
+              label: '代码架构详解',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-agent-core',
+              label: 'Agent 核心原理',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-plugin-system',
+              label: '插件系统架构',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-feishu-plugin',
+              label: '飞书插件架构',
+            },
+          ],
+        },
+        {
+          type: 'category',
           label: '🎯 技能',
           link: {
             type: 'doc',
