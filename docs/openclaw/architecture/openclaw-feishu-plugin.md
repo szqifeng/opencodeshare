@@ -92,16 +92,20 @@ const plugin = {
 ### 整体链路
 
 ```
-飞书服务器           monitor.ts              monitor.account
-(WebSocket/  ───▶  启动监听      ───▶    注册事件处理器
- Webhook)                                       │
-                                                  ▼
-                                         handleFeishuMsg
-                                                (bot.ts:861)
-                                                  │
-                                                  ▼
-                                         转发给 Agent
-                                         处理并回复
+飞书服务器
+└── WebSocket/Webhook
+    │
+    ▼
+monitor.ts
+└── 启动监听
+    │
+    ▼
+monitor.account
+└── 注册事件处理器
+    │
+    ▼
+handleFeishuMsg (bot.ts:861)
+└── 转发给 Agent 处理并回复
 ```
 
 ### 详细步骤
