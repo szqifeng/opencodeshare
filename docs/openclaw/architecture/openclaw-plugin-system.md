@@ -12,6 +12,35 @@ keywords: [OpenClaw插件, 插件系统, PluginRegistry, PluginRuntime, 钩子]
 ## 核心架构图
 
 ```
+OpenClaw 插件系统架构
+
+├── 类型定义层
+│   └── types.ts (OpenClawPlugin, PluginRegistry, ...)
+│
+├── 发现与加载层
+│   ├── discovery.ts - 插件发现
+│   ├── manifest.ts  - 清单解析
+│   └── loader.ts    - 插件加载
+│
+├── 注册表层
+│   └── registry.ts (PluginRegistry)
+│       ├── plugins   - 插件记录
+│       ├── tools     - 工具注册
+│       ├── hooks     - 钩子注册
+│       └── channels  - 通道注册
+│
+├── 运行时层
+│   └── runtime/index.ts (createPluginRuntime)
+│       ├── subagent - 子代理运行
+│       ├── channel  - 通道运行
+│       └── tools    - 工具运行
+│
+└── 子系统层
+    ├── services.ts  - 服务管理
+    ├── tools.ts     - 工具管理
+    ├── hooks.ts     - 钩子定义
+    └── providers.ts - 提供者管理
+```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                         插件系统顶层架构                           │
 │                              (src/plugins/)                          │

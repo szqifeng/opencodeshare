@@ -33,41 +33,40 @@ OpenClaw 采用**分层架构**设计，遵循以下核心原则：
 
 ### 架构图
 
+```mermaid
+graph TD
+    L1[L1 用户接入层<br/>CLI · Web UI · Apps · Channels]
+    L2[L2 控制平面层<br/>Gateway · Auth · Config]
+    L3[L3 核心服务层<br/>Channel Manager · Agent Runtime · Sessions]
+    L4[L4 插件系统层<br/>Plugin Registry · Loader · Runtime · Hooks]
+    L5[L5 运行时层<br/>Tool Execution · LLM · Media]
+    L6[L6 基础设施层<br/>Config · FileSystem · Network]
+
+    L1 --> L2 --> L3 --> L4 --> L5 --> L6
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    第一层：用户接入层                         │
-│  CLI │ Web UI │ macOS App │ Mobile Apps │ External Channels  │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    第二层：控制平面层                         │
-│  Gateway Server (WebSocket + HTTP)  │  认证授权  │  配置管理 │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    第三层：核心服务层                         │
-│  Channel Manager │ Agent Runtime │ Node Registry │ Session Mgr │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    第四层：插件系统层                         │
-│  Plugin Registry │ Plugin Loader │ Plugin Runtime │ Hooks    │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    第五层：运行时层                           │
-│  Tool Execution │ LLM Integration │ Media Pipeline │ Services  │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    第六层：基础设施层                         │
-│  Config Store │ File System │ Network │ Process │ Security    │
-└─────────────────────────────────────────────────────────────────┘
+
+或者使用纯文本树形结构：
+
+```
+OpenClaw 架构分层
+
+├── L1 用户接入层
+│   └── CLI │ Web UI │ macOS App │ Mobile Apps │ External Channels
+│
+├── L2 控制平面层
+│   └── Gateway Server │ 认证授权 │ 配置管理
+│
+├── L3 核心服务层
+│   └── Channel Manager │ Agent Runtime │ Node Registry │ Session Manager
+│
+├── L4 插件系统层
+│   └── Plugin Registry │ Plugin Loader │ Plugin Runtime │ Hooks
+│
+├── L5 运行时层
+│   └── Tool Execution │ LLM Integration │ Media Pipeline │ Services
+│
+└── L6 基础设施层
+    └── Config Store │ File System │ Network │ Process │ Security
 ```
 
 ---
