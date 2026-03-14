@@ -11,17 +11,32 @@ keywords: [OpenClaw, 配置, 模型配置, API Key, DeepSeek]
 
 ## 📋 配置项目
 
-- **[DeepSeek 模型配置](./openclaw-deepseek-config)** - 配置 DeepSeek 模型，享受低成本高效率的 AI 服务
-- **[环境变量配置](./env-config)** - 环境变量配置指南（待补充）
-- **[高级配置选项](./advanced-config)** - 高级配置选项详解（待补充）
+### 模型配置
 
-## 💡 配置建议
+| 模型 | 说明 | 文档 |
+|------|------|------|
+| DeepSeek | 低成本、高效率 | [DeepSeek 模型配置](./openclaw-deepseek-config) |
+| MiniMax | 推理能力强 | [MiniMax 模型配置](./openclaw-minimax-config) |
+
+### 全局配置
+
+- **[全局配置指南](./openclaw-config-full-guide)** - 完整配置文档，涵盖目录结构、配置文件、认证配置等
+
+## 🔧 配置顺序
 
 按照正确的顺序进行配置：
-1. 先定义 Provider
-2. 添加模型到允许列表
-3. 设置默认模型
-4. 配置 API Key
-5. 重启 Gateway
 
-开始配置 → [DeepSeek 模型配置](./openclaw-deepseek-config)
+1. **设置环境变量** - 配置 API Key 认证
+2. **配置 models.providers** - 定义模型
+3. **配置 agents.defaults** - 设置默认模型和白名单
+4. **重启 Gateway** - 使配置生效
+
+## 🚀 快速开始
+
+推荐使用 MiniMax 模型（推理能力强）：
+
+→ [MiniMax 模型配置](./openclaw-minimax-config)
+
+或使用 DeepSeek 模型（成本低）：
+
+→ [DeepSeek 模型配置](./openclaw-deepseek-config)

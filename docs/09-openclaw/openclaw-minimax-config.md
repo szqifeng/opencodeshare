@@ -103,3 +103,21 @@ openclaw agent --message "你好" --model minimax/MiniMax-M2.5
 **Q: 如何获取 MiniMax API Key？**
 
 A: 访问 https://platform.minimaxi.com/ 注册后，在 API Keys 页面创建
+
+---
+
+## 检查点
+
+- [ ] 环境变量 MINIMAX_API_KEY 已设置
+- [ ] models.providers.minimax 已配置
+- [ ] agents.defaults.models 白名单已添加
+- [ ] agents.defaults.model.primary 已设置
+- [ ] Gateway 已重启
+- [ ] 模型测试成功
+
+---
+
+## 相关文档
+
+- [DeepSeek 模型配置](./openclaw-deepseek-config.md)
+- [全局配置指南](../openclaw/openclaw-config-full-guide.md)

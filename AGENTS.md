@@ -16,6 +16,11 @@ npm run swizzle        # Eject a theme component for customization
 # Dev Server Tips:
 lsof -ti :3000 | xargs kill -9  # Kill process on port 3000 first
 nohup npm start > /dev/null 2>&1 &  # Run asynchronously to avoid blocking
+
+# Git Tips:
+git diff --stat                    # 查看修改了哪些文件
+git checkout -- <file>             # 恢复单个文件到原始状态
+git checkout -- .                  # 恢复所有未提交的文件
 ```
 
 **IMPORTANT:** Run `npm run typecheck` before committing. No test suite - verify manually in browser.

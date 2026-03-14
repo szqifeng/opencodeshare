@@ -113,3 +113,21 @@ openclaw agent --message "你好" --model deepseek/deepseek-chat
 **Q: API Key 从哪里获取？**
 
 A: 访问 https://platform.deepseek.com/ 注册后，在 API Keys 页面创建
+
+---
+
+## 检查点
+
+- [ ] 环境变量 DEEPSEEK_API_KEY 已设置
+- [ ] models.providers.deepseek 已配置
+- [ ] agents.defaults.models 白名单已添加
+- [ ] agents.defaults.model.primary 已设置
+- [ ] Gateway 已重启
+- [ ] 模型测试成功
+
+---
+
+## 相关文档
+
+- [MiniMax 模型配置](./openclaw-minimax-config.md)
+- [全局配置指南](../openclaw/openclaw-config-full-guide.md)

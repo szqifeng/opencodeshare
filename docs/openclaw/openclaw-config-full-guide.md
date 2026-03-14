@@ -876,14 +876,12 @@ tail -f /tmp/openclaw-gateway.log
 
 ## 12. 下一课预告
 
-下一课我们将详细介绍 **OpenClaw 认证与模型配置**，深入讲解如何配置具体的模型 Provider（DeepSeek、Anthropic、OpenAI 等）以及认证凭据的最佳实践。
+下一课我们将详细介绍 **DeepSeek 和 MiniMax 模型配置**，手把手教你配置具体的模型 Provider。
 
 ---
 
 ## 13. 相关文档
 
-- [OpenClaw 认证与模型配置详解](./openclaw-auth-config.md)
-- [OpenClaw 模型配置指南](./openclaw-model-config.md)
-- [OpenClaw 模型配置快速参考](./openclaw-model-quick-ref.md)
+- [DeepSeek 模型配置](./openclaw-deepseek-config.md)
+- [MiniMax 模型配置](./openclaw-minimax-config.md)
 - [OpenClaw 飞书插件架构详解](./openclaw-plugin-architecture.md)
-- [OpenClaw 设计模式记录](./openclaw-design-patterns.md)
