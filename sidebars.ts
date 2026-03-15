@@ -242,6 +242,11 @@ const sidebars: SidebarsConfig = {
               id: 'openclaw/architecture/openclaw-feishu-plugin',
               label: '飞书插件架构',
             },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-workspace-structure',
+              label: '项目工作目录结构',
+            },
           ],
         },
         {
