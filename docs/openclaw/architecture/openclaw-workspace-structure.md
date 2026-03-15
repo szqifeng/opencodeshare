@@ -195,12 +195,145 @@ agents/
 
 主配置文件，包含所有运行时配置：
 
+- `meta`: 元信息（版本、上次更新时间）
+- `wizard`: 向导配置（上次运行信息）
+- `auth`: 认证配置（多账号 profiles）
 - `models`: 模型 Provider 配置
 - `agents`: Agent 列表和默认配置
-- `channels`: 消息渠道配置
+- `bindings`: Agent 绑定配置 ⭐
+- `tools`: 工具配置
+- `commands`: 命令配置
 - `session`: 会话配置
+- `hooks`: 钩子配置
+- `channels`: 消息渠道配置
 - `gateway`: 网关配置
+- `skills`: 技能配置
+- `plugins`: 插件配置
 - `secrets`: 密钥管理
+
+#### bindings - Agent 绑定配置
+
+`bindings` 是将特定 Agent 绑定到特定渠道/群组的核心配置：
+
+```json
+{
+  "bindings": [
+    {
+      "agentId": "coder",
+      "match": {
+        "channel": "feishu",
+        "peer": {
+          "kind": "group",
+          "id": "oc_6af9a63d34a5c0d534df9d45bccf5485"
+        }
+      }
+    },
+    {
+      "agentId": "pm",
+      "match": {
+        "channel": "feishu",
+        "peer": {
+          "kind": "group",
+          "id": "oc_f346c53567868e22aceaf3aaec29296d"
+        }
+      }
+    }
+  ]
+}
+```
+
+| 字段 | 说明 |
+|------|------|
+| `agentId` | 要绑定的 Agent ID |
+| `match.channel` | 消息渠道（如 `feishu`） |
+| `match.peer.kind` | 对端类型（`group` 群组 / `user` 用户） |
+| `match.peer.id` | 对端 ID（群组 ID 或用户 ID） |
+
+通过 `bindings`，可以实现：
+- 不同群组使用不同的 Agent
+- 将特定 Agent 分配给特定渠道或用户
+
+#### session.dmScope - 会话范围
+
+```json
+{
+  "session": {
+    "dmScope": "per-channel-peer"
+  }
+}
+```
+
+| 值 | 说明 |
+|---|------|
+| `per-channel-peer` | 每个渠道的每个对端独立会话 |
+| `per-sender` | 每个发送者独立会话 |
+| `main` | 统一使用 main Agent 的会话 |
+
+#### channels.feishu - 飞书渠道配置
+
+```json
+{
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "connectionMode": "websocket",
+      "verificationToken": "",
+      "webhookPath": "/feishu/events",
+      "domain": "feishu",
+      "groupPolicy": "open",
+      "groups": {
+        "oc_xxx": {
+          "requireMention": false
+        }
+      },
+      "appId": "cli_xxx",
+      "appSecret": "xxx"
+    }
+  }
+}
+```
+
+| 字段 | 说明 |
+|------|------|
+| `connectionMode` | 连接模式（`websocket` / `webhook`） |
+| `groupPolicy` | 群组策略（`open` 开放 / `controlled` 受控） |
+| `groups` | 群组配置 |
+| `requireMention` | 是否需要 @ 机器人 |
+
+#### gateway.auth - 网关认证
+
+```json
+{
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "xxx"
+    }
+  }
+}
+```
+
+#### plugins - 插件配置
+
+```json
+{
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "feishu": {
+        "source": "npm",
+        "spec": "@openclaw/feishu",
+        "version": "2026.3.2",
+        "installedAt": "2026-03-07T13:32:38.303Z"
+      }
+    }
+  }
+}
+```
 
 备份文件：`openclaw.json.bak`, `openclaw.json.bak.1` ...
 
