@@ -191,7 +191,48 @@ agents/
 
 > **注意**：每个 Agent 可以有独立的工作区。如果 Agent 配置了 `workspace` 字段，则使用该路径；否则使用共享的 `workspace/`。
 
-### 2.3 openclaw.json - 主配置文件
+### 2.3 SYSTEM.md vs Workspace 文件
+
+在 OpenClaw 中，有两套机制来定义 Agent 的行为：SYSTEM.md 和 Workspace 文件。
+
+#### SYSTEM.md
+
+- **位置**: `agents/<agentId>/SYSTEM.md`
+- **作用**: **Agent 级系统规范**，定义代码设计原则、架构模式
+- **内容示例**:
+  - 适配器模式、依赖注入等设计模式
+  - 代码规范（命名、函数长度）
+  - 项目文件组织结构
+  - Agent 特定的专业知识
+
+#### Workspace 文件
+
+- **位置**: `workspace/*.md` 或 `workspace-coder/*.md`
+- **作用**: Agent 的**运行时上下文**，定义如何与用户交互
+- **内容示例**:
+  - `AGENTS.md`: 操作指南、内存使用
+  - `SOUL.md`: 人设与边界
+  - `USER.md`: 用户信息
+  - `IDENTITY.md`: Agent 身份
+
+#### 对比表
+
+| 维度 | SYSTEM.md | Workspace 文件 |
+|------|-----------|----------------|
+| **位置** | Agent 目录 | Workspace 目录 |
+| **内容** | 代码规范、架构设计 | 人设、交互方式、用户信息 |
+| **加载时机** | Agent 启动时 | 每次 Session 开始时 |
+| **修改频率** | 很少（项目级） | 经常（个人化） |
+| **作用对象** | Agent 开发者 | Agent 与用户交互 |
+
+#### 总结
+
+- **SYSTEM.md** = Agent 的"工作手册"（怎么写代码）
+- **Workspace 文件** = Agent 的"性格手册"（怎么与人交流）
+
+> **注意**：只有 `coder` agent 有 `SYSTEM.md`，因为它是专业开发者，需要代码规范。其他 agent 用默认的 workspace 文件就够了。
+
+### 2.4 openclaw.json - 主配置文件
 
 主配置文件，包含所有运行时配置：
 
