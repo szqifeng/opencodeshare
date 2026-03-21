@@ -116,6 +116,159 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: '🦀 09-OpenClaw',
+      items: [
+        {
+          type: 'category',
+          label: '🚀 快速安装',
+          link: {
+            type: 'doc',
+            id: 'openclaw/quick-install',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/mac-docker-install',
+              label: 'Mac Docker 安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/mac-native-install',
+              label: 'Mac 原生安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/windows-docker-install',
+              label: 'Windows Docker 安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/windows-native-install',
+              label: 'Windows 原生安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/linux-native-install',
+              label: 'Linux 原生安装',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/cloud-server-install',
+              label: '云服务器安装',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: '⚙️ 配置',
+          link: {
+            type: 'doc',
+            id: 'openclaw/config-guide',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/openclaw-config-full-guide',
+              label: '⚙️ 全局配置',
+            },
+            {
+              type: 'category',
+              label: '📦 模型配置',
+              collapsed: true,
+              items: [
+                {
+                  type: 'doc',
+                  id: 'openclaw/openclaw-deepseek-config',
+                  label: 'DeepSeek 模型配置',
+                },
+                {
+                  type: 'doc',
+                  id: 'openclaw/openclaw-minimax-config',
+                  label: 'MiniMax 模型配置',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: '🔌 插件',
+          link: {
+            type: 'doc',
+            id: 'openclaw/plugin-dev',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/openclaw-plugin-architecture',
+              label: '插件架构生态全解',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: '🏗️ 架构',
+          link: {
+            type: 'doc',
+            id: 'openclaw/architecture/openclaw-architecture-layers',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-architecture-layers',
+              label: '架构设计分层',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-code-architecture',
+              label: '代码架构详解',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-agent-core',
+              label: 'Agent 核心原理',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-plugin-system',
+              label: '插件系统架构',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-feishu-plugin',
+              label: '飞书插件架构',
+            },
+            {
+              type: 'doc',
+              id: 'openclaw/architecture/openclaw-workspace-structure',
+              label: '项目工作目录结构',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: '🎯 技能',
+          link: {
+            type: 'doc',
+            id: 'openclaw/skills',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'openclaw/react-pattern-agent',
+              label: 'ReAct 模式全解',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: '🧩 10-Minicode',
       items: [
         'minicode/minicode-01-sdk-api',
