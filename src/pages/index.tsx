@@ -510,29 +510,29 @@ export default function Home(): ReactNode {
            <div style={container}>
                <h2 style={sectionTitle}>核心能力</h2>
 <div style={cardGrid}>
-                  <Link to="/docs/openclaw/quick-install" className="card" style={card}>
-                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
-                      <defs>
-                        <linearGradient id="openclawGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" style={{stopColor: '#ef4444', stopOpacity: 1}} />
-                          <stop offset="100%" style={{stopColor: '#dc2626', stopOpacity: 1}} />
-                        </linearGradient>
-                      </defs>
-                      <circle cx="32" cy="32" r="28" fill="url(#openclawGradient)" opacity="0.1">
-                        <animate attributeName="r" values="28;32;28" dur="3s" repeatCount="indefinite"/>
-                      </circle>
-                      <path d="M32 12L44 24V40L32 52L20 40V24L32 12Z" stroke="url(#openclawGradient)" strokeWidth="2" fill="none">
-                        <animate attributeName="stroke-dasharray" values="0,200;200,0;200,0" dur="2s" repeatCount="indefinite"/>
-                      </path>
-                      <circle cx="32" cy="32" r="8" fill="url(#openclawGradient)">
-                        <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
-                        <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
-                      </circle>
-                      <circle cx="32" cy="32" r="4" fill="#fff"/>
-                    </svg>
-                    <h3 style={cardTitle}>OpenClaw</h3>
-                     <p style={cardDesc} className="card-desc">强大的 AI 自动化工具，通过飞书等渠道实现智能交互和任务自动化</p>
-                     <Link to="/docs/openclaw/quick-install" style={cardLink}><span className="card-link-full">快速安装</span><span className="card-link-icon">→</span></Link>
+<Link to="/docs/minicode/minicode-01-sdk-api" className="card" style={card}>
+                    <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
+                       <defs>
+                         <linearGradient id="openclawGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                           <stop offset="0%" style={{stopColor: '#ef4444', stopOpacity: 1}} />
+                           <stop offset="100%" style={{stopColor: '#dc2626', stopOpacity: 1}} />
+                         </linearGradient>
+                       </defs>
+                       <circle cx="32" cy="32" r="28" fill="url(#openclawGradient)" opacity="0.1">
+                         <animate attributeName="r" values="28;32;28" dur="3s" repeatCount="indefinite"/>
+                       </circle>
+                       <path d="M32 12L44 24V40L32 52L20 40V24L32 12Z" stroke="url(#openclawGradient)" strokeWidth="2" fill="none">
+                         <animate attributeName="stroke-dasharray" values="0,200;200,0;200,0" dur="2s" repeatCount="indefinite"/>
+                       </path>
+                       <circle cx="32" cy="32" r="8" fill="url(#openclawGradient)">
+                         <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                         <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+                       </circle>
+                       <circle cx="32" cy="32" r="4" fill="#fff"/>
+                     </svg>
+                     <h3 style={cardTitle}>Minicode 打造</h3>
+                      <p style={cardDesc} className="card-desc">用最少的代码，打造 LLM 编程助手的核心能力</p>
+                      <Link to="/docs/minicode/minicode-01-sdk-api" style={cardLink}><span className="card-link-full">开始打造</span><span className="card-link-icon">→</span></Link>
                   </Link>
                   <Link to="/docs/quick-start/starter-guide" className="card" style={card}>
                   <svg style={svgIcon} viewBox="0 0 64 64" fill="none">
@@ -669,11 +669,11 @@ export default function Home(): ReactNode {
            <div style={container}>
              <h2 style={sectionTitle}>快速导航</h2>
              <div style={mobileMenuGrid}>
-                <Link to="/docs/openclaw/quick-install" style={mobileMenuItem}>
-                  <div style={mobileMenuIcon}>🦀</div>
+                <Link to="/docs/minicode/minicode-01-sdk-api" style={mobileMenuItem}>
+                  <div style={mobileMenuIcon}>🧩</div>
                   <div>
-                    <h3 style={mobileMenuTitle}>OpenClaw</h3>
-                    <p style={mobileMenuDesc}>AI 自动化工具</p>
+                    <h3 style={mobileMenuTitle}>Minicode 打造</h3>
+                    <p style={mobileMenuDesc}>LLM 核心能力</p>
                   </div>
                 </Link>
                 <Link to="/docs/quick-start/starter-guide" style={mobileMenuItem}>
