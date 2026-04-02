@@ -113,13 +113,13 @@ const config: Config = {
           label: '应用场景',
           position: 'left',
         },
+        // {
+        //   to: '/club',
+        //   label: '加入社群',
+        //   position: 'right',
+        // },
         {
-          to: '/club',
-          label: '加入社群',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/szqifeng/opencodeshare',
+          href: 'https://github.com/szqifeng/miniopencode',
           label: 'GitHub',
           position: 'right',
         },

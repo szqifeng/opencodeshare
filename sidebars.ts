@@ -283,6 +283,17 @@ const sidebars: SidebarsConfig = {
         'minicode/minicode-10-deploy',
       ],
     },
+    {
+      type: 'category',
+      label: '🤖 11-MiniOpenCode',
+      collapsed: true,
+      items: [
+        'miniopencode/miniopencode-01-agent-react',
+        'miniopencode/miniopencode-02-tools',
+        'miniopencode/miniopencode-03-session-prompts',
+        'miniopencode/miniopencode-04-streaming',
+      ],
+    },
   ],
 };
 
